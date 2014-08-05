@@ -36,11 +36,12 @@ module Shipwire
           quotes = @rate_response.xpath('//Quote')
           quotes.each do |quote|
             service = quote.xpath('Service').text
-            code = quote.xpath('CarrierCode').text
+            carrier_code = quote.xpath('CarrierCode').text
             cost = quote.xpath('Cost').text
 
             @shipping_quotes << { service: service,
-              carrier_code: code,
+              carrier_code: carrier_code,
+              code: quote.attributes['method'].value,
               cost: cost }
           end
         else
