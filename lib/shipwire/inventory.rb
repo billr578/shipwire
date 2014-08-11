@@ -46,6 +46,8 @@ module Shipwire
             }
           end
         end
+      else
+        @errors << 'Unsuccessful request'
       end
     end
 
