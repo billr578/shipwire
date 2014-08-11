@@ -10,16 +10,8 @@ module Shipwire
       super
 
       @shipping_quotes = []
-
       @api_path = ShippingRate::API_PATH
-
-      @address1 = params[:address][:address1] || ''
-      @address2 = params[:address][:address2] || ''
-      @city = params[:address][:city] || ''
-      @state = params[:address][:state] || ''
-      @country = params[:address][:country] || ''
-      @zip = params[:address][:zip] || ''
-
+      @address = params[:address]
       @items = params[:items] || []   # [ { code: '123456', quantity: 1 } ]
 
       self.build_payload
@@ -39,10 +31,12 @@ module Shipwire
             carrier_code = quote.xpath('CarrierCode').text
             cost = quote.xpath('Cost').text
 
-            @shipping_quotes << { service: service,
+            @shipping_quotes << {
+              service: service,
               carrier_code: carrier_code,
               code: quote.attributes['method'].value,
-              cost: cost }
+              cost: cost
+            }
           end
         else
           @errors << 'Unsuccessful request'
@@ -58,19 +52,19 @@ module Shipwire
     def build_payload
       builder = Nokogiri::XML::Builder.new do |xml|
         xml.RateRequest {
-          xml.EmailAddress Shipwire.username
+          xml.Username Shipwire.username
           xml.Password Shipwire.password
 
           xml.Order {
             xml.Warehouse '00'
 
             xml.AddressInfo(type: 'ship') {
-              xml.Address1 @address1
-              xml.Address2 @address2
-              xml.City @city
-              xml.State @state
-              xml.Country @country
-              xml.Zip @zip
+              xml.Address1 @address[:address1]
+              xml.Address2 @address[:address2]
+              xml.City @address[:city]
+              xml.State @address[:state]
+              xml.Country @address[:country]
+              xml.Zip @address[:zip]
             }
 
             count = 0
