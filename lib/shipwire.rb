@@ -5,6 +5,7 @@ require 'shipwire/service_request'
 require 'shipwire/fulfillment'
 require 'shipwire/shipping_rate'
 require 'shipwire/tracking'
+require 'shipwire/inventory'
 
 module Shipwire
   class << self

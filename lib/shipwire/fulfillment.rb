@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 module Shipwire
   class Fulfillment < Shipwire::ServiceRequest
     attr_reader :order_responses
@@ -38,7 +40,6 @@ module Shipwire
               order_number: order_number,
               fulfillment_id: fulfillment_id,
               status: status,
-
               shipping: {
                 service: shipping_service,
                 cost: shipping_cost

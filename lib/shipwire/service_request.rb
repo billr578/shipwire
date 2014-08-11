@@ -27,7 +27,7 @@ module Shipwire
     def is_ok?(element)
       status = element.xpath('//Status').text
 
-      return status == 'OK' || status == "0"
+      return status == 'OK' || status == "0" || status == "Test"
     end
 
     def parse_response
