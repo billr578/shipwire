@@ -39,4 +39,24 @@ describe Shipwire::ShippingRate, vcr: true do
     expect(shipping_rate.shipping_quotes.count).to eql(0)
     expect(shipping_rate.errors.count).to be > 0
   end
+
+  it 'should have valid return values for a shipping quote' do
+    shipping_rate = Shipwire::ShippingRate.new({
+      address: address,
+      items: items
+    })
+
+    shipping_rate.send
+    shipping_rate.parse_response
+
+    shipping_quote = shipping_rate.shipping_quotes.first
+    expect(shipping_quote[:service]).to_not be nil
+    expect(shipping_quote[:carrier_code]).to_not be nil
+    expect(shipping_quote[:code]).to_not be nil
+    expect(shipping_quote[:cost]).to be > 0
+    expect(shipping_quote[:subtotals][:freight]).to be > 0.0
+    expect(shipping_quote[:subtotals][:insurance]).to eql 0.0
+    expect(shipping_quote[:subtotals][:packaging]).to eql 0.0
+    expect(shipping_quote[:subtotals][:handling]).to eql 0.0
+  end
 end

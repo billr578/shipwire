@@ -29,13 +29,38 @@ module Shipwire
           quotes.each do |quote|
             service = quote.xpath('Service').text
             carrier_code = quote.xpath('CarrierCode').text
-            cost = quote.xpath('Cost').text
+            cost = quote.xpath('Cost').text.to_f
+            subtotals = quote.xpath('Subtotals')
+
+            freight = 0.0
+            insurance = 0.0
+            packaging = 0.0
+            handling = 0.0
+
+            subtotals.xpath('Subtotal').each do |subtotal|
+              case subtotal.attributes['type'].text
+              when 'Freight'
+                freight = subtotal.xpath('Cost').text.to_f
+              when 'Insurance'
+                insurance = subtotal.xpath('Cost').text.to_f
+              when 'Packaging'
+                packaging = subtotal.xpath('Cost').text.to_f
+              when 'Handling'
+                handling = subtotal.xpath('Cost').text.to_f
+              end
+            end
 
             @shipping_quotes << {
               service: service,
               carrier_code: carrier_code,
               code: quote.attributes['method'].value,
-              cost: cost
+              cost: cost,
+              subtotals: {
+                freight: freight,
+                insurance: insurance,
+                packaging: packaging,
+                handling: handling
+              }
             }
           end
         else
