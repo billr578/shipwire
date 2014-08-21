@@ -43,4 +43,5 @@ module Shipwire
   class ApiServerNotSet < Error; end
   class ServerErrorEncountered < Error; end
   class AccessDenied < Error; end
+  class TrackingError < Error; end
 end

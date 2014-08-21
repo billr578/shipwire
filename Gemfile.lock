@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shipwire (0.0.2)
+    shipwire (0.0.3)
       faraday
       nokogiri
 
