@@ -46,8 +46,8 @@ module Shipwire
               tracking_data = []
               tracking_numbers.each do |number|
                 tracking_data << {
-                  carrier: number.attributes['carrier'],
-                  tracking_link: number.attributes['href'],
+                  carrier: number.attributes['carrier'].value,
+                  tracking_link: number.attributes['href'].value,
                   tracking_number: number.text
                 }
               end
