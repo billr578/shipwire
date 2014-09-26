@@ -26,8 +26,11 @@ Get a Shipwire sandbox account for development & testing:
 Your credentials, endpoint, and sever environment variables need to be set:
 
   SHIPWIRE_USERNAME
+  
   SHIPWIRE_PASSWORD
+  
   SHIPWIRE_SERVER
+  
   SHIPWIRE_ENDPOINT
 
 SHIPWIRE_SERVER is either `Test` or `Production`.  SHIPWIRE_ENDPOINT is one of their API hosts:
