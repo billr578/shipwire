@@ -31,6 +31,7 @@ module Shipwire
             carrier_code = quote.xpath('CarrierCode').text
             cost = quote.xpath('Cost').text.to_f
             subtotals = quote.xpath('Subtotals')
+            delivery_estimate = quote.xpath('DeliveryEstimate')
 
             freight = 0.0
             insurance = 0.0
@@ -50,6 +51,11 @@ module Shipwire
               end
             end
 
+            if delivery_estimate != nil
+              minimum = delivery_estimate.xpath('Minimum')
+              maximum = delivery_estimate.xpath('Maximum')
+            end
+
             @shipping_quotes << {
               service: service,
               carrier_code: carrier_code,
@@ -60,6 +66,10 @@ module Shipwire
                 insurance: insurance,
                 packaging: packaging,
                 handling: handling
+              },
+              delivery_estimate: {
+                minimum: minimum == nil ? '' : minimum.text,
+                maximum: maximum == nil ? '' : maximum.text
               }
             }
           end
