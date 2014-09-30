@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["billr578@gmail.com"]
   spec.summary       = %q{Exchange data with Shipwire fullfillment}
   spec.description   = %q{Provides a wrapper for API calls to Shipwire fullfillment}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/morbid-enterprises/shipwire"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
