@@ -1,7 +1,7 @@
 Shipwire
 ========
 
-Ruby gem to integrate with Shipwire's fulfillment API.
+Ruby gem to integrate with Shipwire's fulfillment API.  The current implementation works with their deprecated (but still supported) XML API.  Version 2 of this gem will integrate with their current, RESTful API.
 
 ## Installation
 
