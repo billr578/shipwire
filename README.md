@@ -47,6 +47,8 @@ Use `api.beta` for any development or testing.
 
 If making contributions to this gem, make sure you write tests for any new functionality.  Contributions will be rejected if there are no tests or tests do not pass.
 
+Quick note on running tests - you'll need an active sandbox account with Shipwire to make the tests pass.  New test will be written in the future with mock HTTP requests so API credentials are not required.
+
 #### Shipping Quotes
 
 Shipwire relies on product SKUs being present to return a shipping quote.  In your Sandbox environment, create a test product with SKU `123456` to get quote tests to pass.
