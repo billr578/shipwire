@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders/91292076?expand=all
+    body:
+      encoding: UTF-8
+      string: '{"orderNo":"AAOERSHW","externalId":"AAOERSHW","items":[{"sku":"FAKE-PRODUCT","quantity":1}],"options":{"currency":"MXN"},"shipTo":{"email":"vicente.heidenreich@jewesscrona.us","name":"Matilda
+        Simonis","address1":"1555 Southgate Road","address2":"","city":"Arlington","state":"VA","postalCode":"22214","country":"US","phone":"343-996-0723"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 02 Jun 2015 19:45:41 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '1.150194'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '1220'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91292076","resource":{"externalId":"DJTXRQOP","orderNo":"AAOERSHW","commerceName":"Shipwire","processAfterDate":"2000-01-01T00:00:00-08:00","lastUpdatedDate":"2015-06-02T12:45:06-07:00","status":"held","id":91292076,"transactionId":"1433274306-635825-1","needsReview":0,"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91292076\/holds?offset=0&limit=20&expand=all","resource":{"offset":0,"total":5,"previous":null,"next":null,"items":[{"resourceLocation":null,"resource":{"id":355220,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"Order is currently being posted","appliedDate":"2015-06-02T12:45:07-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":355222,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"There are no items in this order","appliedDate":"2015-06-02T12:45:38-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":355223,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"Shipping method must be selected","appliedDate":"2015-06-02T12:45:39-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":355221,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"No warehouse selected","appliedDate":"2015-06-02T12:45:37-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":355219,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"Missing or unrecognized SKUs: FAKE-PRODUCT (item 1)","appliedDate":"2015-06-02T12:45:07-07:00","clearedDate":null}}]}},"items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91292076\/items?offset=0&limit=20&expand=all","resource":{"offset":0,"total":0,"previous":null,"next":null,"items":[]}},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91292076\/trackings?offset=0&limit=20&expand=all","resource":{"offset":0,"total":0,"previous":null,"next":null,"items":[]}},"returns":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns?offset=0&limit=20&expand=all","resource":{"offset":0,"total":0,"previous":null,"next":null,"items":[]}},"options":{"resourceLocation":null,"resource":{"warehouseId":"","warehouseExternalId":null,"warehouseRegion":null,"warehouseArea":null,"serviceLevelCode":null,"carrierCode":null,"carrierAccountNumber":null,"sameDay":"NOT REQUESTED","forceDuplicate":0,"forceAddress":0,"testOrder":0,"channelName":null,"referrer":""}},"shipFrom":{"resourceLocation":null,"resource":{"company":"Fulfillment Center"}},"shipTo":{"resourceLocation":null,"resource":{"email":"vicente.heidenreich@jewesscrona.us","name":"Matilda Simonis","company":null,"address1":"1555 SOUTHGATE RD","address2":"","address3":"","city":"ARLINGTON","state":"VA","postalCode":"22214","country":"US","phone":"343-996-0723","isCommercial":0,"isPoBox":0}},"commercialInvoice":{"resourceLocation":null,"resource":{"shippingValue":null,"insuranceValue":null,"additionalValue":null}},"packingList":{"resourceLocation":null,"resource":{"message1":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message2":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message3":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"other":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}}}},"routing":{"resourceLocation":null,"resource":{"warehouseId":null,"warehouseExternalId":null,"warehouseName":null,"originLongitude":null,"originLatitude":null,"destinationLongitude":"-77.0739","destinationLatitude":"38.8688"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-06-02T12:45:06-07:00","pickedUpDate":null,"submittedDate":null,"processedDate":null,"completedDate":null,"expectedDate":null,"cancelledDate":null,"returnedDate":null,"lastManualUpdateDate":null}},"pricing":{"resourceLocation":null,"resource":{"shipping":null,"packaging":null,"insurance":null,"handling":null,"total":null}},"shipwireAnywhere":{"resourceLocation":null,"resource":{"status":null}},"pricingEstimate":{"resourceLocation":null,"resource":{"total":null,"insurance":null,"shipping":null,"packaging":null,"handling":null}}}}
+    http_version: 
+  recorded_at: Tue, 02 Jun 2015 19:45:42 GMT
+recorded_with: VCR 2.9.3

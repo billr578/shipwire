@@ -1,7 +1,7 @@
-Shipwire
-========
+# Shipwire
 
 Ruby gem to integrate with Shipwire's fulfillment API.  The current implementation works with their deprecated (but still supported) XML API.  Version 2 of this gem will integrate with their current, RESTful API.
+
 
 ## Installation
 
@@ -16,6 +16,7 @@ And then execute:
 You can install it locally as:
 
   `$ gem install shipwire`
+
 
 ## Getting Started
 
@@ -43,6 +44,15 @@ Or
 
 Use `api.beta` for any development or testing.
 
+
+## TODO
+
+- Finish pending tests (open issues with Shipwire currently preventing)
+- Validation
+- Remove Rails as a dependency
+- Change test SKU of `TEST-PRODUCT` to `123456` before switching test account back to billr578
+
+
 ## Running Tests
 
 If making contributions to this gem, make sure you write tests for any new functionality.  Contributions will be rejected if there are no tests or tests do not pass.
@@ -53,9 +63,10 @@ Quick note on running tests - you'll need an active sandbox account with Shipwir
 
 Shipwire relies on product SKUs being present to return a shipping quote.  In your Sandbox environment, create a test product with SKU `123456` to get quote tests to pass.
 
+
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/shipwire/fork )
+1. Fork it ( https://github.com/billr578/shipwire/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

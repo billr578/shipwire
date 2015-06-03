@@ -1,47 +1,34 @@
+require 'faraday'
+
 require 'shipwire/version'
 require 'shipwire/configuration'
+require 'shipwire/deep_open_struct'
+require 'shipwire/api'
 
-require 'shipwire/service_request'
-require 'shipwire/fulfillment'
-require 'shipwire/shipping_rate'
-require 'shipwire/tracking'
-require 'shipwire/inventory'
+require 'shipwire/orders'
+require 'shipwire/rate'
+require 'shipwire/receivings'
+require 'shipwire/returns'
+require 'shipwire/secret'
+require 'shipwire/stock'
+require 'shipwire/webhooks'
+
+require 'shipwire/products/base'
+require 'shipwire/products/basic'
+require 'shipwire/products/insert'
+require 'shipwire/products/kit'
+require 'shipwire/products/virtual_kit'
 
 module Shipwire
   class << self
-    attr_accessor :configuration
+    attr_writer :configuration
 
-    def configure(&block)
-      @configuration = Configuration.new(&block)
+    def configure
+      yield(configuration)
     end
 
     def configuration
       @configuration ||= Configuration.new
     end
-
-    def endpoint
-      configuration.nil? ? nil : configuration.endpoint
-    end
-
-    def username
-      configuration.nil? ? nil : configuration.username
-    end
-
-    def password
-      configuration.nil? ? nil : configuration.password
-    end
-
-    def server
-      configuration.nil? ? nil : configuration.server
-    end
   end
-
-  class Error < Exception; end
-  class ApiEndpointNotSet < Error; end
-  class ApiUsernameNotSet < Error; end
-  class ApiPasswordNotSet < Error; end
-  class ApiServerNotSet < Error; end
-  class ServerErrorEncountered < Error; end
-  class AccessDenied < Error; end
-  class TrackingError < Error; end
 end

@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/rate
+    body:
+      encoding: UTF-8
+      string: '{"options":{"currency":"USD","groupBy":"all"},"order":{"shipTo":{"address1":"1555
+        Southgate Road","address2":"","city":"Arlington","postalCode":"22214","region":"VA","country":"US"},"items":[{"sku":"NON-EXISTANT-PRODUCT","quantity":1}]}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      Date:
+      - Tue, 02 Jun 2015 19:36:31 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.039453'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '177'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":422,"message":"One or more errors occurred processing this
+        rate request.","errors":[{"type":"error","code":"sku","message":"unknown SKU
+        ''NON-EXISTANT-PRODUCT''"}],"resourceLocation":null}'
+    http_version: 
+  recorded_at: Tue, 02 Jun 2015 19:36:31 GMT
+recorded_with: VCR 2.9.3

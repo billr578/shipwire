@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders/91292076/holds?includeCleared=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 02 Jun 2015 19:46:22 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.034449'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '499'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91292076\/holds?offset=0&limit=20&includeCleared=1","resource":{"offset":0,"total":7,"previous":null,"next":null,"items":[{"resourceLocation":null,"resource":{"id":355220,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"Order
+        is currently being posted","appliedDate":"2015-06-02T12:45:07-07:00","clearedDate":"2015-06-02T12:46:03-07:00"}},{"resourceLocation":null,"resource":{"id":355224,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"Order
+        is currently being posted","appliedDate":"2015-06-02T12:46:06-07:00","clearedDate":"2015-06-02T12:46:07-07:00"}},{"resourceLocation":null,"resource":{"id":355225,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"Order
+        is currently being posted","appliedDate":"2015-06-02T12:46:10-07:00","clearedDate":"2015-06-02T12:46:11-07:00"}},{"resourceLocation":null,"resource":{"id":355222,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"There
+        are no items in this order","appliedDate":"2015-06-02T12:45:38-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":355223,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"Shipping
+        method must be selected","appliedDate":"2015-06-02T12:45:39-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":355221,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"No
+        warehouse selected","appliedDate":"2015-06-02T12:45:37-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":355219,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"Missing
+        or unrecognized SKUs: FAKE-PRODUCT (item 1)","appliedDate":"2015-06-02T12:45:07-07:00","clearedDate":null}}]}}'
+    http_version: 
+  recorded_at: Tue, 02 Jun 2015 19:46:23 GMT
+recorded_with: VCR 2.9.3

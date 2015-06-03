@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/receivings
+    body:
+      encoding: UTF-8
+      string: '{"externalId":"H-1344","expectedDate":"2014-05-27T00:00:00-07:00","arrangement":{"type":"none","contact":"George","phone":"1239999111"},"items":[{"sku":"TwinPianos","quantity":5}],"trackings":[{"tracking":"UPS9654123574","carrier":"UPS","contact":"Stephen
+        Alexander","phone":"3219999111"}],"shipments":[{"length":18,"width":9,"height":57,"weight":33,"type":"box"}],"instructionsRecipients":[{"email":"vasilis@foo.bar","name":"Vasilis
+        Raptakis","note":"Please handle with care"}],"options":{"warehouseRegion":"LAX"},"shipFrom":{"email":"shipping@wesellem.co","name":"Stephen
+        Alexander","address1":"11 Prsilla St","city":"Schenectady","state":"NY","postalCode":"12345","country":"United
+        States","phone":"1234567890"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 03 Jun 2015 17:50:12 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.102142'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '266'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":200,"message":"Successful","errors":[{"code":"orderSubmitFailed","externalId":"H-1344","id":null,"message":"Validation
+        errors occurred: Incomplete or invalid input data.","type":"error"}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings?offset=0&limit=0","resource":{"offset":0,"total":0,"previous":null,"next":null,"items":[]}}'
+    http_version: 
+  recorded_at: Wed, 03 Jun 2015 17:50:13 GMT
+recorded_with: VCR 2.9.3
