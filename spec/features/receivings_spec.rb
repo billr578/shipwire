@@ -16,9 +16,9 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
     context "using params" do
       it "is successful" do
         VCR.use_cassette("receivings_list_with_params") do
-          request = Shipwire::Receivings.new.list({
+          request = Shipwire::Receivings.new.list(
             status: "canceled"
-          })
+          )
 
           expect(request.ok?).to be_truthy
         end
@@ -29,43 +29,43 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
   context "management" do
     let!(:receiving) do
       VCR.use_cassette("receiving") do
-        Shipwire::Receivings.new.create({
-          externalId:   FFaker::Product.model,
+        Shipwire::Receivings.new.create(
+          externalId: FFaker::Product.model,
           expectedDate: DateTime.now.to_s,
-          arrangement:  {
+          arrangement: {
             type: "none"
           },
-          items:        [{
-            sku:      FFaker::Product.model,
+          items: [{
+            sku: FFaker::Product.model,
             quantity: 5
           }],
-          trackings:    [{
+          trackings: [{
             tracking: "UPS1234567890",
-            carrier:  "UPS",
-            contact:  FFaker::Name.name ,
-            phone:    FFaker::PhoneNumber.short_phone_number
+            carrier: "UPS",
+            contact: FFaker::Name.name,
+            phone: FFaker::PhoneNumber.short_phone_number
           }],
-          shipments:    [{
+          shipments: [{
             length: 1,
-            width:  1,
+            width: 1,
             height: 1,
             weight: 1,
-            type:   "box"
+            type: "box"
           }],
-          options:      {
+          options: {
             warehouseRegion: "LAX"
           },
-          shipFrom:     {
-            email:      FFaker::Internet.email,
-            name:       FFaker::Name.name,
+          shipFrom: {
+            email: FFaker::Internet.email,
+            name: FFaker::Name.name,
             address1: "540 West Boylston St.",
             city: "Worcester",
             state: "MA",
             postalCode: "01606",
             country: "US",
-            phone:      FFaker::PhoneNumber.short_phone_number
+            phone: FFaker::PhoneNumber.short_phone_number
           }
-        })
+        )
       end
     end
 

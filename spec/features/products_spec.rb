@@ -21,9 +21,9 @@ RSpec.describe "Product", type: :feature, vcr: true do
         context "with params" do
           it "is successful" do
             VCR.use_cassette("products_#{product_type}_list_with_params") do
-              request = product_class.new.list({
+              request = product_class.new.list(
                 sku: "TEST-PRODUCT"
-              })
+              )
 
               expect(request.ok?).to be_truthy
             end

@@ -15,9 +15,9 @@ RSpec.describe "Orders", type: :feature, vcr: true do
     context "with params" do
       it "is successful" do
         VCR.use_cassette("orders_list_with_params") do
-          request = Shipwire::Orders.new.list({
+          request = Shipwire::Orders.new.list(
             status: "canceled"
-          })
+          )
 
           expect(request.ok?).to be_truthy
         end
@@ -55,11 +55,7 @@ RSpec.describe "Orders", type: :feature, vcr: true do
     end
 
     let(:payload_update) do
-      payload.deep_merge({
-        options: {
-          currency: "MXN"
-        }
-      })
+      payload.deep_merge(options: { currency: "MXN" })
     end
 
     let!(:order) do
@@ -91,9 +87,7 @@ RSpec.describe "Orders", type: :feature, vcr: true do
           VCR.use_cassette("order_find_with_params") do
             order_id = order.response.resource.items.first.resource.id
 
-            request = Shipwire::Orders.new.find(order_id, {
-              expand: "trackings"
-            })
+            request = Shipwire::Orders.new.find(order_id, expand: "trackings")
 
             expect(request.ok?).to be_truthy
           end
@@ -127,9 +121,9 @@ RSpec.describe "Orders", type: :feature, vcr: true do
           VCR.use_cassette("order_update_with_params") do
             order_id = order.response.resource.items.first.resource.id
 
-            request = Shipwire::Orders.new.update(order_id, payload_update, {
-              expand: "all"
-            })
+            request = Shipwire::Orders.new.update(order_id,
+                                                  payload_update,
+                                                  expand: "all")
 
             expect(request.ok?).to be_truthy
           end
@@ -183,9 +177,7 @@ RSpec.describe "Orders", type: :feature, vcr: true do
           VCR.use_cassette("order_holds_with_params") do
             order_id = order.response.resource.items.first.resource.id
 
-            request = Shipwire::Orders.new.holds(order_id, {
-              includeCleared: 1
-            })
+            request = Shipwire::Orders.new.holds(order_id, includeCleared: 1)
 
             expect(request.ok?).to be_truthy
           end
@@ -206,9 +198,7 @@ RSpec.describe "Orders", type: :feature, vcr: true do
         VCR.use_cassette("order_returns") do
           order_id = order.response.resource.items.first.resource.id
 
-          binding.pry
           request = Shipwire::Orders.new.returns(order_id)
-          binding.pry
 
           expect(request.ok?).to be_truthy
         end

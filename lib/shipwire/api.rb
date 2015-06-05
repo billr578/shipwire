@@ -17,7 +17,7 @@ module Shipwire
     def request(method, path, payload = {}, params = {})
       begin
         request = connection.send(method, request_path(path)) do |r|
-          r.params  = camel_case(params)
+          r.params  = camel_case(params) unless params.empty?
           r.options = request_options
           r.headers = request_headers
           r.body    = camel_case(payload).to_json unless payload.empty?

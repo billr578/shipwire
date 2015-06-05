@@ -18,10 +18,10 @@ RSpec.describe "Webhooks", type: :feature, vcr: true do
 
     let!(:webhook) do
       VCR.use_cassette("webhook") do
-        Shipwire::Webhooks.new.create({
+        Shipwire::Webhooks.new.create(
           topic: webhook_topic,
           url:   webhook_url
-        })
+        )
       end
     end
 
@@ -52,10 +52,12 @@ RSpec.describe "Webhooks", type: :feature, vcr: true do
         VCR.use_cassette("webhooks_update") do
           webhook_id = webhook.response.resource.items.first.resource.id
 
-          request = Shipwire::Webhooks.new.update(webhook_id, {
+          payload = {
             topic: webhook_topic,
             url:   webhook_url_update
-          })
+          }
+
+          request = Shipwire::Webhooks.new.update(webhook_id, payload)
 
           expect(request.ok?).to be_truthy
         end
@@ -63,10 +65,12 @@ RSpec.describe "Webhooks", type: :feature, vcr: true do
 
       it "fails when id does not exist" do
         VCR.use_cassette("webhooks_update_fail") do
-          request = Shipwire::Webhooks.new.update(0, {
+          payload = {
             topic: webhook_topic,
             url:   webhook_url_update
-          })
+          }
+
+          request = Shipwire::Webhooks.new.update(0, payload)
 
           expect(request.errors?).to be_truthy
           expect(request.response.message).to eq "Invalid request"
