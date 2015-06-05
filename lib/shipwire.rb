@@ -2,9 +2,10 @@ require 'faraday'
 require 'recursive_open_struct'
 
 require 'shipwire/version'
+require 'shipwire/api'
 require 'shipwire/configuration'
 require 'shipwire/param_converter'
-require 'shipwire/api'
+require 'shipwire/response'
 
 require 'shipwire/orders'
 require 'shipwire/rate'
