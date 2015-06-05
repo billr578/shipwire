@@ -3,6 +3,7 @@ require 'faraday'
 require 'shipwire/version'
 require 'shipwire/configuration'
 require 'shipwire/deep_open_struct'
+require 'shipwire/param_converter'
 require 'shipwire/api'
 
 require 'shipwire/orders'

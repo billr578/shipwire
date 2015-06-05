@@ -17,10 +17,10 @@ module Shipwire
     def request(method, path, payload = {}, params = {})
       begin
         request = connection.send(method, request_path(path)) do |r|
-          r.params  = request_params(params)
+          r.params  = camel_case(params)
           r.options = request_options
           r.headers = request_headers
-          r.body    = payload.to_json unless payload.empty?
+          r.body    = camel_case(payload).to_json unless payload.empty?
         end
 
         @response = parse_response(request)
@@ -73,12 +73,8 @@ module Shipwire
       "/api/v#{API_VERSION}/#{path}"
     end
 
-    # The Shipwire API uses PHP. The PHP community uses camel case. The Ruby
-    # community uses snake case. Allow snake case to be passed in, but send it
-    # as camel case.
-    def request_params(params)
-      # TODO: Convert params to camelCase to make Shipwire's PHP API happy
-      params
+    def camel_case(options)
+      ParamConverter.new(options).to_h
     end
 
     def request_options

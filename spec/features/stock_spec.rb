@@ -26,8 +26,8 @@ RSpec.describe "Stock", type: :feature, vcr: true do
 
     context "with params and non-existant SKU" do
       it "is successful" do
-        # Still returns a successful result. There is just no records in the
-        # result set because they were all filtered out. There are no errors.
+        # Returns a successful result. There is just no records in the result
+        # set because they were all filtered out. There are no errors.
         VCR.use_cassette("stock_with_params_no_sku") do
           request = Shipwire::Stock.new.list({
             sku: 'FAKE-PRODUCT'
