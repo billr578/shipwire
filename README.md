@@ -1,67 +1,89 @@
 # Shipwire
 
-Ruby gem to integrate with Shipwire's fulfillment API.  The current implementation works with their deprecated (but still supported) XML API.  Version 2 of this gem will integrate with their current, RESTful API.
+Ruby gem to integrate with Shipwire's API.
 
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-  `gem 'shipwire'`
+```
+gem 'shipwire'
+```
 
-And then execute:
-
-  `$ bundle`
-
-You can install it locally as:
-
-  `$ gem install shipwire`
+> Note: The master branch is not guaranteed to be in a fully functioning state. It is unwise to use this branch in a production environment.
 
 
-## Getting Started
+Run the bundle command:
 
-Get a Shipwire sandbox account for development & testing:
+```
+bundle install
+```
 
-  `http://beta.shipwire.com/`
+After installing, run the generator:
 
-Your credentials, endpoint, and sever environment variables need to be set:
+```
+rails g shipwire:install
+```
 
-  SHIPWIRE_USERNAME
-  
-  SHIPWIRE_PASSWORD
-  
-  SHIPWIRE_SERVER
-  
-  SHIPWIRE_ENDPOINT
+You can install locally with
 
-SHIPWIRE_SERVER is either `Test` or `Production`.  SHIPWIRE_ENDPOINT is one of their API hosts:
+```
+gem install shipwire
+```
 
-  `https://api.shipwire.com/exec/`
 
-Or
+## Configuration
 
-  `https://api.beta.shipwire.com/exec/`
+There is a difference between an account registered from [https://www.shipwire.com/](https://www.shipwire.com/) and one registered from https://beta.shipwire.com/ If you create an account from [https://www.shipwire.com/](https://www.shipwire.com/) and then request data from the beta URL, the API will throw errors about an invalid account. Accounts are only valid from that registration point.
 
-Use `api.beta` for any development or testing.
+When you run `rails g shipwire:install` a new file will be generated at `config/initializers/shipwire.rb`
+
+The only required configuration values are `username` and `password`. 
+
+```
+Shipwire.configure do |config|
+  config.username = "<%= ENV['SHIPWIRE_USERNAME'] %>"
+  config.password = "<%= ENV['SHIPWIRE_PASSWORD'] %>"
+end
+```
+
+`username` - Shipwire username (email address) used for basic auth login to Shipwire
+
+`password` - Shipwire password used for basic auth login to Shipwire.
+
+`open_timeout` - Read timeout in seconds. Default is 2.
+
+`timeout` - Open/read timeout in seconds. Default is 5.
+
+`endpoint` -  Endpoint base URL to use for requests. Specifying a value here will use that value is all Rails environments. Default is 'https://api.shipwire.com' for Rails production environment and 'https://api.beta.shipwire.com' for all other Rails environments.
+
+`server` - Server type to use for requests. Specifying a value here will use that value is all Rails environments. Available options are 'Production' and 'Test'. Default is 'Production' in Rails production environment and 'Test' in all other Rails environments. Note the capital P and T on the values.
+
+
+## Testing
+
+Tests are using a throwaway Shipwire (beta) account that is only meant for testing. A personal Shipwire Beta account is not required.
+
+```
+bundle exec rake spec
+```
+
+or
+
+```
+bundle exec rspec spec
+```
 
 
 ## TODO
 
-- Finish pending tests (open issues with Shipwire currently preventing)
-- Validation
-- Remove Rails as a dependency
-- Change test SKU of `TEST-PRODUCT` to `123456` before switching test account back to billr578
+- Required option validation
 
 
-## Running Tests
+## Contributions
 
-If making contributions to this gem, make sure you write tests for any new functionality.  Contributions will be rejected if there are no tests or tests do not pass.
-
-Quick note on running tests - you'll need an active sandbox account with Shipwire to make the tests pass.  New test will be written in the future with mock HTTP requests so API credentials are not required.
-
-#### Shipping Quotes
-
-Shipwire relies on product SKUs being present to return a shipping quote.  In your Sandbox environment, create a test product with SKU `123456` to get quote tests to pass.
+If making contributions to this gem, make sure you write tests for any new functionality. Contributions will be rejected if there are no tests or tests do not pass.
 
 
 ## Contributing
