@@ -32,8 +32,8 @@ module Shipwire
       end
 
       def payload_abridge(payload)
-        data          = DeepOpenStruct.new(payload).to_h
-        data_override = DeepOpenStruct.new(payload_override).to_h
+        data          = RecursiveOpenStruct.new(payload).to_h
+        data_override = RecursiveOpenStruct.new(payload_override).to_h
 
         data.deep_merge(data_override)
       end

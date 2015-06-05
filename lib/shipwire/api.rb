@@ -58,7 +58,7 @@ module Shipwire
     def connection
       Faraday.new(url: request_base) do |c|
         c.use Faraday::Request::BasicAuthentication, auth_user, auth_pass
-        c.use Faraday::Response::Logger if Rails.env.development?
+        c.use Faraday::Response::Logger unless Rails.env.production?
 
         c.request(:url_encoded)
         c.adapter(Faraday.default_adapter)
@@ -97,7 +97,8 @@ module Shipwire
     end
 
     def parse_response(response)
-      struct = DeepOpenStruct.new(JSON.parse(response.body))
+      json = JSON.parse(response.body)
+      struct = RecursiveOpenStruct.new(json, recurse_over_arrays: true)
 
       @shipwire_errors << struct.message if /^[45]+/.match(struct.status.to_s)
 

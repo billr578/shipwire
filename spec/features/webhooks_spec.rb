@@ -25,11 +25,6 @@ RSpec.describe "Webhooks", type: :feature, vcr: true do
       end
     end
 
-    context "create" do
-      xit "is successful" do
-      end
-    end
-
     context "find" do
       it "is successful" do
         VCR.use_cassette("webhooks_find") do
@@ -66,9 +61,8 @@ RSpec.describe "Webhooks", type: :feature, vcr: true do
         end
       end
 
-      xit "fails when id does not exist" do
+      it "fails when id does not exist" do
         VCR.use_cassette("webhooks_update_fail") do
-          binding.pry
           request = Shipwire::Webhooks.new.update(0, {
             topic: webhook_topic,
             url:   webhook_url_update

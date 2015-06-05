@@ -18,9 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  # TODO: Remove Rails dependency
   spec.add_dependency "rails"
   spec.add_dependency "faraday", "~> 0.9.1"
+  spec.add_dependency "recursive-open-struct", "~> 0.6.4"
 
   spec.add_development_dependency "rspec",  "~> 3.2.0"
   spec.add_development_dependency "ffaker", "~> 2.0.0"

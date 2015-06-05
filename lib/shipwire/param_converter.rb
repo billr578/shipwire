@@ -3,7 +3,7 @@ module Shipwire
     attr_accessor :params
 
     def initialize(params)
-      @params = DeepOpenStruct.new(params).to_h
+      @params = RecursiveOpenStruct.new(params).to_h
     end
 
     def to_h

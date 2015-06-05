@@ -18,11 +18,6 @@ RSpec.describe "Secret", type: :feature, vcr: true do
       end
     end
 
-    context "create" do
-      xit "is successful" do
-      end
-    end
-
     context "find" do
       it "is successful" do
         VCR.use_cassette("secret_find") do
