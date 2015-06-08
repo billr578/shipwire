@@ -20,8 +20,8 @@ module Shipwire
       request(:get, "returns/#{id}/holds", {}, params)
     end
 
-    def returns(id)
-      request(:get, "returns/#{id}/returns")
+    def items(id)
+      request(:get, "returns/#{id}/items")
     end
 
     def trackings(id)

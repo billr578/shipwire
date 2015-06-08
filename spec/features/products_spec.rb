@@ -64,9 +64,9 @@ RSpec.describe "Product", type: :feature, vcr: true do
             VCR.use_cassette("product_#{product_type}_update") do
               product_id = product.response.resource.items.first.resource.id
 
-              payload = payload(product_type).deep_merge({
+              payload = payload(product_type).deep_merge(
                 description: "Super awesome description"
-              })
+              )
 
               request = product_class.new.update(product_id, payload)
 
@@ -76,9 +76,9 @@ RSpec.describe "Product", type: :feature, vcr: true do
 
           it "fails when id does not exist" do
             VCR.use_cassette("product_#{product_type}_update_fail") do
-              payload = payload(product_type).deep_merge({
+              payload = payload(product_type).deep_merge(
                 description: "Super awesome description"
-              })
+              )
 
               request = product_class.new.update(0, payload)
 
@@ -159,7 +159,7 @@ RSpec.describe "Product", type: :feature, vcr: true do
 
           case type
           when "insert"
-            payload.deep_merge!({
+            payload.deep_merge!(
               dimensions: {
                 height: 0.1,
                 weight: 0.1
@@ -178,22 +178,34 @@ RSpec.describe "Product", type: :feature, vcr: true do
               inclusionRules: {
                 insertWhenWorthCurrency: "USD"
               }
-            })
+            )
           when "kit"
-            payload.deep_merge!({
-              kitContent:  [{
-                externalId: product_external_id,
-                quantity:   1
-              }]
-            })
+            payload.deep_merge!(
+              kitContent: [
+                {
+                  externalId: FFaker::Product.model,
+                  quantity: 1
+                },
+                {
+                  externalId: FFaker::Product.model,
+                  quantity: 1
+                }
+              ]
+            )
 
           when "virtual_kit"
-            payload.deep_merge!({
-              virtualKitContent: [{
-                externalId: product_external_id,
-                quantity:   1
-              }]
-            })
+            payload.deep_merge!(
+              virtualKitContent: [
+                {
+                  externalId: FFaker::Product.model,
+                  quantity: 1
+                },
+                {
+                  externalId: FFaker::Product.model,
+                  quantity: 1
+                }
+              ]
+            )
           end
 
           payload

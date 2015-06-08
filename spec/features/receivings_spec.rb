@@ -55,9 +55,8 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
           VCR.use_cassette("receiving_find_with_params") do
             receiving_id = receiving.response.resource.items.first.resource.id
 
-            request = Shipwire::Receivings.new.find(receiving_id, {
-              expand: "holds"
-            })
+            request = Shipwire::Receivings.new.find(receiving_id,
+                                                    expand: "holds")
 
             expect(request.ok?).to be_truthy
           end
@@ -79,11 +78,8 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
           VCR.use_cassette("receiving_update") do
             receiving_id = receiving.response.resource.items.first.resource.id
 
-            payload_update = payload.deep_merge({
-              shipFrom: {
-                email: FFaker::Internet.email
-              }
-            })
+            payload_updates = { shipFrom: { email: FFaker::Internet.email } }
+            payload_update  = payload.deep_merge(payload_updates)
 
             request = Shipwire::Receivings.new.update(receiving_id,
                                                       payload_update)
@@ -98,11 +94,8 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
           VCR.use_cassette("receiving_update_with_params") do
             receiving_id = receiving.response.resource.items.first.resource.id
 
-            payload_update = payload.deep_merge({
-              shipFrom: {
-                email: FFaker::Internet.email
-              }
-            })
+            payload_updates = { shipFrom: { email: FFaker::Internet.email } }
+            payload_update  = payload.deep_merge(payload_updates)
 
             request = Shipwire::Receivings.new.update(receiving_id,
                                                       payload_update,
@@ -115,11 +108,8 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
 
       it "fails when id does not exist" do
         VCR.use_cassette("receiving_update_fail") do
-          payload_update = payload.deep_merge({
-            shipFrom: {
-              email: FFaker::Internet.email
-            }
-          })
+          payload_updates = { shipFrom: { email: FFaker::Internet.email } }
+          payload_update  = payload.deep_merge(payload_updates)
 
           request = Shipwire::Receivings.new.update(0, payload_update)
 
@@ -166,9 +156,8 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
           VCR.use_cassette("receiving_holds_with_params") do
             receiving_id = receiving.response.resource.items.first.resource.id
 
-            request = Shipwire::Receivings.new.holds(receiving_id, {
-              includeCleared: 0
-            })
+            request = Shipwire::Receivings.new.holds(receiving_id,
+                                                     includeCleared: 0)
 
             expect(request.ok?).to be_truthy
           end

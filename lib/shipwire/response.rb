@@ -54,25 +54,33 @@ module Shipwire
       struct
     end
 
+    def populate_warnings(payload)
+      if payload.warnings
+        payload.warnings.each { |item| shipwire_warnings << item.message }
+      end
+    end
+
     def populate_errors(payload)
-      # Errors because of a 40x or 50x error
+      populate_status_errors(payload)
+
+      populate_response_errors(payload)
+    end
+
+    # Errors because of a 40x or 50x error
+    def populate_status_errors(payload)
       if /^[45]+/.match(payload.status.to_s)
         shipwire_errors << payload.message
       end
+    end
 
-      # Errors specified in Shipwire response body
+    # Errors specified in Shipwire response body
+    def populate_response_errors(payload)
       if payload.errors && payload.errors.is_a?(Array)
         payload.errors.each do |item|
           message = item.is_a?(Array) ? item.message : item
 
           shipwire_errors << message
         end
-      end
-    end
-
-    def populate_warnings(payload)
-      if payload.warnings
-        payload.warnings.each { |item| shipwire_warnings << item.message }
       end
     end
   end
