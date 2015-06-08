@@ -15,9 +15,9 @@ RSpec.describe "Returns", type: :feature, vcr: true do
     context "using params" do
       it "is successful" do
         VCR.use_cassette("returns_list_with_params") do
-          request = Shipwire::Returns.new.list({
+          request = Shipwire::Returns.new.list(
             status: "canceled"
-          })
+          )
 
           expect(request.ok?).to be_truthy
         end
@@ -25,70 +25,150 @@ RSpec.describe "Returns", type: :feature, vcr: true do
     end
   end
 
-  context "create" do
-    xit "is successful" do
-    end
-  end
+  context "management" do
+    # Took me WAY too long to realize I can't use the variable `return`
+    let!(:return_order) do
+      VCR.use_cassette("return") do
+        order_number = (0...8).map { (65 + rand(26)).chr }.join
 
-  context "find" do
-    context "without params" do
-      xit "is successful" do
+        order = Shipwire::Orders.new.create(
+          orderNo: order_number,
+          externalId: order_number,
+          items: [
+            {
+              sku: "TEST-PRODUCT",
+              quantity: 1
+            }
+          ],
+          options: {
+            currency: "USD"
+          },
+          shipTo: {
+            email: FFaker::Internet.email,
+            name: FFaker::Name.name,
+            address1: "540 West Boylston St.",
+            city: "Worcester",
+            state: "MA",
+            postalCode: "01606",
+            country: "US",
+            phone: FFaker::PhoneNumber.short_phone_number
+          }
+        )
+
+        order_id = order.response.resource.items.first.resource.id
+
+        Shipwire::Returns.new.create(
+          originalOrder: {
+            id: order_id
+          },
+          items: [{
+            sku: "TEST-PRODUCT",
+            quantity: 1
+          }],
+          options: {
+            emailCustomer: 0
+          }
+        )
       end
     end
 
-    context "using params" do
-      xit "is successful" do
+    context "find" do
+      context "without params" do
+        xit "is successful" do
+          VCR.use_cassette("return_find") do
+            return_id = return_order.response.resource.items.first.resource.id
+
+            request = Shipwire::Returns.new.find(return_id)
+
+            expect(request.ok?).to be_truthy
+          end
+        end
+      end
+
+      context "using params" do
+        xit "is successful" do
+        end
+      end
+
+      it "fails when id does not exist" do
+        VCR.use_cassette("return_find_fail") do
+          request = Shipwire::Returns.new.find(0)
+
+          expect(request.errors?).to be_truthy
+        end
       end
     end
 
-    xit "fails when id does not exist" do
-    end
-  end
-
-  context "cancel" do
-    xit "is successful" do
-    end
-
-    xit "fails when id does not exist" do
-    end
-  end
-
-  context "holds" do
-    context "without params" do
+    context "cancel" do
       xit "is successful" do
+      end
+
+      it "fails when id does not exist" do
+        VCR.use_cassette("return_cancel_fail") do
+          request = Shipwire::Returns.new.cancel(0)
+
+          expect(request.errors?).to be_truthy
+        end
       end
     end
 
-    context "using params" do
-      xit "is successful" do
+    context "holds" do
+      context "without params" do
+        xit "is successful" do
+        end
+      end
+
+      context "using params" do
+        xit "is successful" do
+        end
+      end
+
+      it "fails when id does not exist" do
+        VCR.use_cassette("return_holds_fail") do
+          request = Shipwire::Returns.new.holds(0)
+
+          expect(request.errors?).to be_truthy
+        end
       end
     end
 
-    xit "fails when id does not exist" do
-    end
-  end
+    context "items" do
+      xit "is successful" do
+      end
 
-  context "returns" do
-    xit "is successful" do
-    end
+      it "fails when id does not exist" do
+        VCR.use_cassette("return_items_fail") do
+          request = Shipwire::Returns.new.items(0)
 
-    xit "fails when id does not exist" do
-    end
-  end
-
-  context "trackings" do
-    xit "is successful" do
+          expect(request.errors?).to be_truthy
+        end
+      end
     end
 
-    xit "fails when id does not exist" do
-    end
-  end
+    context "trackings" do
+      xit "is successful" do
+      end
 
-  context "labels" do
-    xit "is successful" do
+      it "fails when id does not exist" do
+        VCR.use_cassette("return_trackings_fail") do
+          request = Shipwire::Returns.new.trackings(0)
+
+          expect(request.errors?).to be_truthy
+        end
+      end
     end
 
-    xit "fails when id does not exist" do
+    context "labels" do
+      xit "is successful" do
+      end
+
+      it "fails when id does not exist" do
+        VCR.use_cassette("return_labels_fail") do
+          request = Shipwire::Returns.new.labels(0)
+
+          expect(request.errors?).to be_truthy
+        end
+      end
     end
   end
 end
