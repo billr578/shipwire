@@ -46,8 +46,7 @@ module Shipwire
     end
 
     def camel_case(options)
-      options
-      # ParamConverter.new(options).to_h
+      ParamConverter.new(options).to_h
     end
 
     def request_options

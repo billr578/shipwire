@@ -3,7 +3,13 @@ module Shipwire
     attr_accessor :params
 
     def initialize(params)
-      @params = RecursiveOpenStruct.new(params).to_h
+      if params.is_a?(Array)
+        @params = params.each_with_object([]) do |item, hsh|
+          hsh << recursively_struct(item)
+        end
+      else
+        @params = recursively_struct(params)
+      end
     end
 
     def to_h
@@ -11,6 +17,10 @@ module Shipwire
     end
 
     private
+
+    def recursively_struct(item)
+      RecursiveOpenStruct.new(item, recurse_over_arrays: true).to_h
+    end
 
     def with_object(hash)
       hash.each_with_object({}) do |(k, value), h|
