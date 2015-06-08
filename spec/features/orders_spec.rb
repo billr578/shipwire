@@ -64,11 +64,6 @@ RSpec.describe "Orders", type: :feature, vcr: true do
       end
     end
 
-    context "create" do
-      xit "fails with duplicate order" do
-      end
-    end
-
     context "find" do
       context "without params" do
         it "is successful" do
