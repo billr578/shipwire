@@ -18,7 +18,7 @@ module Shipwire
       end
 
       def retire(id)
-        request(:post, 'products/retire', to_object(id))
+        request(:post, 'products/retire', retire_object(id))
       end
 
       protected
@@ -42,12 +42,10 @@ module Shipwire
         {}
       end
 
-      def to_object(obj)
-        obj.is_a?(Hash) && obj.has_key?(:ids) ? obj : { ids: to_array(obj) }
-      end
+      def retire_object(obj)
+        retire_array = obj.is_a?(Array) ? obj : obj.to_s.split(",").map(&:to_i)
 
-      def to_array(obj)
-        obj.is_a?(Array) ? obj : obj.scan(/\w+/)
+        { ids: retire_array }
       end
     end
   end

@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe "Product", type: :feature, vcr: true do
-  %w(basic insert kit virtual_kit).each do |product_type|
+  # %w(basic insert kit virtual_kit).each do |product_type|
+  %w(basic).each do |product_type|
     context "type #{product_type}" do
       let(:product_class) do
         "Shipwire::Products::#{product_type.camelize}".constantize
@@ -38,25 +39,20 @@ RSpec.describe "Product", type: :feature, vcr: true do
           end
         end
 
-        context "create" do
-          xit "is successful" do
-          end
-        end
-
         context "find" do
-          xit "is successful" do
+          it "is successful" do
             VCR.use_cassette("product_#{product_type}_find") do
               product_id = product.response.resource.items.first.resource.id
 
-              request = Shipwire::Orders.new.find(product_id)
+              request = product_class.new.find(product_id)
 
               expect(request.ok?).to be_truthy
             end
           end
 
-          xit "fails when id does not exist" do
+          it "fails when id does not exist" do
             VCR.use_cassette("product_#{product_type}_find_fail") do
-              request = Shipwire::Orders.new.find(0)
+              request = product_class.new.find(0)
 
               expect(request.errors?).to be_truthy
             end
@@ -64,96 +60,128 @@ RSpec.describe "Product", type: :feature, vcr: true do
         end
 
         context "update" do
-          xit "is successful" do
+          it "is successful" do
+            VCR.use_cassette("product_#{product_type}_update") do
+              product_id = product.response.resource.items.first.resource.id
+
+              payload = payload(product_type).deep_merge({
+                description: "Super awesome description"
+              })
+
+              request = product_class.new.update(product_id, payload)
+
+              expect(request.ok?).to be_truthy
+            end
           end
 
-          xit "fails when id does not exist" do
+          it "fails when id does not exist" do
+            VCR.use_cassette("product_#{product_type}_update_fail") do
+              payload = payload(product_type).deep_merge({
+                description: "Super awesome description"
+              })
+
+              request = product_class.new.update(0, payload)
+
+              expect(request.errors?).to be_truthy
+            end
           end
         end
 
         context "retire" do
           context "with string passed" do
-            xit "is successful" do
+            it "is successful" do
+              VCR.use_cassette("product_#{product_type}_retire_id") do
+                product_id = product.response.resource.items.first.resource.id
+
+                request = product_class.new.retire(product_id)
+
+                expect(request.ok?).to be_truthy
+              end
             end
           end
 
           context "with array passed" do
-            xit "is successful" do
+            it "is successful" do
+              VCR.use_cassette("product_#{product_type}_retire_id") do
+                product_id = product.response.resource.items.first.resource.id
+
+                request = product_class.new.retire([product_id, 0])
+
+                expect(request.ok?).to be_truthy
+              end
             end
           end
 
-          context "with hash passed" do
-            xit "is successful when valid" do
-            end
+          # Returns truthful. You are retiring a product. If the product doesn't
+          # exist, the result is the same. The product is not available.
+          context "when product does not exist" do
+            it "is successful" do
+              VCR.use_cassette("product_#{product_type}_retire_nonexistent") do
+                request = product_class.new.retire(0)
 
-            xit "is fails when invalid" do
+                expect(request.ok?).to be_truthy
+              end
             end
           end
         end
 
         # NOTE: This is ugly and massive and I know it. I'm down to change it.
-        # It's been a long day and my brain hurts and I couldn't think of a way
-        # to switch between variable product types within the file. Maybe it
-        # would be better to split them to different files?
         def payload(type)
-          product_sku         = FFaker::Product.model
-          product_description = FFaker::Product.product
-          product_external_id = FFaker::Product.model
-          product_values      = {
-            costValue:      1,
-            wholesaleValue: 2,
-            retailValue:    4
-          }
-          product_dimensions  = {
-            length: 1,
-            width:  1,
-            height: 1,
-            weight: 1
+          payload = {
+            sku: FFaker::Product.model,
+            externalId: FFaker::Product.model,
+            description: FFaker::Product.product,
+            category: "OTHER",
+            batteryConfiguration: "NOBATTERY",
+            values: {
+              costValue: 1,
+              retailValue: 4
+            },
+            dimensions: {
+              length: 1,
+              width: 1,
+              height: 1,
+              weight: 1
+            },
+            flags: {
+              isPackagedReadyToShip: 1,
+              isFragile: 0,
+              isDangerous: 0,
+              isPerishable: 0,
+              isLiquid: 0,
+              isMedia: 0,
+              isAdult: 0,
+              hasInnerPack: 0,
+              hasMasterCase: 0,
+              hasPallet: 0
+            }
           }
 
           case type
           when "insert"
-            {
-              sku:            product_sku,
-              externalId:     product_sku,
-              description:    product_description,
-              dimensions:     product_dimensions,
+            payload.deep_merge!({
               inclusionRules: {
                 insertWhenWorthCurrency: "USD"
               }
-            }
+            })
           when "kit"
-            {
-              sku:        product_sku,
-              externalId:  product_sku,
-              description: product_description,
-              values:      product_values,
-              dimensions:  product_dimensions,
+            payload.deep_merge!({
               kitContent:  [{
                 externalId: product_external_id,
                 quantity:   1
               }]
-            }
+            })
+
           when "virtual_kit"
-            {
-              sku:               product_sku,
-              description:       product_description,
+            payload.deep_merge!({
               virtualKitContent: [{
                 externalId: product_external_id,
                 quantity:   1
               }]
-            }
-          else
-            {
-              sku:                  product_sku,
-              externalId:           product_sku,
-              description:          product_description,
-              values:               product_values,
-              dimensions:           product_dimensions,
-              category:             "Foo", # Required?
-              batteryConfiguration: "NONE" # Required?
-            }
+            })
           end
+
+          payload
         end
       end
     end

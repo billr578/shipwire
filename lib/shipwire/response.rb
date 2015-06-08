@@ -61,7 +61,7 @@ module Shipwire
       end
 
       # Errors specified in Shipwire response body
-      if payload.errors
+      if payload.errors && payload.errors.is_a?(Array)
         payload.errors.each do |item|
           message = item.is_a?(Array) ? item.message : item
 
