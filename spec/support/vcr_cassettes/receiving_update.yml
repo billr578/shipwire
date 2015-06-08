@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/receivings/91301190
+    body:
+      encoding: UTF-8
+      string: '{"externalId":"U18","expectedDate":"2015-06-08T14:49:23-07:00","arrangement":{"type":"none"},"items":[{"sku":"TEST-PRODUCT","quantity":5}],"shipments":[{"length":1,"width":1,"height":1,"weight":1,"type":"box"}],"options":{"warehouseRegion":"LAX"},"shipFrom":{"email":"margarete@trompswaniawski.co.uk","name":"Adela
+        Pfeffer","address1":"540 West Boylston St.","city":"Worcester","state":"MA","postalCode":"01606","country":"US","phone":"612-256-8833"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 08 Jun 2015 21:49:26 GMT
+      Server:
+      - Apache
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      X-Process-Time-Seconds:
+      - '4.936403'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '676'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190","resource":{"externalId":"U18","id":91301190,"transactionId":"1433798304","expectedDate":"2015-06-08T00:00:00-07:00","commerceName":"Shipwire","lastUpdatedDate":"2015-06-08T14:49:27-07:00","status":"processed","items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190\/items?offset=0&limit=20"},"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190\/holds?offset=0&limit=20"},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190\/trackings?offset=0&limit=20"},"shipments":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190\/shipments?offset=0&limit=20"},"labels":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190\/labels?offset=0&limit=20"},"instructionsRecipients":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190\/instructionsRecipients?offset=0&limit=20"},"options":{"resourceLocation":null,"resource":{"warehouseId":11,"warehouseExternalId":null,"warehouseRegion":"LAX"}},"arrangement":{"resourceLocation":null,"resource":{"type":"none","contact":"","phone":""}},"shipFrom":{"resourceLocation":null,"resource":{"email":"margarete@trompswaniawski.co.uk","name":"Adela
+        Pfeffer","address1":"540 West Boylston St.","address2":null,"address3":null,"city":"Worcester","state":"MA","postalCode":"01606","country":"US","phone":"612-256-8833"}},"routing":{"resourceLocation":null,"resource":{"warehouseId":11,"warehouseExternalId":null,"warehouseName":"LA","originLongitude":34.075,"originLatitude":-117.378,"warehouseRegion":"LAX"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-06-08T14:18:24-07:00","pickedUpDate":null,"submittedDate":null,"processedDate":"2015-06-08T14:49:27-07:00","completedDate":null,"expectedDate":"2015-06-08T00:00:00-07:00","deliveredDate":null,"cancelledDate":null,"returnedDate":null,"lastManualUpdateDate":null}}}}'
+    http_version: 
+  recorded_at: Mon, 08 Jun 2015 21:49:31 GMT
+recorded_with: VCR 2.9.3
