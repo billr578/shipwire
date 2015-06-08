@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe "Product", type: :feature, vcr: true do
   # %w(basic insert kit virtual_kit).each do |product_type|
-  %w(basic).each do |product_type|
+  %w(basic insert).each do |product_type|
     context "type #{product_type}" do
       let(:product_class) do
         "Shipwire::Products::#{product_type.camelize}".constantize
@@ -160,6 +160,21 @@ RSpec.describe "Product", type: :feature, vcr: true do
           case type
           when "insert"
             payload.deep_merge!({
+              dimensions: {
+                height: 0.1,
+                weight: 0.1
+              },
+              masterCase: {
+                individualItemsPerCase: 1,
+                sku: FFaker::Product.model,
+                description: FFaker::Product.product,
+                dimensions: {
+                  length: 1,
+                  width: 1,
+                  height: 1,
+                  weight: 1
+                }
+              },
               inclusionRules: {
                 insertWhenWorthCurrency: "USD"
               }
