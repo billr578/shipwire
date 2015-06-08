@@ -29,13 +29,13 @@ RSpec.describe "Secret", type: :feature, vcr: true do
         end
       end
 
-      xit "fails when id does not exist" do
+      it "fails when id does not exist" do
         VCR.use_cassette("secret_find_fail") do
-          request = Shipwire::Secret.new.find(0)
+          # For some reason ID 0 returns data for ID 126. I asked Shipwire about
+          # this. They didn't respond. Use 1 instead.
+          request = Shipwire::Secret.new.find(1)
 
-          expect(request.response.status).to eq 404
           expect(request.errors?).to be_truthy
-          expect(request.errors).to include('Not found')
         end
       end
     end
