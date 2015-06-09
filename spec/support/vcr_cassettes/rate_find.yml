@@ -5,8 +5,8 @@ http_interactions:
     uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/rate
     body:
       encoding: UTF-8
-      string: '{"options":{"currency":"USD","groupBy":"all"},"order":{"shipTo":{"address1":"1555
-        Southgate Road","address2":"","city":"Arlington","postalCode":"22214","region":"VA","country":"US"},"items":[{"sku":"TEST-PRODUCT","quantity":1}]}}'
+      string: '{"options":{"currency":"USD"},"order":{"shipTo":{"address1":"540 West
+        Boylston St.","city":"Worcester","postalCode":"01606","region":"MA","country":"US"},"items":[{"sku":"TEST-PRODUCT","quantity":1}]}}'
     headers:
       Content-Type:
       - application/json
@@ -22,11 +22,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 02 Jun 2015 19:36:30 GMT
+      - Tue, 09 Jun 2015 00:20:35 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.099505'
+      - '1.967464'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -35,13 +35,17 @@ http_interactions:
       - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
         OUR IND"
       Content-Length:
-      - '137'
+      - '680'
       Content-Type:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"status":200,"message":"Successful","warnings":[{"type":"warning","code":"unrateableGroup","message":"
-        (external ID )"}],"resourceLocation":null}'
+      string: '{"status":200,"message":"Successful","resourceLocation":null,"resource":{"groupBy":"all","rates":[{"serviceOptions":[{"serviceLevelCode":"GD","serviceLevelName":"Ground","shipments":[{"warehouseName":"LA","carrier":{"code":"FDX
+        SP1","name":"FDX","description":"FedEx SmartPost","properties":["trackable"]},"cost":{"currency":"USD","type":"total","name":"Total","amount":9.79,"converted":false,"originalCost":9.79,"originalCurrency":"USD"},"subtotals":[{"currency":"USD","type":"shipping","name":"Shipping","amount":9.79,"converted":false,"originalCost":9.79,"originalCurrency":"USD"},{"currency":"USD","type":"insurance","name":"Insurance","amount":0,"converted":false,"originalCost":0,"originalCurrency":"USD"},{"currency":"USD","type":"packaging","name":"Packaging","amount":0,"converted":false,"originalCost":0,"originalCurrency":"USD"},{"currency":"USD","type":"handling","name":"Handling","amount":0,"converted":false,"originalCost":0,"originalCurrency":"USD"}],"pieces":[{"length":{"amount":8,"units":"in"},"width":{"amount":4,"units":"in"},"height":{"amount":4,"units":"in"},"weight":{"amount":1.3041666666667,"units":"lbs","type":"total"},"subweights":[{"amount":0.2,"units":"lbs","type":"packaging"},{"amount":0.10416666666667,"units":"lbs","type":"voidFill"},{"amount":1,"units":"lbs","type":"products"}],"contents":[{"sku":"TEST-PRODUCT","quantity":1}]}],"expectedShipDate":"2015-06-09T05:30:00-07:00","expectedDeliveryMinDate":"2015-06-11T05:30:00-07:00","expectedDeliveryMaxDate":"2015-06-18T05:30:00-07:00"}]},{"serviceLevelCode":"2D","serviceLevelName":"Second
+        Day","shipments":[{"warehouseName":"LA","carrier":{"code":"FDX 2D","name":"FDX","description":"FedEx
+        2Day","properties":["trackable"]},"cost":{"currency":"USD","type":"total","name":"Total","amount":31.98,"converted":false,"originalCost":31.98,"originalCurrency":"USD"},"subtotals":[{"currency":"USD","type":"shipping","name":"Shipping","amount":31.98,"converted":false,"originalCost":31.98,"originalCurrency":"USD"},{"currency":"USD","type":"insurance","name":"Insurance","amount":0,"converted":false,"originalCost":0,"originalCurrency":"USD"},{"currency":"USD","type":"packaging","name":"Packaging","amount":0,"converted":false,"originalCost":0,"originalCurrency":"USD"},{"currency":"USD","type":"handling","name":"Handling","amount":0,"converted":false,"originalCost":0,"originalCurrency":"USD"}],"pieces":[{"length":{"amount":8,"units":"in"},"width":{"amount":4,"units":"in"},"height":{"amount":4,"units":"in"},"weight":{"amount":1.3041666666667,"units":"lbs","type":"total"},"subweights":[{"amount":0.2,"units":"lbs","type":"packaging"},{"amount":0.10416666666667,"units":"lbs","type":"voidFill"},{"amount":1,"units":"lbs","type":"products"}],"contents":[{"sku":"TEST-PRODUCT","quantity":1}]}],"expectedShipDate":"2015-06-09T05:30:00-07:00","expectedDeliveryMinDate":"2015-06-11T05:30:00-07:00","expectedDeliveryMaxDate":"2015-06-11T05:30:00-07:00"}]},{"serviceLevelCode":"1D","serviceLevelName":"Next
+        Day","shipments":[{"warehouseName":"LA","carrier":{"code":"USPS XP","name":"USPS","description":"USPS
+        Express Mail","properties":["trackable"]},"cost":{"currency":"USD","type":"total","name":"Total","amount":37.33,"converted":false,"originalCost":37.33,"originalCurrency":"USD"},"subtotals":[{"currency":"USD","type":"shipping","name":"Shipping","amount":37.33,"converted":false,"originalCost":37.33,"originalCurrency":"USD"},{"currency":"USD","type":"insurance","name":"Insurance","amount":0,"converted":false,"originalCost":0,"originalCurrency":"USD"},{"currency":"USD","type":"packaging","name":"Packaging","amount":0,"converted":false,"originalCost":0,"originalCurrency":"USD"},{"currency":"USD","type":"handling","name":"Handling","amount":0,"converted":false,"originalCost":0,"originalCurrency":"USD"}],"pieces":[{"length":{"amount":8,"units":"in"},"width":{"amount":4,"units":"in"},"height":{"amount":4,"units":"in"},"weight":{"amount":1.3041666666667,"units":"lbs","type":"total"},"subweights":[{"amount":0.2,"units":"lbs","type":"packaging"},{"amount":0.10416666666667,"units":"lbs","type":"voidFill"},{"amount":1,"units":"lbs","type":"products"}],"contents":[{"sku":"TEST-PRODUCT","quantity":1}]}],"expectedShipDate":"2015-06-09T05:30:00-07:00","expectedDeliveryMinDate":"2015-06-10T05:30:00-07:00","expectedDeliveryMaxDate":"2015-06-10T05:30:00-07:00"}]}]}]}}'
     http_version: 
-  recorded_at: Tue, 02 Jun 2015 19:36:31 GMT
+  recorded_at: Tue, 09 Jun 2015 00:20:37 GMT
 recorded_with: VCR 2.9.3

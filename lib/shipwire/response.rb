@@ -77,7 +77,7 @@ module Shipwire
     def populate_response_errors(payload)
       if payload.errors && payload.errors.is_a?(Array)
         payload.errors.each do |item|
-          message = item.is_a?(Array) ? item.message : item
+          message = item.is_a?(RecursiveOpenStruct) ? item.message : item
 
           shipwire_errors << message
         end
