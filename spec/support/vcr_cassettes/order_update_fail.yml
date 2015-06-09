@@ -5,8 +5,8 @@ http_interactions:
     uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders/0
     body:
       encoding: UTF-8
-      string: '{"orderNo":"MRNDOMRH","externalId":"MRNDOMRH","items":[{"sku":"FAKE-PRODUCT","quantity":1}],"options":{"currency":"MXN"},"shipTo":{"email":"julian.dooley@schaden.biz","name":"Hershel
-        Schaden","address1":"1555 Southgate Road","address2":"","city":"Arlington","state":"VA","postalCode":"22214","country":"US","phone":"579-376-8156"}}'
+      string: '{"orderNo":"CKMIMBWA","externalId":"CKMIMBWA","items":[{"sku":"FAKE-PRODUCT","quantity":1}],"options":{"currency":"MXN"},"shipTo":{"email":"cicero_bartell@dietrich.com","name":"Miss
+        Leopoldo Conn","address1":"540 West Boylston St.","city":"Worcester","state":"MA","postalCode":"01606","country":"US","phone":"778-532-4955"}}'
     headers:
       Content-Type:
       - application/json
@@ -22,11 +22,11 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Tue, 02 Jun 2015 19:45:36 GMT
+      - Tue, 09 Jun 2015 23:29:52 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.033874'
+      - '0.024734'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -46,5 +46,5 @@ http_interactions:
 
         {"status":400,"message":"Order ID not detected. Please make a POST if you wish to create an order.","resourceLocation":null}
     http_version: 
-  recorded_at: Tue, 02 Jun 2015 19:45:37 GMT
+  recorded_at: Tue, 09 Jun 2015 23:29:52 GMT
 recorded_with: VCR 2.9.3

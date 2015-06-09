@@ -5,6 +5,12 @@ Ruby gem to integrate with Shipwire's API.
 
 ## Installation
 
+Install locally with
+
+```
+gem install shipwire
+```
+
 Add this line to your application's Gemfile:
 
 ```
@@ -20,37 +26,20 @@ Run the bundle command:
 bundle install
 ```
 
-After installing, run the generator:
+If you are using Rails, run the generator:
 
 ```
 rails g shipwire:install
 ```
 
-You can install locally with
-
-```
-gem install shipwire
-```
-
 
 ## Configuration
 
-There is a difference between an account registered from [https://www.shipwire.com/](https://www.shipwire.com/) and one registered from https://beta.shipwire.com/ If you create an account from [https://www.shipwire.com/](https://www.shipwire.com/) and then request data from the beta URL, the API will throw errors about an invalid account. Accounts are only valid from that registration point.
+There is a difference between an account registered from [https://www.shipwire.com/](https://www.shipwire.com/) and one registered from [https://beta.shipwire.com/](https://beta.shipwire.com/) If you create an account from [https://www.shipwire.com/](https://www.shipwire.com/) and then request data from the beta URL, the API will throw errors about an invalid account. Accounts are only valid from that registration point.
 
-When you run `rails g shipwire:install` a new file will be generated at `config/initializers/shipwire.rb`
+`username` - (required) Shipwire username (email address) used for basic auth login to Shipwire
 
-The only required configuration values are `username` and `password`. 
-
-```
-Shipwire.configure do |config|
-  config.username = "<%= ENV['SHIPWIRE_USERNAME'] %>"
-  config.password = "<%= ENV['SHIPWIRE_PASSWORD'] %>"
-end
-```
-
-`username` - Shipwire username (email address) used for basic auth login to Shipwire
-
-`password` - Shipwire password used for basic auth login to Shipwire.
+`password` - (required) Shipwire password used for basic auth login to Shipwire.
 
 `open_timeout` - Read timeout in seconds. Default is 2.
 
@@ -78,7 +67,10 @@ bundle exec rspec spec
 
 ## TODO
 
+- Remove Rails dependency
 - Required option validation
+- Option type validation
+- Option value validation
 
 
 ## Contributions

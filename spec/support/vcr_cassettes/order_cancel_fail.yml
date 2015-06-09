@@ -23,11 +23,11 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Tue, 02 Jun 2015 19:47:00 GMT
+      - Tue, 09 Jun 2015 23:30:05 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.033477'
+      - '0.027268'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -43,5 +43,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"status":404,"message":"Order not found","resourceLocation":null}'
     http_version: 
-  recorded_at: Tue, 02 Jun 2015 19:47:00 GMT
+  recorded_at: Tue, 09 Jun 2015 23:30:06 GMT
 recorded_with: VCR 2.9.3

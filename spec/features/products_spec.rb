@@ -183,11 +183,11 @@ RSpec.describe "Product", type: :feature, vcr: true do
             payload.deep_merge!(
               kitContent: [
                 {
-                  externalId: FFaker::Product.model,
+                  externalId: "TEST-PRODUCT",
                   quantity: 1
                 },
                 {
-                  externalId: FFaker::Product.model,
+                  externalId: "TEST-PRODUCT2",
                   quantity: 1
                 }
               ]
@@ -197,11 +197,11 @@ RSpec.describe "Product", type: :feature, vcr: true do
             payload.deep_merge!(
               virtualKitContent: [
                 {
-                  externalId: FFaker::Product.model,
+                  externalId: "TEST-PRODUCT",
                   quantity: 1
                 },
                 {
-                  externalId: FFaker::Product.model,
+                  externalId: "TEST-PRODUCT2",
                   quantity: 1
                 }
               ]

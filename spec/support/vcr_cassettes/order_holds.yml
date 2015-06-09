@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders/91292076/holds
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders/91302995/holds
     body:
       encoding: US-ASCII
       string: ''
@@ -21,11 +21,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 02 Jun 2015 19:46:22 GMT
+      - Tue, 09 Jun 2015 23:29:58 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.033601'
+      - '0.023617'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -34,16 +34,17 @@ http_interactions:
       - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
         OUR IND"
       Content-Length:
-      - '425'
+      - '451'
       Content-Type:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91292076\/holds?offset=0&limit=20","resource":{"offset":0,"total":4,"previous":null,"next":null,"items":[{"resourceLocation":null,"resource":{"id":355222,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"There
-        are no items in this order","appliedDate":"2015-06-02T12:45:38-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":355223,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"Shipping
-        method must be selected","appliedDate":"2015-06-02T12:45:39-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":355221,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"No
-        warehouse selected","appliedDate":"2015-06-02T12:45:37-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":355219,"orderId":91292076,"externalOrderId":"DJTXRQOP","type":"customer","description":"Missing
-        or unrecognized SKUs: FAKE-PRODUCT (item 1)","appliedDate":"2015-06-02T12:45:07-07:00","clearedDate":null}}]}}'
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91302995\/holds?offset=0&limit=20","resource":{"offset":0,"total":5,"previous":null,"next":null,"items":[{"resourceLocation":null,"resource":{"id":356953,"orderId":91302995,"externalOrderId":"PZYUUKJA","type":"customer","description":"Order
+        is currently being posted","appliedDate":"2015-06-09T16:29:49-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":356955,"orderId":91302995,"externalOrderId":"PZYUUKJA","type":"customer","description":"There
+        are no items in this order","appliedDate":"2015-06-09T16:29:53-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":356956,"orderId":91302995,"externalOrderId":"PZYUUKJA","type":"customer","description":"Shipping
+        method must be selected","appliedDate":"2015-06-09T16:29:54-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":356954,"orderId":91302995,"externalOrderId":"PZYUUKJA","type":"customer","description":"No
+        warehouse selected","appliedDate":"2015-06-09T16:29:52-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":356952,"orderId":91302995,"externalOrderId":"PZYUUKJA","type":"customer","description":"Missing
+        or unrecognized SKUs: FAKE-PRODUCT (item 1)","appliedDate":"2015-06-09T16:29:48-07:00","clearedDate":null}}]}}'
     http_version: 
-  recorded_at: Tue, 02 Jun 2015 19:46:22 GMT
+  recorded_at: Tue, 09 Jun 2015 23:29:58 GMT
 recorded_with: VCR 2.9.3

@@ -23,11 +23,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 08 Jun 2015 21:56:31 GMT
+      - Tue, 09 Jun 2015 23:29:06 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.029017'
+      - '0.028146'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -43,5 +43,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"status":200,"message":"Labels cancelled","resourceLocation":null}'
     http_version: 
-  recorded_at: Mon, 08 Jun 2015 21:56:31 GMT
+  recorded_at: Tue, 09 Jun 2015 23:29:06 GMT
 recorded_with: VCR 2.9.3

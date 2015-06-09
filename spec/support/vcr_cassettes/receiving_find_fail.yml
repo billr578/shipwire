@@ -21,11 +21,11 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Mon, 08 Jun 2015 21:25:42 GMT
+      - Tue, 09 Jun 2015 23:28:52 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.023916'
+      - '0.026272'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -41,5 +41,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"status":404,"message":"Receiving Order not found.","resourceLocation":null}'
     http_version: 
-  recorded_at: Mon, 08 Jun 2015 21:25:42 GMT
+  recorded_at: Tue, 09 Jun 2015 23:28:52 GMT
 recorded_with: VCR 2.9.3

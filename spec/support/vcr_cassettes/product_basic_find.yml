@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/products/202935
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/products/202959
     body:
       encoding: US-ASCII
       string: ''
@@ -21,11 +21,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 08 Jun 2015 18:04:13 GMT
+      - Tue, 09 Jun 2015 23:27:58 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.050249'
+      - '0.046250'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -34,13 +34,13 @@ http_interactions:
       - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
         OUR IND"
       Content-Length:
-      - '470'
+      - '468'
       Content-Type:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/baseProducts\/202935","resource":{"id":202935,"externalId":"J-2103","sku":"S-5237","description":"Traffeforge
-        Direct Controller","hsCode":null,"countryOfOrigin":null,"creationDate":"2015-06-08T11:04:12-07:00","archivedDate":null,"status":"notinuse","storageConfiguration":"INDIVIDUAL_ITEM","batteryConfiguration":"NOBATTERY","classification":"baseProduct","category":"OTHER","itemCount":1,"dimensions":{"resourceLocation":null},"values":{"resourceLocation":null},"alternateNames":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/baseProducts\/202935\/alternateNames?offset=0&limit=20"},"technicalData":{"resourceLocation":null},"flags":{"resourceLocation":null},"enqueuedDimensions":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/baseProducts\/202935\/enqueuedDimensions?offset=0&limit=20"},"innerPack":{"resourceLocation":null},"masterCase":{"resourceLocation":null},"pallet":{"resourceLocation":null}}}'
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/baseProducts\/202959","resource":{"id":202959,"externalId":"K-6187","sku":"Q3","description":"Capod
+        Performance HD Adapter","hsCode":null,"countryOfOrigin":null,"creationDate":"2015-06-09T16:27:58-07:00","archivedDate":null,"status":"notinuse","storageConfiguration":"INDIVIDUAL_ITEM","batteryConfiguration":"NOBATTERY","classification":"baseProduct","category":"OTHER","itemCount":1,"dimensions":{"resourceLocation":null},"values":{"resourceLocation":null},"alternateNames":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/baseProducts\/202959\/alternateNames?offset=0&limit=20"},"technicalData":{"resourceLocation":null},"flags":{"resourceLocation":null},"enqueuedDimensions":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/baseProducts\/202959\/enqueuedDimensions?offset=0&limit=20"},"innerPack":{"resourceLocation":null},"masterCase":{"resourceLocation":null},"pallet":{"resourceLocation":null}}}'
     http_version: 
-  recorded_at: Mon, 08 Jun 2015 18:04:13 GMT
+  recorded_at: Tue, 09 Jun 2015 23:27:58 GMT
 recorded_with: VCR 2.9.3

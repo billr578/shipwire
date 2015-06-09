@@ -1,7 +1,7 @@
 # Coverage report
 require 'simplecov'
 SimpleCov.start do
-  add_filter "/rspec/"
+  add_filter "/spec/"
 end
 
 # Environment

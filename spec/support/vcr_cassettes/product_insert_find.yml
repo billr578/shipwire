@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/products/202936
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/products/202960
     body:
       encoding: US-ASCII
       string: ''
@@ -21,11 +21,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 08 Jun 2015 18:21:16 GMT
+      - Tue, 09 Jun 2015 23:28:03 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.049491'
+      - '0.046697'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -34,13 +34,13 @@ http_interactions:
       - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
         OUR IND"
       Content-Length:
-      - '380'
+      - '395'
       Content-Type:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/marketingInserts\/202936","resource":{"id":202936,"externalId":"B7","sku":"N33","description":"Cofunc
-        Auto Case","inclusionRuleType":"MANUAL","creationDate":"2015-06-08T11:21:03-07:00","archivedDate":null,"status":"notinuse","storageConfiguration":"INDIVIDUAL_ITEM","classification":"marketingInsert","itemCount":1,"dimensions":{"resourceLocation":null},"alternateNames":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/marketingInserts\/202936\/alternateNames?offset=0&limit=20"},"flags":{"resourceLocation":null},"inclusionRules":{"resourceLocation":null},"masterCase":{"resourceLocation":null}}}'
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/marketingInserts\/202960","resource":{"id":202960,"externalId":"A-1769","sku":"X70","description":"Phuns
+        Power Performance Adapter","inclusionRuleType":"MANUAL","creationDate":"2015-06-09T16:28:03-07:00","archivedDate":null,"status":"notinuse","storageConfiguration":"INDIVIDUAL_ITEM","classification":"marketingInsert","itemCount":1,"dimensions":{"resourceLocation":null},"alternateNames":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/marketingInserts\/202960\/alternateNames?offset=0&limit=20"},"flags":{"resourceLocation":null},"inclusionRules":{"resourceLocation":null},"masterCase":{"resourceLocation":null}}}'
     http_version: 
-  recorded_at: Mon, 08 Jun 2015 18:21:17 GMT
+  recorded_at: Tue, 09 Jun 2015 23:28:03 GMT
 recorded_with: VCR 2.9.3

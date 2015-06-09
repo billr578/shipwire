@@ -21,11 +21,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 02 Jun 2015 18:21:13 GMT
+      - Tue, 09 Jun 2015 23:26:47 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.041359'
+      - '0.040987'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -41,5 +41,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"status":200,"message":"Successful","resourceLocation":null,"resource":{"offset":0,"total":0,"previous":null,"next":null,"items":[]}}'
     http_version: 
-  recorded_at: Tue, 02 Jun 2015 18:21:13 GMT
+  recorded_at: Tue, 09 Jun 2015 23:26:48 GMT
 recorded_with: VCR 2.9.3

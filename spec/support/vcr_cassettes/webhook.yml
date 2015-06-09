@@ -21,11 +21,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 02 Jun 2015 18:32:18 GMT
+      - Tue, 09 Jun 2015 23:26:30 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.355591'
+      - '0.654980'
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -39,7 +39,7 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/webhooks?offset=0&limit=1","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/webhooks\/267","resource":{"id":267,"topic":"order.created","url":"https:\/\/demo.spreecommerce.com\/webhooks"}}]}}'
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/webhooks?offset=0&limit=1","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/webhooks\/268","resource":{"id":268,"topic":"order.created","url":"https:\/\/demo.spreecommerce.com\/webhooks"}}]}}'
     http_version: 
-  recorded_at: Tue, 02 Jun 2015 18:32:19 GMT
+  recorded_at: Tue, 09 Jun 2015 23:26:31 GMT
 recorded_with: VCR 2.9.3
