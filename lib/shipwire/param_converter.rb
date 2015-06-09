@@ -13,7 +13,13 @@ module Shipwire
     end
 
     def to_h
-      with_object(params)
+      if params.is_a?(Array)
+        params.each_with_object([]) do |item, hsh|
+          hsh << with_object(item)
+        end
+      else
+        with_object(params)
+      end
     end
 
     private
@@ -22,8 +28,8 @@ module Shipwire
       RecursiveOpenStruct.new(item, recurse_over_arrays: true).to_h
     end
 
-    def with_object(hash)
-      hash.each_with_object({}) do |(k, value), h|
+    def with_object(item)
+      item.each_with_object({}) do |(k, value), h|
         key = k.to_s.camelize(:lower).to_sym
 
         h[key] = value.is_a?(Hash) ? with_object(value) : value
