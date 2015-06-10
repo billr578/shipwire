@@ -54,6 +54,14 @@ RSpec.describe "Returns", type: :feature, vcr: true do
 
         order_id = order.response.resource.items.first.resource.id
 
+        # There is an issue with returns. You can't create an order, then
+        # immediately return it. This is the functionality that a test would be
+        # doing. There is some kind of processing that needs to happen on
+        # Shipwire's end. Whatever needs to happen on their end takes time. The
+        # only way I was ever able to get the returns to work was to put a
+        # `binding.pry` between the part where it create an order and the part
+        # where it returns the order. Let it sit for about 5 minutes, then let
+        # the tests continue as normal.
         Shipwire::Returns.new.create(
           originalOrder: {
             id: order_id
