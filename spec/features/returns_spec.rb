@@ -28,18 +28,15 @@ RSpec.describe "Returns", type: :feature, vcr: true do
   context "management" do
     # Took me WAY too long to realize I can't use the variable `return`
     let!(:return_order) do
-      VCR.use_cassette("return_order") do
-        order_number = (0...8).map { (65 + rand(26)).chr }.join
+      VCR.use_cassette("return") do
+        items = [{
+          sku: "TEST-PRODUCT",
+          quantity: 1
+        }]
 
         order = Shipwire::Orders.new.create(
-          orderNo: order_number,
-          externalId: order_number,
-          items: [
-            {
-              sku: "TEST-PRODUCT",
-              quantity: 1
-            }
-          ],
+          orderNo: FFaker::Product.model,
+          items: items,
           options: {
             currency: "USD"
           },
@@ -61,10 +58,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
           originalOrder: {
             id: order_id
           },
-          items: [{
-            sku: "TEST-PRODUCT",
-            quantity: 1
-          }],
+          items: items,
           options: {
             emailCustomer: 0
           }
@@ -74,7 +68,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
 
     context "find" do
       context "without params" do
-        xit "is successful" do
+        it "is successful" do
           VCR.use_cassette("return_find") do
             return_id = return_order.response.resource.items.first.resource.id
 
@@ -86,7 +80,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
       end
 
       context "using params" do
-        xit "is successful" do
+        it "is successful" do
           VCR.use_cassette("return_find_with_params") do
             return_id = return_order.response.resource.items.first.resource.id
 
@@ -108,7 +102,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
 
     context "holds" do
       context "without params" do
-        xit "is successful" do
+        it "is successful" do
           VCR.use_cassette("return_holds") do
             return_id = return_order.response.resource.items.first.resource.id
 
@@ -120,7 +114,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
       end
 
       context "using params" do
-        xit "is successful" do
+        it "is successful" do
           VCR.use_cassette("return_holds_with_params") do
             return_id = return_order.response.resource.items.first.resource.id
 
@@ -141,7 +135,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
     end
 
     context "items" do
-      xit "is successful" do
+      it "is successful" do
         VCR.use_cassette("return_items") do
           return_id = return_order.response.resource.items.first.resource.id
 
@@ -161,7 +155,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
     end
 
     context "trackings" do
-      xit "is successful" do
+      it "is successful" do
         VCR.use_cassette("return_trackings") do
           return_id = return_order.response.resource.items.first.resource.id
 
@@ -181,7 +175,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
     end
 
     context "labels" do
-      xit "is successful" do
+      it "is successful" do
         VCR.use_cassette("return_labels") do
           return_id = return_order.response.resource.items.first.resource.id
 
@@ -201,7 +195,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
     end
 
     context "cancel" do
-      xit "is successful" do
+      it "is successful" do
         VCR.use_cassette("return_cancel") do
           return_id = return_order.response.resource.items.first.resource.id
 
