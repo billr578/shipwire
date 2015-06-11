@@ -23,10 +23,14 @@ module Shipwire
 
       protected
 
-      def payload_runner(payload)
-        payload = [payload] unless payload.is_a?(Array)
+      def payload_override
+        {}
+      end
 
-        payload.each_with_object([]) do |item, pl|
+      private
+
+      def payload_runner(payload)
+        [payload].flatten.each_with_object([]) do |item, pl|
           pl << payload_abridge(item)
         end
       end
@@ -36,10 +40,6 @@ module Shipwire
         data_override = RecursiveOpenStruct.new(payload_override).to_h
 
         data.deep_merge(data_override)
-      end
-
-      def payload_override
-        {}
       end
 
       def retire_object(obj)

@@ -157,6 +157,17 @@ RSpec.describe "Product", type: :feature, vcr: true do
             }
           }
 
+          product_contents = [
+            {
+              externalId: "TEST-PRODUCT",
+              quantity: 1
+            },
+            {
+              externalId: "TEST-PRODUCT2",
+              quantity: 1
+            }
+          ]
+
           case type
           when "insert"
             payload.deep_merge!(
@@ -180,32 +191,10 @@ RSpec.describe "Product", type: :feature, vcr: true do
               }
             )
           when "kit"
-            payload.deep_merge!(
-              kitContent: [
-                {
-                  externalId: "TEST-PRODUCT",
-                  quantity: 1
-                },
-                {
-                  externalId: "TEST-PRODUCT2",
-                  quantity: 1
-                }
-              ]
-            )
+            payload.deep_merge!(kitContent: product_contents)
 
           when "virtual_kit"
-            payload.deep_merge!(
-              virtualKitContent: [
-                {
-                  externalId: "TEST-PRODUCT",
-                  quantity: 1
-                },
-                {
-                  externalId: "TEST-PRODUCT2",
-                  quantity: 1
-                }
-              ]
-            )
+            payload.deep_merge!(virtualKitContent: product_contents)
           end
 
           payload

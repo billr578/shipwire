@@ -1,7 +1,7 @@
 module Shipwire
   module Products
     class Kit < Base
-      private
+      protected
 
       def payload_override
         { classification: "kit" }

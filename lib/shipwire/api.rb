@@ -19,21 +19,21 @@ module Shipwire
     private
 
     def send_request(method, path, payload = {}, params = {})
-      connection.send(method, request_path(path)) do |r|
-        r.params  = camel_case(params) unless params.empty?
-        r.options = request_options
-        r.headers = request_headers
-        r.body    = camel_case(payload).to_json unless payload.empty?
+      connection.send(method, request_path(path)) do |req|
+        req.params  = camel_case(params) unless params.empty?
+        req.options = request_options
+        req.headers = request_headers
+        req.body    = camel_case(payload).to_json unless payload.empty?
       end
     end
 
     def connection
-      Faraday.new(url: request_base) do |c|
-        c.use Faraday::Request::BasicAuthentication, auth_user, auth_pass
-        c.use Faraday::Response::Logger unless Rails.env.production?
+      Faraday.new(url: request_base) do |conn|
+        conn.use Faraday::Request::BasicAuthentication, auth_user, auth_pass
+        conn.use Faraday::Response::Logger unless Rails.env.production?
 
-        c.request(:url_encoded)
-        c.adapter(Faraday.default_adapter)
+        conn.request(:url_encoded)
+        conn.adapter(Faraday.default_adapter)
       end
     end
 

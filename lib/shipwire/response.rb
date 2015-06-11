@@ -39,48 +39,39 @@ module Shipwire
     end
 
     def response=(payload)
-      @response = parse_response(payload)
+      json = JSON.parse(payload.body)
+
+      @response = RecursiveOpenStruct.new(json, recurse_over_arrays: true)
+
+      populate_errors
+      populate_warnings
     end
 
     private
 
-    def parse_response(payload)
-      json   = JSON.parse(payload.body)
-      struct = RecursiveOpenStruct.new(json, recurse_over_arrays: true)
-
-      populate_errors(struct)
-      populate_warnings(struct)
-
-      struct
+    def populate_warnings
+      [*response.warnings].each { |item| shipwire_warnings << item.message }
     end
 
-    def populate_warnings(payload)
-      if payload.warnings
-        payload.warnings.each { |item| shipwire_warnings << item.message }
-      end
-    end
+    def populate_errors
+      populate_status_errors
 
-    def populate_errors(payload)
-      populate_status_errors(payload)
-
-      populate_response_errors(payload)
+      populate_response_errors
     end
 
     # Errors because of a 40x or 50x error
-    def populate_status_errors(payload)
-      if /^[45]+/.match(payload.status.to_s)
-        shipwire_errors << payload.message
+    def populate_status_errors
+      if /^[45]+/.match(response.status.to_s)
+        shipwire_errors << response.message
       end
     end
 
     # Errors specified in Shipwire response body
-    def populate_response_errors(payload)
-      if payload.errors && payload.errors.is_a?(Array)
-        payload.errors.each do |item|
-          message = item.is_a?(RecursiveOpenStruct) ? item.message : item
+    def populate_response_errors
+      [*response.errors].each do |item|
+        message = item.is_a?(RecursiveOpenStruct) ? item.message : item
 
-          shipwire_errors << message
-        end
+        shipwire_errors << message
       end
     end
   end

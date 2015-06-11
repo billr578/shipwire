@@ -1,6 +1,6 @@
 module Shipwire
   class ParamConverter
-    attr_accessor :params
+    attr_reader :params
 
     def initialize(params)
       if params.is_a?(Array)
@@ -29,10 +29,10 @@ module Shipwire
     end
 
     def with_object(item)
-      item.each_with_object({}) do |(k, value), h|
-        key = k.to_s.camelize(:lower).to_sym
+      item.each_with_object({}) do |(original_key, value), hsh|
+        key = original_key.to_s.camelize(:lower).to_sym
 
-        h[key] = value.is_a?(Hash) ? with_object(value) : value
+        hsh[key] = value.is_a?(Hash) ? with_object(value) : value
       end
     end
   end

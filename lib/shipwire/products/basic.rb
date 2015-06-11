@@ -1,7 +1,7 @@
 module Shipwire
   module Products
     class Basic < Base
-      private
+      protected
 
       def payload_override
         { classification: "baseProduct" }

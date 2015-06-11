@@ -34,7 +34,7 @@ RSpec.describe "Orders", type: :feature, vcr: true do
         externalId: order_number,
         items: [
           {
-            sku: "FAKE-PRODUCT",
+            sku: "TEST-PRODUCT",
             quantity: 1
           }
         ],
@@ -188,6 +188,14 @@ RSpec.describe "Orders", type: :feature, vcr: true do
       end
     end
 
+    # There is an issue with returns. You can't create an order, then
+    # immediately return it. This is the functionality that a test would be
+    # doing. There is some kind of processing that needs to happen on Shipwire's
+    # end. Whatever needs to happen on their end takes time. The only way I was
+    # ever able to get the returns to work was to put a `binding.pry` between
+    # the part where it create an order and the part where it returns the order.
+    # Let it sit for about 5 minutes. Take a restroom break. Eat a snack. Then
+    # let the tests continue as normal.
     context "returns" do
       xit "is successful" do
         VCR.use_cassette("order_returns") do
