@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe "Product", type: :feature, vcr: true do
   # %w(basic insert kit virtual_kit).each do |product_type|
-  %w(basic insert).each do |product_type|
+  %w(basic insert kit).each do |product_type|
     context "type #{product_type}" do
       let(:product_class) do
         "Shipwire::Products::#{product_type.camelize}".constantize
@@ -157,6 +157,15 @@ RSpec.describe "Product", type: :feature, vcr: true do
             }
           }
 
+          # First of all, to create a Kit or Virtual Kit, the base products HAVE
+          # to exist. They will not be created here. Kits require 2 ore more
+          # products.
+          # Next, `externalId` is NOT the same as the product SKU. An externalId
+          # currently cannot be set using the Shipwire website. It can only be
+          # set by creating a product through the API or updating an existing
+          # product using the API and setting a value for externalID.
+          # Otherwise instead of `externalID` you can use `productID` which is
+          # the unique Shipwire ID for that product
           product_contents = [
             {
               externalId: "TEST-PRODUCT",
