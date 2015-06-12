@@ -37,6 +37,17 @@ RSpec.describe "General access", type: :feature, vcr: true do
     end
   end
 
+  describe "with incorrect base endpoint" do
+    before { Shipwire.configuration.endpoint = 'https://api.fake.shipwire.com' }
+
+    it "raises an error" do
+      request = Shipwire::Secret.new.list
+
+      expect(request.errors?).to be_truthy
+      expect(request.errors).to include 'Unable to connect to Shipwire'
+    end
+  end
+
   describe "with API timeout" do
     before { Shipwire.configuration.timeout = 0.0001 }
 
