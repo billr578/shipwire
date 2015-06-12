@@ -36,6 +36,7 @@ RSpec.describe "Secret", type: :feature, vcr: true do
           request = Shipwire::Secret.new.find(1)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Not found'
         end
       end
     end

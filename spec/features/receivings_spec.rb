@@ -68,6 +68,7 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
           request = Shipwire::Receivings.new.find(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Receiving Order not found.'
         end
       end
     end
@@ -114,6 +115,10 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
           request = Shipwire::Receivings.new.update(0, payload_update)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include(
+            "Order ID not detected. Please make a POST if you wish to create "\
+            "an order."
+          )
         end
       end
     end
@@ -129,8 +134,8 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
         end
       end
 
-      it "fails when id does not exist" do
-        VCR.use_cassette("receiving_cancel_label_fail") do
+      it "is successful even when id does not exist" do
+        VCR.use_cassette("receiving_cancel_label_nonexistent") do
           request = Shipwire::Receivings.new.labels_cancel(0)
 
           expect(request.ok?).to be_truthy
@@ -169,6 +174,7 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
           request = Shipwire::Receivings.new.holds(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Receiving Order not found.'
         end
       end
     end
@@ -189,6 +195,7 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
           request = Shipwire::Receivings.new.instructions(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Receiving Order not found.'
         end
       end
     end
@@ -209,6 +216,7 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
           request = Shipwire::Receivings.new.items(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Receiving Order not found.'
         end
       end
     end
@@ -229,6 +237,7 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
           request = Shipwire::Receivings.new.shipments(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Receiving Order not found.'
         end
       end
     end
@@ -249,6 +258,7 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
           request = Shipwire::Receivings.new.trackings(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Receiving Order not found.'
         end
       end
     end
@@ -269,6 +279,7 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
           request = Shipwire::Receivings.new.cancel(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Receiving not found'
         end
       end
     end

@@ -94,6 +94,8 @@ RSpec.describe "Orders", type: :feature, vcr: true do
           request = Shipwire::Orders.new.find(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Order not found.'
+
         end
       end
     end
@@ -130,6 +132,10 @@ RSpec.describe "Orders", type: :feature, vcr: true do
           request = Shipwire::Orders.new.update(0, payload_update)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include(
+            "Order ID not detected. Please make a POST if you wish to create "\
+            "an order."
+          )
         end
       end
     end
@@ -150,6 +156,7 @@ RSpec.describe "Orders", type: :feature, vcr: true do
           request = Shipwire::Orders.new.items(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Order not found.'
         end
       end
     end
@@ -184,6 +191,7 @@ RSpec.describe "Orders", type: :feature, vcr: true do
           request = Shipwire::Orders.new.holds(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Order not found.'
         end
       end
     end
@@ -212,6 +220,7 @@ RSpec.describe "Orders", type: :feature, vcr: true do
           request = Shipwire::Orders.new.returns(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Order not found.'
         end
       end
     end
@@ -232,6 +241,7 @@ RSpec.describe "Orders", type: :feature, vcr: true do
           request = Shipwire::Orders.new.trackings(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Order not found.'
         end
       end
     end
@@ -252,6 +262,7 @@ RSpec.describe "Orders", type: :feature, vcr: true do
           request = Shipwire::Orders.new.cancel(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Order not found'
         end
       end
     end

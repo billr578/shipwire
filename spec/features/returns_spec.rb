@@ -104,6 +104,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
           request = Shipwire::Returns.new.find(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Receiving Order not found.'
         end
       end
     end
@@ -138,6 +139,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
           request = Shipwire::Returns.new.holds(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Receiving Order not found.'
         end
       end
     end
@@ -158,6 +160,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
           request = Shipwire::Returns.new.items(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Receiving Order not found.'
         end
       end
     end
@@ -178,6 +181,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
           request = Shipwire::Returns.new.trackings(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Receiving Order not found.'
         end
       end
     end
@@ -198,6 +202,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
           request = Shipwire::Returns.new.labels(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Receiving Label not found.'
         end
       end
     end
@@ -218,6 +223,7 @@ RSpec.describe "Returns", type: :feature, vcr: true do
           request = Shipwire::Returns.new.cancel(0)
 
           expect(request.errors?).to be_truthy
+          expect(request.errors).to include 'Return Order not found.'
         end
       end
     end

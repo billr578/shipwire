@@ -40,7 +40,6 @@ RSpec.describe "Webhooks", type: :feature, vcr: true do
         VCR.use_cassette("webhooks_find_fail") do
           request = Shipwire::Webhooks.new.find(0)
 
-          expect(request.response.status).to eq 404
           expect(request.errors?).to be_truthy
           expect(request.errors).to include('Subscription not found.')
         end

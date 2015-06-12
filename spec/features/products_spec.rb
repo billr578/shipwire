@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe "Product", type: :feature, vcr: true do
   # %w(basic insert kit virtual_kit).each do |product_type|
-  %w(basic insert kit).each do |product_type|
+  %w(basic insert).each do |product_type|
     context "type #{product_type}" do
       let(:product_class) do
         "Shipwire::Products::#{product_type.camelize}".constantize
@@ -55,6 +55,7 @@ RSpec.describe "Product", type: :feature, vcr: true do
               request = product_class.new.find(0)
 
               expect(request.errors?).to be_truthy
+              expect(request.errors).to include 'Product not found.'
             end
           end
         end
@@ -83,6 +84,7 @@ RSpec.describe "Product", type: :feature, vcr: true do
               request = product_class.new.update(0, payload)
 
               expect(request.errors?).to be_truthy
+              expect(request.errors).to include 'Product not found.'
             end
           end
         end

@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+# TODO: `TEST-PRODUCT` and `TEST-PRODUCT2` is not working. Recreate the product
+# using the API.
 RSpec.describe "Rate", type: :feature, vcr: true do
   context "find" do
     it "is successful with existing items" do
@@ -16,7 +18,7 @@ RSpec.describe "Rate", type: :feature, vcr: true do
           order: {
             items: [
               {
-                sku: "FAKE-PRODUCT",
+                sku: "FAKE-PRODUCT"
               }
             ]
           }
@@ -25,13 +27,15 @@ RSpec.describe "Rate", type: :feature, vcr: true do
         request = Shipwire::Rate.new.find(bad_payload)
 
         expect(request.errors?).to be_truthy
+        # TODO: Test for error message inclusion
       end
     end
 
     def payload
       {
         options: {
-          currency: "USD"
+          currency: "USD",
+          groupBy: "all"
         },
         order: {
           shipTo: {
@@ -39,14 +43,12 @@ RSpec.describe "Rate", type: :feature, vcr: true do
             city: "Worcester",
             postalCode: "01606",
             region: "MA",
-            country: "US",
+            country: "US"
           },
-          items: [
-            {
+          items: [{
               sku: "TEST-PRODUCT",
               quantity: 1
-            }
-          ]
+          }]
         }
       }
     end
