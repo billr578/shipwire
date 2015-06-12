@@ -24,11 +24,4 @@ Shipwire.configure do |config|
   # Rails production environment and 'https://api.beta.shipwire.com' for all
   # other Rails environments.
   # config.endpoint = 'https://api.shipwire.com'
-
-  # Server type to use for requests. Specifying a value here will use that
-  # value is all Rails environments. Available options are 'Production' and
-  # 'Test'. Default is 'Production' in Rails production environment and 'Test'
-  # in all other Rails environments. Note the capital P and T on the option
-  # values.
-  # config.server = 'Production'
 end

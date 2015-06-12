@@ -47,8 +47,6 @@ There is a difference between an account registered from [https://www.shipwire.c
 
 `endpoint` -  Endpoint base URL to use for requests. Specifying a value here will use that value is all Rails environments. Default is 'https://api.shipwire.com' for Rails production environment and 'https://api.beta.shipwire.com' for all other Rails environments.
 
-`server` - Server type to use for requests. Specifying a value here will use that value is all Rails environments. Available options are 'Production' and 'Test'. Default is 'Production' in Rails production environment and 'Test' in all other Rails environments. Note the capital P and T on the values.
-
 
 ## Testing
 
