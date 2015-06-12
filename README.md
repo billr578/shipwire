@@ -41,11 +41,11 @@ There is a difference between an account registered from [https://www.shipwire.c
 
 `password` - (required) Shipwire password used for basic auth login to Shipwire.
 
-`open_timeout` - Read timeout in seconds. Default is 2.
+`open_timeout` - Read timeout in seconds. Default is `2`.
 
-`timeout` - Open/read timeout in seconds. Default is 5.
+`timeout` - Open/read timeout in seconds. Default is `5`.
 
-`endpoint` -  Endpoint base URL to use for requests. Specifying a value here will use that value is all Rails environments. Default is 'https://api.shipwire.com' for Rails production environment and 'https://api.beta.shipwire.com' for all other Rails environments.
+`endpoint` -  Endpoint base URL to use for requests. Specifying a value here will use that value is all Rails environments. This value needs to change for your development and test environments. Default is `https://api.shipwire.com`.
 
 
 ## Testing

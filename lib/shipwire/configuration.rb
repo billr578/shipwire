@@ -11,13 +11,7 @@ module Shipwire
       @password     = nil
       @open_timeout = 2
       @timeout      = 5
-      @endpoint     = endpoint
-    end
-
-    def endpoint
-      beta = Rails.env.production? ? '' : '.beta'
-
-      "https://api#{beta}.shipwire.com"
+      @endpoint     = "https://api.shipwire.com"
     end
   end
 end

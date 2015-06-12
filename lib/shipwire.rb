@@ -23,7 +23,7 @@ require 'shipwire/products/virtual_kit'
 
 module Shipwire
   class << self
-    attr_writer :configuration
+    attr_accessor :configuration
 
     def configure
       yield(configuration)

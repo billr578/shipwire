@@ -21,7 +21,5 @@ Shipwire.configure do |config|
 
   # Endpoint base URL to use for requests. Specifying a value here will use that
   # value is all Rails environments. Default is 'https://api.shipwire.com' for
-  # Rails production environment and 'https://api.beta.shipwire.com' for all
-  # other Rails environments.
   # config.endpoint = 'https://api.shipwire.com'
 end
