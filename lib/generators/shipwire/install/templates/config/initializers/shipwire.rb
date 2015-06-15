@@ -19,7 +19,6 @@ Shipwire.configure do |config|
   # Open/read timeout Integer in seconds. Default is 5 seconds
   # config.timeout = 5
 
-  # Endpoint base URL to use for requests. Specifying a value here will use that
-  # value is all Rails environments. Default is 'https://api.shipwire.com' for
+  # Endpoint base URL to use for requests. Default is 'https://api.shipwire.com'
   # config.endpoint = 'https://api.shipwire.com'
 end
