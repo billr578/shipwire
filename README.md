@@ -35,7 +35,14 @@ rails g shipwire:install
 
 ## Configuration
 
-There is a difference between an account registered from [https://www.shipwire.com/](https://www.shipwire.com/) and one registered from [https://beta.shipwire.com/](https://beta.shipwire.com/) If you create an account from [https://www.shipwire.com/](https://www.shipwire.com/) and then request data from the beta URL, the API will throw errors about an invalid account. Accounts are only valid from that registration point.
+Basic configuration
+
+```
+Shipwire.configure do |config|
+  config.username = "<%= ENV['SHIPWIRE_USERNAME'] %>"
+  config.password = "<%= ENV['SHIPWIRE_PASSWORD'] %>"
+end
+```
 
 `username` - (required) Shipwire username (email address) used for basic auth login to Shipwire
 
@@ -45,12 +52,16 @@ There is a difference between an account registered from [https://www.shipwire.c
 
 `timeout` - Open/read timeout in seconds. Default is `5`.
 
-`endpoint` -  Endpoint base URL to use for requests. Specifying a value here will use that value is all Rails environments. This value needs to change for your development and test environments. Default is `https://api.shipwire.com`.
+`endpoint` -  Endpoint base URL to use for requests. Default is `https://api.shipwire.com`.
+
+> Note: There is a difference between an account registered from [https://www.shipwire.com/](https://www.shipwire.com/) and one registered from [https://beta.shipwire.com/](https://beta.shipwire.com/). If you create an account from [https://www.shipwire.com/](https://www.shipwire.com/) and then request data from the beta URL, the API will throw errors about an invalid account. Accounts are only valid from that registration point.
 
 
 ## Testing
 
-Tests are using a throwaway Shipwire (beta) account that is only meant for testing. A personal Shipwire Beta account is not required.
+Tests are using a throwaway Shipwire Beta account that is only meant for testing. A personal Shipwire Beta account of your own is not required.
+
+Tests require a product named `TEST-PRODUCT` and `TEST-PRODUCT2` to function properly.
 
 ```
 bundle exec rake spec
