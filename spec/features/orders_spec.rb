@@ -95,7 +95,6 @@ RSpec.describe "Orders", type: :feature, vcr: true do
 
           expect(request.errors?).to be_truthy
           expect(request.errors).to include 'Order not found.'
-
         end
       end
     end

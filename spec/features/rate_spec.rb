@@ -46,8 +46,8 @@ RSpec.describe "Rate", type: :feature, vcr: true do
             country: "US"
           },
           items: [{
-              sku: "TEST-PRODUCT",
-              quantity: 1
+            sku: "TEST-PRODUCT",
+            quantity: 1
           }]
         }
       }
