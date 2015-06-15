@@ -4,7 +4,8 @@ module Shipwire
                   :password,
                   :open_timeout,
                   :timeout,
-                  :endpoint
+                  :endpoint,
+                  :logger
 
     def initialize
       @username     = nil
@@ -12,6 +13,7 @@ module Shipwire
       @open_timeout = 2
       @timeout      = 5
       @endpoint     = "https://api.shipwire.com"
+      @logger       = false
     end
   end
 end

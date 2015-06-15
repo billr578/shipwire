@@ -21,4 +21,7 @@ Shipwire.configure do |config|
 
   # Endpoint base URL to use for requests. Default is 'https://api.shipwire.com'
   # config.endpoint = 'https://api.shipwire.com'
+
+  # Enable logging to the console. Default is false
+  # config.logger = false
 end

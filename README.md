@@ -52,7 +52,9 @@ end
 
 `timeout` - Open/read timeout in seconds. Default is `5`.
 
-`endpoint` -  Endpoint base URL to use for requests. Default is `https://api.shipwire.com`.
+`endpoint` - Endpoint base URL to use for requests. Default is `https://api.shipwire.com`.
+
+`logger` - Log requests to STDOUT. Default is `false`.
 
 > Note: There is a difference between an account registered from [https://www.shipwire.com/](https://www.shipwire.com/) and one registered from [https://beta.shipwire.com/](https://beta.shipwire.com/). If you create an account from [https://www.shipwire.com/](https://www.shipwire.com/) and then request data from the beta URL, the API will throw errors about an invalid account. Accounts are only valid from that registration point.
 
@@ -80,6 +82,7 @@ bundle exec rspec spec
 - Required option validation
 - Option type validation
 - Option value validation
+- Make adapter configurable
 
 
 ## Contributions

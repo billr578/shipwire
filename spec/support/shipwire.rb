@@ -5,7 +5,8 @@ RSpec.configure do |config|
       # c.password = "black.cat!17"
       c.username = "david.freerksen@groundctrl.com"
       c.password = "gOg6maBr6E"
-      c.endpoint = 'https://api.beta.shipwire.com'
+      c.endpoint = "https://api.beta.shipwire.com"
+      c.logger   = false
     end
   end
 end

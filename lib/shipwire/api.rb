@@ -30,7 +30,7 @@ module Shipwire
     def connection
       Faraday.new(url: request_base) do |conn|
         conn.use Faraday::Request::BasicAuthentication, auth_user, auth_pass
-        conn.use Faraday::Response::Logger unless Rails.env.production?
+        conn.use Faraday::Response::Logger if Shipwire.configuration.logger
 
         conn.request(:url_encoded)
         conn.adapter(Faraday.default_adapter)
