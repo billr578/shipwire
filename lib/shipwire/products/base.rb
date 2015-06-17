@@ -23,7 +23,7 @@ module Shipwire
 
       protected
 
-      def payload_override; end
+      def product_classification; end
 
       private
 
@@ -34,8 +34,10 @@ module Shipwire
       end
 
       def payload_abridge(payload)
+        classification = product_classification || {}
+
         data          = RecursiveOpenStruct.new(payload).to_h
-        data_override = RecursiveOpenStruct.new(payload_override || {}).to_h
+        data_override = RecursiveOpenStruct.new(classification).to_h
 
         data.deep_merge(data_override)
       end

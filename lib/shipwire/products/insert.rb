@@ -3,7 +3,7 @@ module Shipwire
     class Insert < Base
       protected
 
-      def payload_override
+      def product_classification
         { classification: "marketingInsert" }
       end
     end

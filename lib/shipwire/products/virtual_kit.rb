@@ -3,7 +3,7 @@ module Shipwire
     class VirtualKit < Base
       protected
 
-      def payload_override
+      def product_classification
         { classification: "virtualKit" }
       end
     end

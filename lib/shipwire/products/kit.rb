@@ -3,7 +3,7 @@ module Shipwire
     class Kit < Base
       protected
 
-      def payload_override
+      def product_classification
         { classification: "kit" }
       end
     end

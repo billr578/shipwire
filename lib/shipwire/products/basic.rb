@@ -3,7 +3,7 @@ module Shipwire
     class Basic < Base
       protected
 
-      def payload_override
+      def product_classification
         { classification: "baseProduct" }
       end
     end
