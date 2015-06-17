@@ -31,8 +31,9 @@ RSpec.describe "Secret", type: :feature, vcr: true do
 
       it "fails when id does not exist" do
         VCR.use_cassette("secret_find_fail") do
-          # For some reason ID 0 returns data for ID 126. I asked Shipwire about
-          # this. They didn't respond. Use 1 instead.
+          # ID 0 returns data for an existing secret at index 0 instead of a
+          # not found. Shipwire considers this an unintended feature or shortcut
+          # rather than a bug. So use 1 instead of 0.
           request = Shipwire::Secret.new.find(1)
 
           expect(request.errors?).to be_truthy
