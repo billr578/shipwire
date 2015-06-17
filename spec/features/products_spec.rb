@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe "Product", type: :feature, vcr: true do
   # %w(basic insert kit virtual_kit).each do |product_type|
-  %w(basic insert).each do |product_type|
+  %w(basic insert kit).each do |product_type|
     context "type #{product_type}" do
       let(:product_class) do
         "Shipwire::Products::#{product_type.camelize}".constantize

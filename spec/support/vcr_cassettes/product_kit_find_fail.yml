@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/products/0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Date:
+      - Wed, 17 Jun 2015 23:28:29 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.026907'
+      X-Request-Id:
+      - 47d25458ef76f556b096f865435d3ba1
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '88'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":404,"message":"Product not found.","resourceLocation":null}'
+    http_version: 
+  recorded_at: Wed, 17 Jun 2015 23:28:30 GMT
+recorded_with: VCR 2.9.3

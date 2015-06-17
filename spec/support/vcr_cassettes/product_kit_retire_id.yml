@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/products/retire
+    body:
+      encoding: UTF-8
+      string: '{"ids":[203171]}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 17 Jun 2015 23:29:45 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.055446'
+      X-Request-Id:
+      - 0ba7f2e4fd142cc7e5e3fcc0f9e369fb
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '164'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":200,"message":"Successful","moreInfo":[[{"id":203171,"externalId":"H-3907","status":"deprecated","sku":"UJ-4721","configuration":"KIT","success":true}]],"resourceLocation":null}'
+    http_version: 
+  recorded_at: Wed, 17 Jun 2015 23:29:45 GMT
+recorded_with: VCR 2.9.3
