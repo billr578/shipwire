@@ -20,20 +20,20 @@ module Shipwire
 
     def send_request(method, path, payload = {}, params = {})
       connection.send(method, request_path(path)) do |req|
-        req.params  = camel_case(params) unless params.empty?
+        req.params  = Utility.camel_case(params) unless params.empty?
         req.options = request_options
         req.headers = request_headers
-        req.body    = camel_case(payload).to_json unless payload.empty?
+        req.body    = Utility.camel_case(payload).to_json unless payload.empty?
       end
     end
 
     def connection
       Faraday.new(url: request_base) do |conn|
         conn.use Faraday::Request::BasicAuthentication, auth_user, auth_pass
-        conn.use Faraday::Response::Logger if Shipwire.configuration.logger
 
-        conn.request(:url_encoded)
         conn.adapter(Faraday.default_adapter)
+        conn.response(:logger) if Shipwire.configuration.logger
+        conn.request(:url_encoded)
       end
     end
 
@@ -43,10 +43,6 @@ module Shipwire
 
     def request_path(path)
       "/api/v#{API_VERSION}/#{path}"
-    end
-
-    def camel_case(options)
-      ParamConverter.new(options).to_h
     end
 
     def request_options

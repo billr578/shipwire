@@ -23,9 +23,7 @@ module Shipwire
 
       protected
 
-      def payload_override
-        {}
-      end
+      def payload_override; end
 
       private
 
@@ -37,13 +35,13 @@ module Shipwire
 
       def payload_abridge(payload)
         data          = RecursiveOpenStruct.new(payload).to_h
-        data_override = RecursiveOpenStruct.new(payload_override).to_h
+        data_override = RecursiveOpenStruct.new(payload_override || {}).to_h
 
         data.deep_merge(data_override)
       end
 
       def retire_object(obj)
-        retire_array = obj.is_a?(Array) ? obj : obj.to_s.split(",").map(&:to_i)
+        retire_array = obj.is_a?(Array) ? obj : Utility.split_to_integers(obj)
 
         { ids: retire_array }
       end
