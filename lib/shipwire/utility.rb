@@ -15,7 +15,9 @@ module Shipwire
     end
 
     def self.camelize_lower(term)
-      string = term.to_s.sub(/^(?:(?=a)b(?=\b|[A-Z_])|\w)/) { |match| match.downcase }
+      string = term.to_s.sub(/^(?:(?=a)b(?=\b|[A-Z_])|\w)/) do |match|
+        match.downcase
+      end
 
       camelizer(string)
     end
