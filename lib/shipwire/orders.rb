@@ -1,19 +1,19 @@
 module Shipwire
   class Orders < Api
     def list(params = {})
-      request(:get, 'orders', {}, params)
+      request(:get, 'orders', params: params)
     end
 
     def create(payload)
-      request(:post, 'orders', payload)
+      request(:post, 'orders', payload: payload)
     end
 
     def find(id, params = {})
-      request(:get, "orders/#{id}/trackings", {}, params)
+      request(:get, "orders/#{id}/trackings", params: params)
     end
 
     def update(id, payload, params = {})
-      request(:put, "orders/#{id}", payload, params)
+      request(:put, "orders/#{id}", payload: payload, params: params)
     end
 
     def cancel(id)
@@ -21,7 +21,7 @@ module Shipwire
     end
 
     def holds(id, params = {})
-      request(:get, "orders/#{id}/holds", {}, params)
+      request(:get, "orders/#{id}/holds", params: params)
     end
 
     def items(id)

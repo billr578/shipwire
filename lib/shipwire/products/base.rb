@@ -2,11 +2,11 @@ module Shipwire
   module Products
     class Base < Api
       def list(params = {})
-        request(:get, 'products', {}, params)
+        request(:get, 'products', params: params)
       end
 
       def create(payload)
-        request(:post, 'products', payload_runner(payload))
+        request(:post, 'products', payload: payload_runner(payload))
       end
 
       def find(id)
@@ -14,11 +14,11 @@ module Shipwire
       end
 
       def update(id, payload)
-        request(:put, "products/#{id}", payload_runner(payload))
+        request(:put, "products/#{id}", payload: payload_runner(payload))
       end
 
       def retire(id)
-        request(:post, 'products/retire', retire_object(id))
+        request(:post, 'products/retire', payload: retire_object(id))
       end
 
       protected

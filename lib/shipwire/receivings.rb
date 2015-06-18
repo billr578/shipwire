@@ -1,19 +1,19 @@
 module Shipwire
   class Receivings < Api
     def list(params = {})
-      request(:get, 'receivings', {}, params)
+      request(:get, 'receivings', params: params)
     end
 
     def create(payload)
-      request(:post, 'receivings', payload)
+      request(:post, 'receivings', payload: payload)
     end
 
     def find(id, params = {})
-      request(:get, "receivings/#{id}", {}, params)
+      request(:get, "receivings/#{id}", params: params)
     end
 
     def update(id, payload, params = {})
-      request(:put, "receivings/#{id}", payload, params)
+      request(:put, "receivings/#{id}", payload: payload, params: params)
     end
 
     def cancel(id)
@@ -26,7 +26,7 @@ module Shipwire
     alias_method :label_cancel, :labels_cancel
 
     def holds(id, params = {})
-      request(:get, "receivings/#{id}/holds", {}, params)
+      request(:get, "receivings/#{id}/holds", params: params)
     end
 
     def instructions_recipients(id)

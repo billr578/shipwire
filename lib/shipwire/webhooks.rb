@@ -5,7 +5,7 @@ module Shipwire
     end
 
     def create(payload)
-      request(:post, 'webhooks', payload)
+      request(:post, 'webhooks', payload: payload)
     end
 
     def find(id)
@@ -13,7 +13,7 @@ module Shipwire
     end
 
     def update(id, payload)
-      request(:put, "webhooks/#{id}", payload)
+      request(:put, "webhooks/#{id}", payload: payload)
     end
 
     def remove(id)
