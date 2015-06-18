@@ -6,6 +6,7 @@ require 'shipwire/version'
 require 'shipwire/api'
 require 'shipwire/configuration'
 require 'shipwire/param_converter'
+require 'shipwire/request'
 require 'shipwire/response'
 require 'shipwire/utility'
 
