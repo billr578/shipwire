@@ -14,7 +14,7 @@ RSpec.describe "Rate", type: :feature, vcr: true do
 
     it "fails with non existing items" do
       VCR.use_cassette("rate_find_fail") do
-        bad_payload = payload.deep_merge(
+        bad_payload = payload.deeper_merge(
           order: {
             items: [
               {

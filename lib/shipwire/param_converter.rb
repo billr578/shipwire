@@ -30,7 +30,7 @@ module Shipwire
 
     def with_object(item)
       item.each_with_object({}) do |(original_key, value), hsh|
-        key = original_key.to_s.camelize(:lower).to_sym
+        key = Utility.camelize_lower(original_key.to_s).to_sym
 
         hsh[key] = value.is_a?(Hash) ? with_object(value) : value
       end

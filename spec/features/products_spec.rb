@@ -4,7 +4,9 @@ RSpec.describe "Product", type: :feature, vcr: true do
   %w(basic insert kit virtual_kit).each do |product_type|
     context "type #{product_type}" do
       let(:product_class) do
-        Object.const_get("Shipwire::Products::#{product_type.camelize}")
+        type = Shipwire::Utility.camelize(product_type)
+
+        Object.const_get("Shipwire::Products::#{type}")
       end
 
       context "list" do
@@ -64,7 +66,7 @@ RSpec.describe "Product", type: :feature, vcr: true do
             VCR.use_cassette("product_#{product_type}_update") do
               product_id = product.response.resource.items.first.resource.id
 
-              payload = payload(product_type).deep_merge(
+              payload = payload(product_type).deeper_merge(
                 description: "Super awesome description"
               )
 
@@ -76,7 +78,7 @@ RSpec.describe "Product", type: :feature, vcr: true do
 
           it "fails when id does not exist" do
             VCR.use_cassette("product_#{product_type}_update_fail") do
-              payload = payload(product_type).deep_merge(
+              payload = payload(product_type).deeper_merge(
                 description: "Super awesome description"
               )
 
@@ -180,7 +182,7 @@ RSpec.describe "Product", type: :feature, vcr: true do
 
           case type
           when "insert"
-            payload.deep_merge!(
+            payload.deeper_merge!(
               dimensions: {
                 height: 0.1,
                 weight: 0.1
@@ -201,10 +203,10 @@ RSpec.describe "Product", type: :feature, vcr: true do
               }
             )
           when "kit"
-            payload.deep_merge!(kitContent: product_contents)
+            payload.deeper_merge!(kitContent: product_contents)
 
           when "virtual_kit"
-            payload.deep_merge!(virtualKitContent: product_contents)
+            payload.deeper_merge!(virtualKitContent: product_contents)
           end
 
           payload

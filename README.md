@@ -76,9 +76,8 @@ bundle exec rspec spec
 ```
 
 
-## TODO
+## Wishlist
 
-- Remove Rails dependency
 - Required option validation
 - Option type validation
 - Option value validation

@@ -8,7 +8,6 @@ end
 ENV['RAILS_ENV'] = 'test'
 
 require 'rspec'
-require 'rails'
 require 'ffaker'
 require 'pry'
 

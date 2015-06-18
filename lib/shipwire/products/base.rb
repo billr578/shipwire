@@ -39,7 +39,7 @@ module Shipwire
         data          = RecursiveOpenStruct.new(payload).to_h
         data_override = RecursiveOpenStruct.new(classification).to_h
 
-        data.deep_merge(data_override)
+        data.deeper_merge(data_override)
       end
 
       def retire_object(obj)

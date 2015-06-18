@@ -80,7 +80,7 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
             receiving_id = receiving.response.resource.items.first.resource.id
 
             payload_updates = { shipFrom: { email: FFaker::Internet.email } }
-            payload_update  = payload.deep_merge(payload_updates)
+            payload_update  = payload.deeper_merge(payload_updates)
 
             request = Shipwire::Receivings.new.update(receiving_id,
                                                       payload_update)
@@ -96,7 +96,7 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
             receiving_id = receiving.response.resource.items.first.resource.id
 
             payload_updates = { shipFrom: { email: FFaker::Internet.email } }
-            payload_update  = payload.deep_merge(payload_updates)
+            payload_update  = payload.deeper_merge(payload_updates)
 
             request = Shipwire::Receivings.new.update(receiving_id,
                                                       payload_update,
@@ -110,7 +110,7 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
       it "fails when id does not exist" do
         VCR.use_cassette("receiving_update_fail") do
           payload_updates = { shipFrom: { email: FFaker::Internet.email } }
-          payload_update  = payload.deep_merge(payload_updates)
+          payload_update  = payload.deeper_merge(payload_updates)
 
           request = Shipwire::Receivings.new.update(0, payload_update)
 

@@ -55,7 +55,7 @@ RSpec.describe "Orders", type: :feature, vcr: true do
     end
 
     let(:payload_update) do
-      payload.deep_merge(options: { currency: "MXN" })
+      payload.deeper_merge(options: { currency: "MXN" })
     end
 
     let!(:order) do

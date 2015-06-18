@@ -1,3 +1,4 @@
+require 'deep_merge/rails_compat'
 require 'faraday'
 require 'recursive_open_struct'
 
