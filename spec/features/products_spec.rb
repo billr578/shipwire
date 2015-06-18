@@ -4,7 +4,7 @@ RSpec.describe "Product", type: :feature, vcr: true do
   %w(basic insert kit virtual_kit).each do |product_type|
     context "type #{product_type}" do
       let(:product_class) do
-        "Shipwire::Products::#{product_type.camelize}".constantize
+        Object.const_get("Shipwire::Products::#{product_type.camelize}")
       end
 
       context "list" do
