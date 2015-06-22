@@ -1,11 +1,9 @@
 module Shipwire
-  module Products
-    class Insert < Base
-      protected
+  class Products::Insert < Products
+    protected
 
-      def product_classification
-        { classification: "marketingInsert" }
-      end
+    def product_classification
+      { classification: "marketingInsert" }
     end
   end
 end

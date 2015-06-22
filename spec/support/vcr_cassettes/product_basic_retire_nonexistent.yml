@@ -21,11 +21,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 09 Jun 2015 23:28:01 GMT
+      - Mon, 22 Jun 2015 16:30:22 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.024779'
+      - '0.028057'
+      X-Request-Id:
+      - 32a222cc6590d3c36d21c38f21af678e
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -41,5 +43,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"status":200,"message":"Successful","resourceLocation":null}'
     http_version: 
-  recorded_at: Tue, 09 Jun 2015 23:28:01 GMT
+  recorded_at: Mon, 22 Jun 2015 16:30:22 GMT
 recorded_with: VCR 2.9.3

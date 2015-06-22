@@ -21,11 +21,13 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Tue, 09 Jun 2015 23:27:59 GMT
+      - Mon, 22 Jun 2015 16:30:19 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.023826'
+      - '0.026829'
+      X-Request-Id:
+      - 811d042fc4502dce30d975917f116a3e
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -41,5 +43,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"status":404,"message":"Product not found.","resourceLocation":null}'
     http_version: 
-  recorded_at: Tue, 09 Jun 2015 23:27:59 GMT
+  recorded_at: Mon, 22 Jun 2015 16:30:20 GMT
 recorded_with: VCR 2.9.3

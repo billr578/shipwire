@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/products/510000013
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/products/510000014
     body:
       encoding: US-ASCII
       string: ''
@@ -21,13 +21,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 18 Jun 2015 00:04:14 GMT
+      - Mon, 22 Jun 2015 16:30:33 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.039409'
+      - '0.040420'
       X-Request-Id:
-      - 66a034848b6f49e6ccd3a2044592f99a
+      - 8c036381d7f8f90d2b104352575ac97b
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -41,8 +41,8 @@ http_interactions:
       - application/json
     body:
       encoding: UTF-8
-      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/virtualKits\/510000013","resource":{"id":510000013,"externalId":"F-6200","sku":"U68","creationDate":"2015-06-17T17:04:14-07:00","description":"Pont
-        Input Transmitter","status":"instock","classification":"virtualKit","virtualKitContent":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/virtualKits\/510000013\/content?offset=0&limit=20"},"flags":{"resourceLocation":null}}}'
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/virtualKits\/510000014","resource":{"id":510000014,"externalId":"F32","sku":"F-5977","creationDate":"2015-06-22T09:30:32-07:00","description":"Phunt
+        Side Controller","status":"instock","classification":"virtualKit","virtualKitContent":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/virtualKits\/510000014\/content?offset=0&limit=20"},"flags":{"resourceLocation":null}}}'
     http_version: 
-  recorded_at: Thu, 18 Jun 2015 00:04:14 GMT
+  recorded_at: Mon, 22 Jun 2015 16:30:33 GMT
 recorded_with: VCR 2.9.3

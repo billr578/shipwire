@@ -1,11 +1,9 @@
 module Shipwire
-  module Products
-    class Kit < Base
-      protected
+  class Products::Kit < Products
+    protected
 
-      def product_classification
-        { classification: "kit" }
-      end
+    def product_classification
+      { classification: "kit" }
     end
   end
 end

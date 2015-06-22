@@ -1,11 +1,9 @@
 module Shipwire
-  module Products
-    class VirtualKit < Base
-      protected
+  class Products::VirtualKit < Products
+    protected
 
-      def product_classification
-        { classification: "virtualKit" }
-      end
+    def product_classification
+      { classification: "virtualKit" }
     end
   end
 end
