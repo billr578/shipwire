@@ -60,8 +60,8 @@ RSpec.describe "Returns", type: :feature, vcr: true do
         # Shipwire's end. Whatever needs to happen on their end takes time. The
         # only way I was ever able to get the returns to work was to put a
         # `binding.pry` between the part where it create an order and the part
-        # where it returns the order. Let it sit for about 5 minutes, then let
-        # the tests continue as normal.
+        # where it returns the order. Let it sit for about 5 minutes. Take a
+        # restroom break. Eat a snack. Then let the tests continue as normal.
         Shipwire::Returns.new.create(
           originalOrder: {
             id: order_id
