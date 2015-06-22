@@ -19,6 +19,8 @@ module Shipwire
     def retire(id)
       request(:post, 'products/retire', payload: retire_object(id))
     end
+    alias_method :remove, :retire
+    alias_method :delete, :retire
 
     protected
 
@@ -27,21 +29,16 @@ module Shipwire
     private
 
     def params_runner(params)
-      classification = product_classification || {}
-
-      data          = RecursiveOpenStruct.new(params).to_h
-      data_override = RecursiveOpenStruct.new(classification).to_h
-
-      data.deeper_merge(data_override)
+      abridge(params)
     end
 
     def payload_runner(payload)
       [payload].flatten.each_with_object([]) do |item, pl|
-        pl << payload_abridge(item)
+        pl << abridge(item)
       end
     end
 
-    def payload_abridge(payload)
+    def abridge(payload)
       classification = product_classification || {}
 
       data          = RecursiveOpenStruct.new(payload).to_h
