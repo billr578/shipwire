@@ -1,5 +1,5 @@
 module Shipwire
-  class Products::Basic < Products
+  class Products::Base < Products
     protected
 
     def product_classification

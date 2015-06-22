@@ -19,7 +19,7 @@ require 'shipwire/secret'
 require 'shipwire/stock'
 require 'shipwire/webhooks'
 
-require 'shipwire/products/basic'
+require 'shipwire/products/base'
 require 'shipwire/products/insert'
 require 'shipwire/products/kit'
 require 'shipwire/products/virtual_kit'
