@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: delete
-    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/webhooks/268
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/webhooks/271
     body:
       encoding: US-ASCII
       string: ''
@@ -21,11 +21,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 09 Jun 2015 23:26:34 GMT
+      - Mon, 22 Jun 2015 21:27:01 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.087966'
+      - '0.150943'
+      X-Request-Id:
+      - e4112c89d074e452ed9b058fb4c77e74
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -41,5 +43,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"status":200,"message":"OK","resourceLocation":null}'
     http_version: 
-  recorded_at: Tue, 09 Jun 2015 23:26:34 GMT
+  recorded_at: Mon, 22 Jun 2015 21:27:01 GMT
 recorded_with: VCR 2.9.3

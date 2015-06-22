@@ -13,8 +13,8 @@ RSpec.describe "Webhooks", type: :feature, vcr: true do
 
   context "management" do
     let(:webhook_topic)      { "order.created" }
-    let(:webhook_url)        { "https://demo.spreecommerce.com/webhooks" }
-    let(:webhook_url_update) { "https://demo.spreecommerce.com/webhooks/path" }
+    let(:webhook_url)        { "https://www.shipwire.com/" }
+    let(:webhook_url_update) { "https://www.shipwire.com/about/" }
 
     let!(:webhook) do
       VCR.use_cassette("webhook") do
@@ -22,6 +22,20 @@ RSpec.describe "Webhooks", type: :feature, vcr: true do
           topic: webhook_topic,
           url:   webhook_url
         )
+      end
+    end
+
+    context "create" do
+      it "fails with non-https callback URL" do
+        VCR.use_cassette("webhooks_create_insecure") do
+          request = Shipwire::Webhooks.new.create(
+                      topic: webhook_topic,
+                      url:   "http://www.reddit.com/"
+                    )
+
+          expect(request.errors?).to be_truthy
+          expect(request.errors).to include('Invalid URL')
+        end
       end
     end
 

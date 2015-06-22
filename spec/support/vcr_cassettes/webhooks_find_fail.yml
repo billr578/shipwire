@@ -21,11 +21,13 @@ http_interactions:
       message: Not Found
     headers:
       Date:
-      - Tue, 09 Jun 2015 23:26:32 GMT
+      - Mon, 22 Jun 2015 21:26:57 GMT
       Server:
       - Apache
       X-Process-Time-Seconds:
-      - '0.024056'
+      - '0.023866'
+      X-Request-Id:
+      - 4afc3abd50d973b8d9776e60e124c97d
       Vary:
       - Accept-Encoding
       Strict-Transport-Security:
@@ -41,5 +43,5 @@ http_interactions:
       encoding: UTF-8
       string: '{"status":404,"message":"Subscription not found.","resourceLocation":null}'
     http_version: 
-  recorded_at: Tue, 09 Jun 2015 23:26:32 GMT
+  recorded_at: Mon, 22 Jun 2015 21:26:57 GMT
 recorded_with: VCR 2.9.3
