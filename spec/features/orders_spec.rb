@@ -64,6 +64,24 @@ RSpec.describe "Orders", type: :feature, vcr: true do
       end
     end
 
+    context "create with warnings" do
+      it "is successful" do
+        VCR.use_cassette("order_with_warnings") do
+          request = Shipwire::Orders.new.create(payload)
+
+          expect(request.ok?).to be_truthy
+          expect(request.warnings?).to be_truthy
+          expect(request.warnings).to include "Order was marked residential; "\
+                                              "now marked commercial"
+
+          # Cancel the order
+          order_id = order.response.resource.items.first.resource.id
+
+          Shipwire::Orders.new.cancel(order_id)
+        end
+      end
+    end
+
     context "find" do
       context "without params" do
         it "is successful" do

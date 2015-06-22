@@ -38,6 +38,10 @@ module Shipwire
       !shipwire_warnings.empty?
     end
 
+    def warnings
+      shipwire_warnings
+    end
+
     def response=(payload)
       json = JSON.parse(payload.body)
 

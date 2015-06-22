@@ -1,0 +1,96 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders
+    body:
+      encoding: UTF-8
+      string: '{"orderNo":"CYTRWUKR","externalId":"CYTRWUKR","items":[{"sku":"TEST-PRODUCT","quantity":1}],"options":{"currency":"USD"},"shipTo":{"email":"gwen_romaguera@ratke.com","name":"Selmer
+        Reynolds","address1":"540 West Boylston St.","city":"Worcester","state":"MA","postalCode":"01606","country":"US","phone":"280-811-1518"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 22 Jun 2015 21:12:57 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '1.856475'
+      X-Request-Id:
+      - c27bd0a1b96279dd7c9e26bfb1248756
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '1076'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"status":200,"message":"Successful","warnings":[{"type":"warning","code":"orderSubmitWarnings","message":"Order was marked residential; now marked commercial","orderNo":"CYTRWUKR","externalId":"CYTRWUKR","id":91323065}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders?offset=0&limit=1","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"warnings":[{"type":"warning","code":"orderSubmitWarnings","message":"Order was marked residential; now marked commercial","orderNo":"CYTRWUKR","externalId":"CYTRWUKR","id":91323065}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91323065","resource":{"externalId":"CYTRWUKR","orderNo":"CYTRWUKR","commerceName":"Shipwire","processAfterDate":"2000-01-01T00:00:00-08:00","lastUpdatedDate":"2015-06-22T14:12:57-07:00","status":"held","vendorId":0,"vendorExternalId":null,"id":91323065,"transactionId":"1435007577-967682-1","needsReview":0,"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91323065\/holds?offset=0&limit=20"},"items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91323065\/items?offset=0&limit=20"},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91323065\/trackings?offset=0&limit=20"},"returns":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns?offset=0&limit=20"},"options":{"resourceLocation":null,"resource":{"warehouseId":"","warehouseExternalId":null,"warehouseRegion":null,"warehouseArea":null,"serviceLevelCode":null,"carrierCode":null,"carrierAccountNumber":null,"sameDay":"NOT REQUESTED","forceDuplicate":0,"forceAddress":0,"testOrder":0,"channelName":null,"referrer":""}},"shipFrom":{"resourceLocation":null,"resource":{"company":"WU Test"}},"shipTo":{"resourceLocation":null,"resource":{"email":"gwen_romaguera@ratke.com","name":"Selmer Reynolds","company":"","address1":"540 W BOYLSTON ST","address2":"","address3":"","city":"WORCESTER","state":"MA","postalCode":"01606","country":"US","phone":"280-811-1518","isCommercial":1,"isPoBox":0}},"commercialInvoice":{"resourceLocation":null,"resource":{"shippingValue":null,"insuranceValue":null,"additionalValue":null}},"packingList":{"resourceLocation":null,"resource":{"message1":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message2":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message3":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"other":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}}}},"routing":{"resourceLocation":null,"resource":{"warehouseId":null,"warehouseExternalId":null,"warehouseName":null,"originLongitude":null,"originLatitude":null,"destinationLongitude":"-71.7958","destinationLatitude":"42.3110"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-06-22T14:12:57-07:00","pickedUpDate":null,"submittedDate":null,"processedDate":null,"completedDate":null,"expectedDate":null,"cancelledDate":null,"returnedDate":null,"lastManualUpdateDate":null}},"pricing":{"resourceLocation":null,"resource":{"shipping":0,"packaging":0,"insurance":0,"handling":0,"total":0}},"shipwireAnywhere":{"resourceLocation":null,"resource":{"status":null}},"pricingEstimate":{"resourceLocation":null,"resource":{"total":0,"insurance":0,"shipping":0,"packaging":0,"handling":0}},"splitOrders":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91323065\/splitOrders?offset=0&limit=20"}}}]}}
+    http_version: 
+  recorded_at: Mon, 22 Jun 2015 21:12:59 GMT
+- request:
+    method: post
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders/91302995/cancel
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '0'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      Date:
+      - Mon, 22 Jun 2015 21:13:00 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.125831'
+      X-Request-Id:
+      - 134776eac6e9a3fb122b929c41233494
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '91'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":422,"message":"Order cannot be cancelled","resourceLocation":null}'
+    http_version: 
+  recorded_at: Mon, 22 Jun 2015 21:13:00 GMT
+recorded_with: VCR 2.9.3
