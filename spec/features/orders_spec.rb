@@ -214,7 +214,7 @@ RSpec.describe "Orders", type: :feature, vcr: true do
     end
 
     context "returns" do
-      xit "is successful" do
+      it "is successful" do
         VCR.use_cassette("order_returns") do
           order_id = order.response.resource.items.first.resource.id
 
@@ -224,7 +224,7 @@ RSpec.describe "Orders", type: :feature, vcr: true do
         end
       end
 
-      xit "fails when id does not exist" do
+      it "fails when id does not exist" do
         VCR.use_cassette("order_returns_fail") do
           request = Shipwire::Orders.new.returns(0)
 
