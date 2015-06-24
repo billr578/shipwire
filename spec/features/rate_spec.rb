@@ -2,11 +2,12 @@ require 'spec_helper'
 
 RSpec.describe "Rate", type: :feature, vcr: true do
   context "find" do
-    xit "is successful with existing items" do
+    it "is successful with existing items" do
       VCR.use_cassette("rate_find") do
         request = Shipwire::Rate.new.find(payload)
 
         expect(request.ok?).to be_truthy
+        expect(request.response.resource.rates.count).to be >= 1
       end
     end
 
