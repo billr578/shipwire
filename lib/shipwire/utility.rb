@@ -8,26 +8,15 @@ module Shipwire
       str.to_s.split(separator).map(&:to_i)
     end
 
-    def self.camelize(term)
-      string = term.to_s.sub(/^[a-z\d]*/) { |match| match.capitalize }
+    def self.camelize(term, first_letter = :upper)
+      terms = term.split('_')
 
-      camelizer(string)
-    end
-
-    def self.camelize_lower(term)
-      string = term.to_s.sub(/^(?:(?=a)b(?=\b|[A-Z_])|\w)/) do |match|
-        match.downcase
+      case first_letter
+      when :upper
+        terms.map(&:capitalize!).join
+      when :lower
+        ([terms.first] + terms.drop(1).map(&:capitalize!)).join
       end
-
-      camelizer(string)
-    end
-
-    protected
-
-    def self.camelizer(string)
-      string.gsub!(/(?:_|(\/))([a-z\d]*)/i) { "#{$1}#{$2.capitalize}" }
-
-      string
     end
   end
 end
