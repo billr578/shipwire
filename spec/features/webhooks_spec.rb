@@ -29,9 +29,9 @@ RSpec.describe "Webhooks", type: :feature, vcr: true do
       it "fails with non-https callback URL" do
         VCR.use_cassette("webhooks_create_insecure") do
           request = Shipwire::Webhooks.new.create(
-                      topic: webhook_topic,
-                      url:   "http://www.reddit.com/"
-                    )
+            topic: webhook_topic,
+            url:   "http://www.reddit.com/"
+          )
 
           expect(request.errors?).to be_truthy
           expect(request.errors).to include('Invalid URL')
