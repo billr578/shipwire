@@ -21,6 +21,7 @@ module Shipwire
     def errors?
       api_errors? || shipwire_errors?
     end
+    alias_method :has_errors?, :errors?
 
     def errors
       api_errors + shipwire_errors
@@ -29,14 +30,17 @@ module Shipwire
     def api_errors?
       !api_errors.empty?
     end
+    alias_method :has_api_errors?, :api_errors?
 
     def shipwire_errors?
       !shipwire_errors.empty?
     end
+    alias_method :has_shipwire_errors?, :shipwire_errors?
 
     def warnings?
       !shipwire_warnings.empty?
     end
+    alias_method :has_warnings?, :warnings?
 
     def warnings
       shipwire_warnings
