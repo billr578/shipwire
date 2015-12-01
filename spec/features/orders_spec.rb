@@ -5,9 +5,9 @@ RSpec.describe "Orders", type: :feature, vcr: true do
     context "without params" do
       it "is successful" do
         VCR.use_cassette("orders_list") do
-          request = Shipwire::Orders.new.list
+          response = Shipwire::Orders.new.list
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
     end
@@ -15,11 +15,11 @@ RSpec.describe "Orders", type: :feature, vcr: true do
     context "with params" do
       it "is successful" do
         VCR.use_cassette("orders_list_with_params") do
-          request = Shipwire::Orders.new.list(
+          response = Shipwire::Orders.new.list(
             status: "canceled"
           )
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
     end
@@ -67,15 +67,16 @@ RSpec.describe "Orders", type: :feature, vcr: true do
     context "create with warnings" do
       it "is successful" do
         VCR.use_cassette("order_with_warnings") do
-          request = Shipwire::Orders.new.create(payload)
+          response = Shipwire::Orders.new.create(payload)
 
-          expect(request.ok?).to be_truthy
-          expect(request.warnings?).to be_truthy
-          expect(request.warnings).to include "Order was marked residential; "\
-                                              "now marked commercial"
+          expect(response.ok?).to be_truthy
+          expect(response.has_warnings?).to be_truthy
+          expect(response.warnings).to include(
+            "Order was marked residential; now marked commercial"
+          )
 
           # Cancel the order
-          order_id = order.response.resource.items.first.resource.id
+          order_id = order.body["resource"]["items"].first["resource"]["id"]
 
           Shipwire::Orders.new.cancel(order_id)
         end
@@ -86,11 +87,11 @@ RSpec.describe "Orders", type: :feature, vcr: true do
       context "without params" do
         it "is successful" do
           VCR.use_cassette("order_find") do
-            order_id = order.response.resource.items.first.resource.id
+            order_id = order.body["resource"]["items"].first["resource"]["id"]
 
-            request = Shipwire::Orders.new.find(order_id)
+            response = Shipwire::Orders.new.find(order_id)
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
@@ -98,21 +99,21 @@ RSpec.describe "Orders", type: :feature, vcr: true do
       context "with params" do
         it "is successful" do
           VCR.use_cassette("order_find_with_params") do
-            order_id = order.response.resource.items.first.resource.id
+            order_id = order.body["resource"]["items"].first["resource"]["id"]
 
-            request = Shipwire::Orders.new.find(order_id, expand: "trackings")
+            response = Shipwire::Orders.new.find(order_id, expand: "trackings")
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("order_find_fail") do
-          request = Shipwire::Orders.new.find(0)
+          response = Shipwire::Orders.new.find(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Order not found.'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Order not found.'
         end
       end
     end
@@ -121,11 +122,11 @@ RSpec.describe "Orders", type: :feature, vcr: true do
       context "without params" do
         it "is successful" do
           VCR.use_cassette("order_update") do
-            order_id = order.response.resource.items.first.resource.id
+            order_id = order.body["resource"]["items"].first["resource"]["id"]
 
-            request = Shipwire::Orders.new.update(order_id, payload_update)
+            response = Shipwire::Orders.new.update(order_id, payload_update)
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
@@ -133,23 +134,23 @@ RSpec.describe "Orders", type: :feature, vcr: true do
       context "with params" do
         it "is successful" do
           VCR.use_cassette("order_update_with_params") do
-            order_id = order.response.resource.items.first.resource.id
+            order_id = order.body["resource"]["items"].first["resource"]["id"]
 
-            request = Shipwire::Orders.new.update(order_id,
+            response = Shipwire::Orders.new.update(order_id,
                                                   payload_update,
                                                   expand: "all")
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("order_update_fail") do
-          request = Shipwire::Orders.new.update(0, payload_update)
+          response = Shipwire::Orders.new.update(0, payload_update)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include(
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq(
             "Order ID not detected. Please make a POST if you wish to create "\
             "an order."
           )
@@ -160,20 +161,20 @@ RSpec.describe "Orders", type: :feature, vcr: true do
     context "items" do
       it "is successful" do
         VCR.use_cassette("order_items") do
-          order_id = order.response.resource.items.first.resource.id
+          order_id = order.body["resource"]["items"].first["resource"]["id"]
 
-          request = Shipwire::Orders.new.items(order_id)
+          response = Shipwire::Orders.new.items(order_id)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("order_items_fail") do
-          request = Shipwire::Orders.new.items(0)
+          response = Shipwire::Orders.new.items(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Order not found.'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Order not found.'
         end
       end
     end
@@ -182,11 +183,11 @@ RSpec.describe "Orders", type: :feature, vcr: true do
       context "without params" do
         it "is successful" do
           VCR.use_cassette("order_holds") do
-            order_id = order.response.resource.items.first.resource.id
+            order_id = order.body["resource"]["items"].first["resource"]["id"]
 
-            request = Shipwire::Orders.new.holds(order_id)
+            response = Shipwire::Orders.new.holds(order_id)
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
@@ -194,21 +195,21 @@ RSpec.describe "Orders", type: :feature, vcr: true do
       context "with params" do
         it "is successful" do
           VCR.use_cassette("order_holds_with_params") do
-            order_id = order.response.resource.items.first.resource.id
+            order_id = order.body["resource"]["items"].first["resource"]["id"]
 
-            request = Shipwire::Orders.new.holds(order_id, includeCleared: 1)
+            response = Shipwire::Orders.new.holds(order_id, includeCleared: 1)
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("order_holds_fail") do
-          request = Shipwire::Orders.new.holds(0)
+          response = Shipwire::Orders.new.holds(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Order not found.'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Order not found.'
         end
       end
     end
@@ -216,20 +217,20 @@ RSpec.describe "Orders", type: :feature, vcr: true do
     context "returns" do
       it "is successful" do
         VCR.use_cassette("order_returns") do
-          order_id = order.response.resource.items.first.resource.id
+          order_id = order.body["resource"]["items"].first["resource"]["id"]
 
-          request = Shipwire::Orders.new.returns(order_id)
+          response = Shipwire::Orders.new.returns(order_id)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("order_returns_fail") do
-          request = Shipwire::Orders.new.returns(0)
+          response = Shipwire::Orders.new.returns(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Order not found.'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Order not found.'
         end
       end
     end
@@ -237,20 +238,20 @@ RSpec.describe "Orders", type: :feature, vcr: true do
     context "trackings" do
       it "is successful" do
         VCR.use_cassette("order_trackings") do
-          order_id = order.response.resource.items.first.resource.id
+          order_id = order.body["resource"]["items"].first["resource"]["id"]
 
-          request = Shipwire::Orders.new.trackings(order_id)
+          response = Shipwire::Orders.new.trackings(order_id)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("order_trackings_fail") do
-          request = Shipwire::Orders.new.trackings(0)
+          response = Shipwire::Orders.new.trackings(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Order not found.'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Order not found.'
         end
       end
     end
@@ -258,20 +259,20 @@ RSpec.describe "Orders", type: :feature, vcr: true do
     context "cancel" do
       it "is successful" do
         VCR.use_cassette("order_cancel") do
-          order_id = order.response.resource.items.first.resource.id
+          order_id = order.body["resource"]["items"].first["resource"]["id"]
 
-          request = Shipwire::Orders.new.cancel(order_id)
+          response = Shipwire::Orders.new.cancel(order_id)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("order_cancel_fail") do
-          request = Shipwire::Orders.new.cancel(0)
+          response = Shipwire::Orders.new.cancel(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Order not found'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Order not found'
         end
       end
     end

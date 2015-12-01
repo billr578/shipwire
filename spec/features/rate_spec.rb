@@ -4,10 +4,10 @@ RSpec.describe "Rate", type: :feature, vcr: true do
   context "find" do
     it "is successful with existing items" do
       VCR.use_cassette("rate_find") do
-        request = Shipwire::Rate.new.find(payload)
+        response = Shipwire::Rate.new.find(payload)
 
-        expect(request.ok?).to be_truthy
-        expect(request.response.resource.rates.count).to be >= 1
+        expect(response.ok?).to be_truthy
+        expect(response.body["resource"]["rates"].count).to be >= 1
       end
     end
 
@@ -16,10 +16,12 @@ RSpec.describe "Rate", type: :feature, vcr: true do
         bad_payload = payload
         bad_payload[:order][:items][0][:sku] = 'FAKE-PRODUCT'
 
-        request = Shipwire::Rate.new.find(bad_payload)
+        response = Shipwire::Rate.new.find(bad_payload)
 
-        expect(request.errors?).to be_truthy
-        expect(request.errors).to include "unknown SKU 'FAKE-PRODUCT'"
+        expect(response.ok?).to be_falsy
+        expect(response.validation_errors.first).to include(
+          "message" => "unknown SKU 'FAKE-PRODUCT'"
+        )
       end
     end
 

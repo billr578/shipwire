@@ -4,9 +4,9 @@ RSpec.describe "Secret", type: :feature, vcr: true do
   context "list" do
     it "is successful" do
       VCR.use_cassette("secret_list") do
-        request = Shipwire::Secret.new.list
+        response = Shipwire::Secret.new.list
 
-        expect(request.ok?).to be_truthy
+        expect(response.ok?).to be_truthy
       end
     end
   end
@@ -21,11 +21,11 @@ RSpec.describe "Secret", type: :feature, vcr: true do
     context "find" do
       it "is successful" do
         VCR.use_cassette("secret_find") do
-          secret_id = secret.response.resource.id
+          secret_id = secret.body["resource"]["id"]
 
-          request = Shipwire::Secret.new.find(secret_id)
+          response = Shipwire::Secret.new.find(secret_id)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
 
@@ -34,10 +34,10 @@ RSpec.describe "Secret", type: :feature, vcr: true do
           # ID 0 returns data for an existing secret at index 0 instead of a
           # not found. Shipwire considers this an unintended feature or shortcut
           # rather than a bug. So use 1 instead of 0.
-          request = Shipwire::Secret.new.find(1)
+          response = Shipwire::Secret.new.find(1)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Not found'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Not found'
         end
       end
     end
@@ -45,11 +45,11 @@ RSpec.describe "Secret", type: :feature, vcr: true do
     context "remove" do
       it "is successful" do
         VCR.use_cassette("secret_remove") do
-          secret_id = secret.response.resource.id
+          secret_id = secret.body["resource"]["id"]
 
-          request = Shipwire::Secret.new.remove(secret_id)
+          response = Shipwire::Secret.new.remove(secret_id)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
     end

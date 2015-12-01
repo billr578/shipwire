@@ -9,10 +9,10 @@ RSpec.describe "General access", type: :feature, vcr: true do
 
     it "raises an error" do
       VCR.use_cassette("credentials_missing") do
-        request = Shipwire::Secret.new.list
+        response = Shipwire::Secret.new.list
 
-        expect(request.errors?).to be_truthy
-        expect(request.errors).to include(
+        expect(response.ok?).to be_falsy
+        expect(response.error_summary).to eq(
           'Please include a valid Authorization header (Basic)'
         )
       end
@@ -27,10 +27,10 @@ RSpec.describe "General access", type: :feature, vcr: true do
 
     it "raises an error" do
       VCR.use_cassette("credentials_incorrect") do
-        request = Shipwire::Secret.new.list
+        response = Shipwire::Secret.new.list
 
-        expect(request.errors?).to be_truthy
-        expect(request.errors).to include(
+        expect(response.ok?).to be_falsy
+        expect(response.error_summary).to eq(
           'Please include a valid Authorization header (Basic)'
         )
       end
@@ -41,10 +41,10 @@ RSpec.describe "General access", type: :feature, vcr: true do
     before { Shipwire.configuration.endpoint = 'https://api.fake.shipwire.com' }
 
     it "raises an error" do
-      request = Shipwire::Secret.new.list
+      response = Shipwire::Secret.new.list
 
-      expect(request.errors?).to be_truthy
-      expect(request.errors).to include 'Unable to connect to Shipwire'
+      expect(response.ok?).to be_falsy
+      expect(response.error_summary).to eq 'Unable to connect to Shipwire'
     end
   end
 
@@ -52,10 +52,10 @@ RSpec.describe "General access", type: :feature, vcr: true do
     before { Shipwire.configuration.timeout = 0.0001 }
 
     it "raises an error" do
-      request = Shipwire::Secret.new.list
+      response = Shipwire::Secret.new.list
 
-      expect(request.errors?).to be_truthy
-      expect(request.errors).to include 'Shipwire connection timeout'
+      expect(response.ok?).to be_falsy
+      expect(response.error_summary).to eq 'Shipwire connection timeout'
     end
   end
 end

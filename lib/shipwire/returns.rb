@@ -4,8 +4,8 @@ module Shipwire
       request(:get, 'returns', params: params)
     end
 
-    def create(payload)
-      request(:post, 'returns', payload: payload)
+    def create(body)
+      request(:post, 'returns', body: body)
     end
 
     def find(id, params = {})

@@ -1,90 +1,72 @@
 module Shipwire
   class Request
+    def self.send(**args)
+      new(**args).send
+    end
+
     API_VERSION = 3
 
-    attr_reader :method,
-                :path,
-                :params,
-                :payload
+    attr_reader :method, :path, :params, :body
 
-    def initialize
-      @method  = :get
-      @path    = ''
-      @params  = {}
-      @payload = {}
-    end
+    def initialize(method: :get, path: '', params: {}, body: {})
+      @method = method
+      @path = path
+      @params = params
+      @body = body
 
-    def method(meth)
-      @method = meth
-
-      self
-    end
-
-    def path(loc)
-      @path = loc
-
-      self
-    end
-
-    def params(par)
-      @params = par
-
-      self
-    end
-
-    def payload(payl)
-      @payload = payl
-
-      self
+      @connection = build_connection
     end
 
     def send
-      connection.send(@method, request_path) do |req|
-        req.params = request_params unless @params.empty?
-        req.options.open_timeout = Shipwire.configuration.open_timeout
-        req.options.timeout = Shipwire.configuration.timeout
-        req.headers = request_headers
-        req.body = request_body unless @payload.empty?
-      end
+      Response.new(underlying_response: make_request)
+    rescue Faraday::ConnectionFailed
+      Response.new(error_summary: 'Unable to connect to Shipwire')
+    rescue Faraday::TimeoutError
+      Response.new(error_summary: 'Shipwire connection timeout')
     end
 
     private
 
-    def connection
-      Faraday.new(url: request_base) do |conn|
-        conn.use Faraday::Request::BasicAuthentication, auth_user, auth_pass
+    def build_connection
+      Faraday.new(url: base_url) do |connection|
+        connection.request(:basic_auth, username, password)
+        connection.request(:json)
+        connection.request(:url_encoded)
 
-        conn.adapter(Faraday.default_adapter)
-        conn.response(:logger) if Shipwire.configuration.logger
-        conn.request(:url_encoded)
+        if Shipwire.configuration.logger
+          connection.response(:logger)
+        end
+
+        connection.adapter(Faraday.default_adapter)
       end
     end
 
-    def request_base
+    def make_request
+      @connection.public_send(@method, full_path) do |request|
+        request.params = params unless params.empty?
+        request.options.open_timeout = Shipwire.configuration.open_timeout
+        request.options.timeout = Shipwire.configuration.timeout
+        request.body = body unless body.empty?
+      end
+    end
+
+    def base_url
       Shipwire.configuration.endpoint.chomp("/")
     end
 
-    def request_path
+    def full_path
       "/api/v#{API_VERSION}/#{@path}"
     end
 
-    def request_params
+    def params
       Utility.camel_case(@params)
     end
 
-    def request_headers
-      { 'Content-Type' => 'application/json' }
-    end
-
-    def request_body
-      Utility.camel_case(@payload).to_json
-    end
-
-    def auth_user
+    def username
       Shipwire.configuration.username
     end
 
-    def auth_pass
+    def password
       Shipwire.configuration.password
     end
   end

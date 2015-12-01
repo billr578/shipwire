@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "deep_merge", "~> 1.0.0"
   spec.add_dependency "faraday", "~> 0.9.1"
+  spec.add_dependency "faraday_middleware", "~> 0.10.0"
   spec.add_dependency "recursive-open-struct", "~> 0.6.4"
 
   spec.add_development_dependency "rspec",  "~> 3.2.0"

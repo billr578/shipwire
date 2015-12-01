@@ -4,47 +4,44 @@ module Shipwire
       request(:get, 'products', params: params_runner(params))
     end
 
-    def create(payload)
-      request(:post, 'products', payload: payload_runner(payload))
+    def create(body)
+      request(:post, 'products', body: body_runner(body))
     end
 
     def find(id)
       request(:get, "products/#{id}")
     end
 
-    def update(id, payload)
-      request(:put, "products/#{id}", payload: payload_runner(payload))
+    def update(id, body)
+      request(:put, "products/#{id}", body: body_runner(body))
     end
 
     def retire(id)
-      request(:post, 'products/retire', payload: retire_object(id))
+      request(:post, 'products/retire', body: retire_object(id))
     end
     alias_method :remove, :retire
     alias_method :delete, :retire
 
     protected
 
-    def product_classification; end
+    def product_classification
+      {}
+    end
 
     private
 
     def params_runner(params)
-      abridge(params)
+      with_product_classification(params)
     end
 
-    def payload_runner(payload)
-      [payload].flatten.each_with_object([]) do |item, pl|
-        pl << abridge(item)
+    def body_runner(body)
+      [body].flatten.each_with_object([]) do |item, pl|
+        pl << with_product_classification(item)
       end
     end
 
-    def abridge(payload)
-      classification = product_classification || {}
-
-      data          = RecursiveOpenStruct.new(payload).to_h
-      data_override = RecursiveOpenStruct.new(classification).to_h
-
-      data.deeper_merge(data_override)
+    def with_product_classification(body)
+      body.merge(product_classification)
     end
 
     def retire_object(obj)
