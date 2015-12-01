@@ -40,10 +40,11 @@ module Shipwire
 
     def send
       connection.send(@method, request_path) do |req|
-        req.params  = request_params unless @params.empty?
-        req.options = request_options
+        req.params = request_params unless @params.empty?
+        req.options.open_timeout = Shipwire.configuration.open_timeout
+        req.options.timeout = Shipwire.configuration.timeout
         req.headers = request_headers
-        req.body    = request_body unless @payload.empty?
+        req.body = request_body unless @payload.empty?
       end
     end
 
@@ -69,13 +70,6 @@ module Shipwire
 
     def request_params
       Utility.camel_case(@params)
-    end
-
-    def request_options
-      {
-        open_timeout: Shipwire.configuration.open_timeout,
-        timeout:      Shipwire.configuration.timeout
-      }
     end
 
     def request_headers
