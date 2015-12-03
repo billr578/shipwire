@@ -31,6 +31,22 @@ module Shipwire
       !warnings.empty?
     end
 
+    def error_report
+      report_lines = []
+
+      if has_error_summary?
+        report_lines << 'Error summary:'
+        report_lines << error_summary
+      end
+
+      if has_validation_errors?
+        report_lines << 'Validation errors:'
+        report_lines << validation_errors.pretty_inspect.rstrip
+      end
+
+      report_lines.join("\n")
+    end
+
     private
 
     def load_response(response)
