@@ -13,9 +13,9 @@ RSpec.describe "Product", type: :feature, vcr: true do
         context "without params" do
           it "is successful" do
             VCR.use_cassette("products_#{product_type}_list") do
-              request = product_class.new.list
+              response = product_class.new.list
 
-              expect(request.ok?).to be_truthy
+              expect(response.ok?).to be_truthy
             end
           end
         end
@@ -23,11 +23,11 @@ RSpec.describe "Product", type: :feature, vcr: true do
         context "with params" do
           it "is successful" do
             VCR.use_cassette("products_#{product_type}_list_with_params") do
-              request = product_class.new.list(
+              response = product_class.new.list(
                 sku: "TEST-PRODUCT"
               )
 
-              expect(request.ok?).to be_truthy
+              expect(response.ok?).to be_truthy
             end
           end
         end
@@ -43,20 +43,21 @@ RSpec.describe "Product", type: :feature, vcr: true do
         context "find" do
           it "is successful" do
             VCR.use_cassette("product_#{product_type}_find") do
-              product_id = product.response.resource.items.first.resource.id
+              product_id =
+                product.body["resource"]["items"].first["resource"]["id"]
 
-              request = product_class.new.find(product_id)
+              response = product_class.new.find(product_id)
 
-              expect(request.ok?).to be_truthy
+              expect(response.ok?).to be_truthy
             end
           end
 
           it "fails when id does not exist" do
             VCR.use_cassette("product_#{product_type}_find_fail") do
-              request = product_class.new.find(0)
+              response = product_class.new.find(0)
 
-              expect(request.errors?).to be_truthy
-              expect(request.errors).to include 'Product not found.'
+              expect(response.ok?).to be_falsy
+              expect(response.error_summary).to eq 'Product not found.'
             end
           end
         end
@@ -64,15 +65,16 @@ RSpec.describe "Product", type: :feature, vcr: true do
         context "update" do
           it "is successful" do
             VCR.use_cassette("product_#{product_type}_update") do
-              product_id = product.response.resource.items.first.resource.id
+              product_id =
+                product.body["resource"]["items"].first["resource"]["id"]
 
               payload = payload(product_type).deeper_merge!(
                 description: "Super awesome description"
               )
 
-              request = product_class.new.update(product_id, payload)
+              response = product_class.new.update(product_id, payload)
 
-              expect(request.ok?).to be_truthy
+              expect(response.ok?).to be_truthy
             end
           end
 
@@ -82,10 +84,10 @@ RSpec.describe "Product", type: :feature, vcr: true do
                 description: "Super awesome description"
               )
 
-              request = product_class.new.update(0, payload)
+              response = product_class.new.update(0, payload)
 
-              expect(request.errors?).to be_truthy
-              expect(request.errors).to include 'Product not found.'
+              expect(response.ok?).to be_falsy
+              expect(response.error_summary).to eq 'Product not found.'
             end
           end
         end
@@ -94,11 +96,12 @@ RSpec.describe "Product", type: :feature, vcr: true do
           context "with string passed" do
             it "is successful" do
               VCR.use_cassette("product_#{product_type}_retire_id") do
-                product_id = product.response.resource.items.first.resource.id
+                product_id =
+                  product.body["resource"]["items"].first["resource"]["id"]
 
-                request = product_class.new.retire(product_id)
+                response = product_class.new.retire(product_id)
 
-                expect(request.ok?).to be_truthy
+                expect(response.ok?).to be_truthy
               end
             end
           end
@@ -106,11 +109,12 @@ RSpec.describe "Product", type: :feature, vcr: true do
           context "with array passed" do
             it "is successful" do
               VCR.use_cassette("product_#{product_type}_retire_id") do
-                product_id = product.response.resource.items.first.resource.id
+                product_id =
+                  product.body["resource"]["items"].first["resource"]["id"]
 
-                request = product_class.new.retire([product_id, 0])
+                response = product_class.new.retire([product_id, 0])
 
-                expect(request.ok?).to be_truthy
+                expect(response.ok?).to be_truthy
               end
             end
           end
@@ -118,9 +122,9 @@ RSpec.describe "Product", type: :feature, vcr: true do
           context "when product does not exist" do
             it "is successful" do
               VCR.use_cassette("product_#{product_type}_retire_nonexistent") do
-                request = product_class.new.retire(0)
+                response = product_class.new.retire(0)
 
-                expect(request.ok?).to be_truthy
+                expect(response.ok?).to be_truthy
               end
             end
           end

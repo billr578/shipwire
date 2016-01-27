@@ -10,9 +10,9 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
     context "without params" do
       it "is successful" do
         VCR.use_cassette("receivings_list") do
-          request = Shipwire::Receivings.new.list
+          response = Shipwire::Receivings.new.list
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
     end
@@ -20,11 +20,11 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
     context "using params" do
       it "is successful" do
         VCR.use_cassette("receivings_list_with_params") do
-          request = Shipwire::Receivings.new.list(
+          response = Shipwire::Receivings.new.list(
             status: "canceled"
           )
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
     end
@@ -41,11 +41,12 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
       context "without params" do
         it "is successful" do
           VCR.use_cassette("receiving_find") do
-            receiving_id = receiving.response.resource.items.first.resource.id
+            receiving_id =
+              receiving.body["resource"]["items"].first["resource"]["id"]
 
-            request = Shipwire::Receivings.new.find(receiving_id)
+            response = Shipwire::Receivings.new.find(receiving_id)
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
@@ -53,22 +54,23 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
       context "using params" do
         it "is successful" do
           VCR.use_cassette("receiving_find_with_params") do
-            receiving_id = receiving.response.resource.items.first.resource.id
+            receiving_id =
+              receiving.body["resource"]["items"].first["resource"]["id"]
 
-            request = Shipwire::Receivings.new.find(receiving_id,
+            response = Shipwire::Receivings.new.find(receiving_id,
                                                     expand: "holds")
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("receiving_find_fail") do
-          request = Shipwire::Receivings.new.find(0)
+          response = Shipwire::Receivings.new.find(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Receiving Order not found.'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Receiving Order not found.'
         end
       end
     end
@@ -77,15 +79,16 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
       context "without params" do
         it "is successful" do
           VCR.use_cassette("receiving_update") do
-            receiving_id = receiving.response.resource.items.first.resource.id
+            receiving_id =
+              receiving.body["resource"]["items"].first["resource"]["id"]
 
             payload_updates = { shipFrom: { email: FFaker::Internet.email } }
             payload_update  = payload.deeper_merge(payload_updates)
 
-            request = Shipwire::Receivings.new.update(receiving_id,
+            response = Shipwire::Receivings.new.update(receiving_id,
                                                       payload_update)
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
@@ -93,16 +96,17 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
       context "using params" do
         it "is successful" do
           VCR.use_cassette("receiving_update_with_params") do
-            receiving_id = receiving.response.resource.items.first.resource.id
+            receiving_id =
+              receiving.body["resource"]["items"].first["resource"]["id"]
 
             payload_updates = { shipFrom: { email: FFaker::Internet.email } }
             payload_update  = payload.deeper_merge(payload_updates)
 
-            request = Shipwire::Receivings.new.update(receiving_id,
+            response = Shipwire::Receivings.new.update(receiving_id,
                                                       payload_update,
                                                       expand: "all")
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
@@ -112,10 +116,10 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
           payload_updates = { shipFrom: { email: FFaker::Internet.email } }
           payload_update  = payload.deeper_merge(payload_updates)
 
-          request = Shipwire::Receivings.new.update(0, payload_update)
+          response = Shipwire::Receivings.new.update(0, payload_update)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include(
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq(
             "Order ID not detected. Please make a POST if you wish to create "\
             "an order."
           )
@@ -126,19 +130,20 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
     context "labels_cancel" do
       it "is successful" do
         VCR.use_cassette("receiving_cancel_label") do
-          receiving_id = receiving.response.resource.items.first.resource.id
+          receiving_id =
+            receiving.body["resource"]["items"].first["resource"]["id"]
 
-          request = Shipwire::Receivings.new.labels_cancel(receiving_id)
+          response = Shipwire::Receivings.new.labels_cancel(receiving_id)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
 
       it "is successful even when id does not exist" do
         VCR.use_cassette("receiving_cancel_label_nonexistent") do
-          request = Shipwire::Receivings.new.labels_cancel(0)
+          response = Shipwire::Receivings.new.labels_cancel(0)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
     end
@@ -147,11 +152,12 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
       context "without params" do
         it "is successful" do
           VCR.use_cassette("receiving_holds") do
-            receiving_id = receiving.response.resource.items.first.resource.id
+            receiving_id =
+              receiving.body["resource"]["items"].first["resource"]["id"]
 
-            request = Shipwire::Receivings.new.holds(receiving_id)
+            response = Shipwire::Receivings.new.holds(receiving_id)
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
@@ -159,22 +165,23 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
       context "using params" do
         it "is successful" do
           VCR.use_cassette("receiving_holds_with_params") do
-            receiving_id = receiving.response.resource.items.first.resource.id
+            receiving_id =
+              receiving.body["resource"]["items"].first["resource"]["id"]
 
-            request = Shipwire::Receivings.new.holds(receiving_id,
+            response = Shipwire::Receivings.new.holds(receiving_id,
                                                      includeCleared: 0)
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("receiving_holds_fail") do
-          request = Shipwire::Receivings.new.holds(0)
+          response = Shipwire::Receivings.new.holds(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Receiving Order not found.'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Receiving Order not found.'
         end
       end
     end
@@ -182,20 +189,21 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
     context "instructions_recipients" do
       it "is successful" do
         VCR.use_cassette("receiving_instructions_recipients") do
-          receiving_id = receiving.response.resource.items.first.resource.id
+          receiving_id =
+            receiving.body["resource"]["items"].first["resource"]["id"]
 
-          request = Shipwire::Receivings.new.instructions(receiving_id)
+          response = Shipwire::Receivings.new.instructions(receiving_id)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("receiving_instructions_recipients_fail") do
-          request = Shipwire::Receivings.new.instructions(0)
+          response = Shipwire::Receivings.new.instructions(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Receiving Order not found.'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Receiving Order not found.'
         end
       end
     end
@@ -203,20 +211,21 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
     context "items" do
       it "is successful" do
         VCR.use_cassette("receiving_items") do
-          receiving_id = receiving.response.resource.items.first.resource.id
+          receiving_id =
+            receiving.body["resource"]["items"].first["resource"]["id"]
 
-          request = Shipwire::Receivings.new.items(receiving_id)
+          response = Shipwire::Receivings.new.items(receiving_id)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("receiving_items_fail") do
-          request = Shipwire::Receivings.new.items(0)
+          response = Shipwire::Receivings.new.items(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Receiving Order not found.'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Receiving Order not found.'
         end
       end
     end
@@ -224,20 +233,21 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
     context "shipments" do
       it "is successful" do
         VCR.use_cassette("receiving_shipments") do
-          receiving_id = receiving.response.resource.items.first.resource.id
+          receiving_id =
+            receiving.body["resource"]["items"].first["resource"]["id"]
 
-          request = Shipwire::Receivings.new.shipments(receiving_id)
+          response = Shipwire::Receivings.new.shipments(receiving_id)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("receiving_shipments_fail") do
-          request = Shipwire::Receivings.new.shipments(0)
+          response = Shipwire::Receivings.new.shipments(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Receiving Order not found.'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Receiving Order not found.'
         end
       end
     end
@@ -245,20 +255,21 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
     context "trackings" do
       it "is successful" do
         VCR.use_cassette("receiving_tracking") do
-          receiving_id = receiving.response.resource.items.first.resource.id
+          receiving_id =
+            receiving.body["resource"]["items"].first["resource"]["id"]
 
-          request = Shipwire::Receivings.new.trackings(receiving_id)
+          response = Shipwire::Receivings.new.trackings(receiving_id)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("receiving_tracking_fail") do
-          request = Shipwire::Receivings.new.trackings(0)
+          response = Shipwire::Receivings.new.trackings(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Receiving Order not found.'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Receiving Order not found.'
         end
       end
     end
@@ -266,20 +277,21 @@ RSpec.describe "Receivings", type: :feature, vcr: true do
     context "cancel" do
       it "is successful" do
         VCR.use_cassette("receiving_cancel") do
-          receiving_id = receiving.response.resource.items.first.resource.id
+          receiving_id =
+            receiving.body["resource"]["items"].first["resource"]["id"]
 
-          request = Shipwire::Receivings.new.cancel(receiving_id)
+          response = Shipwire::Receivings.new.cancel(receiving_id)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("receiving_cancel") do
-          request = Shipwire::Receivings.new.cancel(0)
+          response = Shipwire::Receivings.new.cancel(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Receiving not found'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Receiving not found'
         end
       end
     end

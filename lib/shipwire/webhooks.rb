@@ -4,16 +4,16 @@ module Shipwire
       request(:get, 'webhooks')
     end
 
-    def create(payload)
-      request(:post, 'webhooks', payload: payload)
+    def create(body)
+      request(:post, 'webhooks', body: body)
     end
 
     def find(id)
       request(:get, "webhooks/#{id}")
     end
 
-    def update(id, payload)
-      request(:put, "webhooks/#{id}", payload: payload)
+    def update(id, body)
+      request(:put, "webhooks/#{id}", body: body)
     end
 
     def remove(id)

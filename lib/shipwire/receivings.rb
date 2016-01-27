@@ -4,16 +4,16 @@ module Shipwire
       request(:get, 'receivings', params: params)
     end
 
-    def create(payload)
-      request(:post, 'receivings', payload: payload)
+    def create(body)
+      request(:post, 'receivings', body: body)
     end
 
     def find(id, params = {})
       request(:get, "receivings/#{id}", params: params)
     end
 
-    def update(id, payload, params = {})
-      request(:put, "receivings/#{id}", payload: payload, params: params)
+    def update(id, body, params = {})
+      request(:put, "receivings/#{id}", body: body, params: params)
     end
 
     def cancel(id)

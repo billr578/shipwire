@@ -2,84 +2,77 @@ require 'json'
 
 module Shipwire
   class Response
-    attr_accessor :shipwire_errors,
-                  :shipwire_warnings,
-                  :api_errors,
-                  :response
+    attr_reader :error_summary, :validation_errors, :warnings, :body
 
-    def initialize
-      @shipwire_errors   = []
-      @shipwire_warnings = []
-      @api_errors        = []
-      @response          = nil
+    def initialize(underlying_response: nil, error_summary: nil)
+      @error_summary = error_summary
+
+      @validation_errors = []
+      @warnings = []
+
+      if underlying_response
+        load_response(underlying_response)
+      end
     end
 
     def ok?
-      errors.empty?
+      !has_error_summary? && !has_validation_errors?
     end
 
-    def errors?
-      api_errors? || shipwire_errors?
-    end
-    alias_method :has_errors?, :errors?
-
-    def errors
-      api_errors + shipwire_errors
+    def has_error_summary?
+      !error_summary.nil?
     end
 
-    def api_errors?
-      !api_errors.empty?
-    end
-    alias_method :has_api_errors?, :api_errors?
-
-    def shipwire_errors?
-      !shipwire_errors.empty?
-    end
-    alias_method :has_shipwire_errors?, :shipwire_errors?
-
-    def warnings?
-      !shipwire_warnings.empty?
-    end
-    alias_method :has_warnings?, :warnings?
-
-    def warnings
-      shipwire_warnings
+    def has_validation_errors?
+      !validation_errors.empty?
     end
 
-    def response=(payload)
-      json = JSON.parse(payload.body)
+    def has_warnings?
+      !warnings.empty?
+    end
 
-      @response = RecursiveOpenStruct.new(json, recurse_over_arrays: true)
+    def error_report
+      report_lines = []
 
-      populate_errors
-      populate_warnings
+      if has_error_summary?
+        report_lines << 'Error summary:'
+        report_lines << error_summary
+      end
+
+      if has_validation_errors?
+        report_lines << 'Validation errors:'
+        report_lines << validation_errors.pretty_inspect.rstrip
+      end
+
+      report_lines.join("\n")
     end
 
     private
 
-    def populate_warnings
-      [*response.warnings].each { |item| shipwire_warnings << item.message }
-    end
-
-    def populate_errors
-      populate_status_errors
-
-      populate_response_errors
+    def load_response(response)
+      @body = JSON.parse(response.body)
+      @warnings = parse_warnings_from(body)
+      @error_summary = parse_error_summary_from(body)
+      @validation_errors = parse_validation_errors_from(body)
     end
 
     # Errors because of a 40x or 50x error
-    def populate_status_errors
-      if /^[45]+/.match(response.status.to_s)
-        shipwire_errors << response.message
+    def parse_error_summary_from(body)
+      if (400..599).include?(body['status']) && body.key?('message')
+        body['message']
+      else
+        nil
       end
     end
 
     # Errors specified in Shipwire response body
-    def populate_response_errors
-      [*response.errors].each do |item|
-        message = item.is_a?(RecursiveOpenStruct) ? item.message : item
+    def parse_validation_errors_from(body)
+      body.fetch('errors', {})
+    end
 
-        shipwire_errors << message
+    def parse_warnings_from(body)
+      body.fetch('warnings', []).map do |warning|
+        warning.fetch('message')
       end
     end
   end

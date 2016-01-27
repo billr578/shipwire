@@ -5,9 +5,9 @@ RSpec.describe "Product", type: :feature, vcr: true do
     context "without params" do
       it "is successful" do
         VCR.use_cassette("products_list") do
-          request = Shipwire::Products.new.list
+          response = Shipwire::Products.new.list
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
     end
@@ -15,11 +15,11 @@ RSpec.describe "Product", type: :feature, vcr: true do
     context "with params" do
       it "is successful" do
         VCR.use_cassette("products_list_with_params") do
-          request = Shipwire::Products.new.list(
+          response = Shipwire::Products.new.list(
             sku: "TEST-PRODUCT"
           )
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
     end
@@ -43,15 +43,15 @@ RSpec.describe "Product", type: :feature, vcr: true do
               product_payload("virtual_kit")
             ]
 
-            request = Shipwire::Products.new.create(payload)
+            response = Shipwire::Products.new.create(payload)
 
-            expect(request.ok?).to be_truthy
-            expect(request.response.resource.items.count).to eq 4
+            expect(response.ok?).to be_truthy
+            expect(response.body["resource"]["items"].count).to eq 4
 
             # Retire products just created
-            items = request.response.resource.items
+            items = response.body["resource"]["items"]
             retire_array = items.each_with_object([]) do |item, hsh|
-              hsh << item.resource.id
+              hsh << item["resource"]["id"]
             end
             Shipwire::Products.new.retire(retire_array)
           end
@@ -70,18 +70,20 @@ RSpec.describe "Product", type: :feature, vcr: true do
               classification: "fake"
             )
 
-            request = Shipwire::Products.new.create(payload)
+            response = Shipwire::Products.new.create(payload)
 
-            expect(request.errors?).to be_truthy
-            expect(request.response.resource.items.count).to eq 3
-            expect(request.errors).to include "Product Classification not "\
-                                              "detected. Please pass "\
-                                              "classification for each product."
+            expect(response.ok?).to be_falsy
+            expect(response.body["resource"]["items"].count).to eq 3
+            expect(response.validation_errors.first).to include(
+              "message" =>
+                "Product Classification not detected. " +
+                "Please pass classification for each product."
+            )
 
             # Retire products just created
-            items = request.response.resource.items
+            items = response.body["resource"]["items"]
             retire_array = items.each_with_object([]) do |item, hsh|
-              hsh << item.resource.id
+              hsh << item["resource"]["id"]
             end
             Shipwire::Products.new.retire(retire_array)
           end
@@ -94,12 +96,14 @@ RSpec.describe "Product", type: :feature, vcr: true do
             classification: "fake"
           )
 
-          request = Shipwire::Products.new.create(payload)
+          response = Shipwire::Products.new.create(payload)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include "Product Classification not "\
-                                            "detected. Please pass "\
-                                            "classification for each product."
+          expect(response.ok?).to be_falsy
+          expect(response.validation_errors.first).to include(
+            "message" =>
+              "Product Classification not detected. " +
+              "Please pass classification for each product."
+          )
         end
       end
     end
@@ -107,20 +111,20 @@ RSpec.describe "Product", type: :feature, vcr: true do
     context "find" do
       it "is successful" do
         VCR.use_cassette("product_find") do
-          product_id = product.response.resource.items.first.resource.id
+          product_id = product.body["resource"]["items"].first["resource"]["id"]
 
-          request = Shipwire::Products.new.find(product_id)
+          response = Shipwire::Products.new.find(product_id)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
 
       it "fails when id does not exist" do
         VCR.use_cassette("product_find_fail") do
-          request = Shipwire::Products.new.find(0)
+          response = Shipwire::Products.new.find(0)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Product not found.'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Product not found.'
         end
       end
     end
@@ -128,15 +132,15 @@ RSpec.describe "Product", type: :feature, vcr: true do
     context "update" do
       it "is successful" do
         VCR.use_cassette("product_update") do
-          product_id = product.response.resource.items.first.resource.id
+          product_id = product.body["resource"]["items"].first["resource"]["id"]
 
           payload = product_payload.deeper_merge!(
             description: "Super awesome description"
           )
 
-          request = Shipwire::Products.new.update(product_id, payload)
+          response = Shipwire::Products.new.update(product_id, payload)
 
-          expect(request.ok?).to be_truthy
+          expect(response.ok?).to be_truthy
         end
       end
 
@@ -146,10 +150,10 @@ RSpec.describe "Product", type: :feature, vcr: true do
             description: "Super awesome description"
           )
 
-          request = Shipwire::Products.new.update(0, payload)
+          response = Shipwire::Products.new.update(0, payload)
 
-          expect(request.errors?).to be_truthy
-          expect(request.errors).to include 'Product not found.'
+          expect(response.ok?).to be_falsy
+          expect(response.error_summary).to eq 'Product not found.'
         end
       end
     end
@@ -158,11 +162,12 @@ RSpec.describe "Product", type: :feature, vcr: true do
       context "with string passed" do
         it "is successful" do
           VCR.use_cassette("product_retire_id") do
-            product_id = product.response.resource.items.first.resource.id
+            product_id =
+              product.body["resource"]["items"].first["resource"]["id"]
 
-            request = Shipwire::Products.new.retire(product_id)
+            response = Shipwire::Products.new.retire(product_id)
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
@@ -170,11 +175,12 @@ RSpec.describe "Product", type: :feature, vcr: true do
       context "with array passed" do
         it "is successful" do
           VCR.use_cassette("product_retire_id") do
-            product_id = product.response.resource.items.first.resource.id
+            product_id =
+              product.body["resource"]["items"].first["resource"]["id"]
 
-            request = Shipwire::Products.new.retire([product_id, 0])
+            response = Shipwire::Products.new.retire([product_id, 0])
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end
@@ -182,9 +188,9 @@ RSpec.describe "Product", type: :feature, vcr: true do
       context "when product does not exist" do
         it "is successful" do
           VCR.use_cassette("product_retire_nonexistent") do
-            request = Shipwire::Products.new.retire(0)
+            response = Shipwire::Products.new.retire(0)
 
-            expect(request.ok?).to be_truthy
+            expect(response.ok?).to be_truthy
           end
         end
       end

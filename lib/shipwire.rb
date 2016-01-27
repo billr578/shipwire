@@ -1,5 +1,6 @@
 require 'deep_merge/rails_compat'
 require 'faraday'
+require 'faraday_middleware'
 require 'recursive_open_struct'
 
 require 'shipwire/version'
