@@ -1,7 +1,7 @@
 Shipwire
 ========
 
-Ruby gem to integrate with Shipwire's fulfillment API.
+Ruby gem to integrate with Shipwire's fulfillment API.  The current implementation works with their deprecated (but still supported) XML API.  Version 2 of this gem will integrate with their current, RESTful API.
 
 ## Installation
 
@@ -46,6 +46,8 @@ Use `api.beta` for any development or testing.
 ## Running Tests
 
 If making contributions to this gem, make sure you write tests for any new functionality.  Contributions will be rejected if there are no tests or tests do not pass.
+
+Quick note on running tests - you'll need an active sandbox account with Shipwire to make the tests pass.  New test will be written in the future with mock HTTP requests so API credentials are not required.
 
 #### Shipping Quotes
 
