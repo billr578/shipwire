@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Shipwire::VERSION
   spec.authors       = ["Bill Rowell"]
   spec.email         = ["billr578@gmail.com"]
-  spec.summary       = %q{Exchange data with Shipwire fullfillment}
-  spec.description   = %q{Provides a wrapper for API calls to Shipwire fullfillment}
+  spec.summary       = 'Exchange data with Shipwire fullfillment'
+  spec.description   = 'Provides a wrapper for API calls to Shipwire'
   spec.homepage      = "https://github.com/morbid-enterprises/shipwire"
   spec.license       = "MIT"
 
@@ -18,18 +18,15 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "faraday"
-  spec.add_dependency "nokogiri"
+  spec.add_dependency "deep_merge", "~> 1.0.0"
+  spec.add_dependency "faraday", "~> 0.9.1"
+  spec.add_dependency "faraday_middleware", "~> 0.10.0"
+  spec.add_dependency "recursive-open-struct", "~> 0.6.4"
 
-  spec.add_development_dependency "bundler", "~> 1.6"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec"
-  spec.add_development_dependency "mocha"
-  spec.add_development_dependency "rack-test"
-
-  spec.add_development_dependency "dotenv"
-
-  spec.add_development_dependency "webmock"
-  spec.add_development_dependency "vcr"
-  spec.add_development_dependency "pry"
+  spec.add_development_dependency "rspec",  "~> 3.2.0"
+  spec.add_development_dependency "ffaker", "~> 2.0.0"
+  spec.add_development_dependency "simplecov", "~> 0.10.0"
+  spec.add_development_dependency "vcr", "~> 2.9.3"
+  spec.add_development_dependency "webmock", "~> 1.21.0"
+  spec.add_development_dependency "pry", "~> 0.10.1"
 end

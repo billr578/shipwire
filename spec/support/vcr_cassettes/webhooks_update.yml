@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/webhooks/271
+    body:
+      encoding: UTF-8
+      string: '{"topic":"order.created","url":"https://www.shipwire.com/about/"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 22 Jun 2015 21:26:58 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '1.097663'
+      X-Request-Id:
+      - 6322e6f2a76855ac5d9e3d43ac139bae
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '161'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/webhooks\/271","resource":{"id":271,"topic":"order.created","url":"https:\/\/www.shipwire.com\/about\/"}}'
+    http_version: 
+  recorded_at: Mon, 22 Jun 2015 21:26:59 GMT
+recorded_with: VCR 2.9.3

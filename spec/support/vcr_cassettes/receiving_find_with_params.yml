@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/receivings/91302993?expand=holds
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 09 Jun 2015 23:28:53 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.043268'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '824'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91302993","resource":{"externalId":"W70","id":91302993,"transactionId":"1433892527","expectedDate":"2015-06-09T00:00:00-07:00","commerceName":"Shipwire","lastUpdatedDate":"2015-06-09T16:28:47-07:00","status":"processed","items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91302993\/items?offset=0&limit=20&expand=holds"},"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91302993\/holds?offset=0&limit=20&expand=holds","resource":{"offset":0,"total":2,"previous":null,"next":null,"items":[{"resourceLocation":null,"resource":{"id":356951,"orderId":91302993,"externalOrderId":"W70","type":"shipwire","description":"Order
+        requires review by Shipwire","appliedDate":"2015-06-09T16:28:49-07:00","clearedDate":null}},{"resourceLocation":null,"resource":{"id":356950,"orderId":91302993,"externalOrderId":"W70","type":"customer","description":"Missing
+        tracking information","appliedDate":"2015-06-09T16:28:48-07:00","clearedDate":null}}]}},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91302993\/trackings?offset=0&limit=20&expand=holds"},"shipments":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91302993\/shipments?offset=0&limit=20&expand=holds"},"labels":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91302993\/labels?offset=0&limit=20&expand=holds"},"instructionsRecipients":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91302993\/instructionsRecipients?offset=0&limit=20&expand=holds"},"options":{"resourceLocation":null,"resource":{"warehouseId":11,"warehouseExternalId":null,"warehouseRegion":"LAX"}},"arrangement":{"resourceLocation":null,"resource":{"type":"none","contact":"","phone":""}},"shipFrom":{"resourceLocation":null,"resource":{"email":"shyann.kuvalis@watsica.biz","name":"Kurt
+        Daniel","address1":"540 West Boylston St.","address2":null,"address3":null,"city":"Worcester","state":"MA","postalCode":"01606","country":"US","phone":"912-866-3038"}},"routing":{"resourceLocation":null,"resource":{"warehouseId":11,"warehouseExternalId":null,"warehouseName":"LA","originLongitude":34.075,"originLatitude":-117.378,"warehouseRegion":"LAX"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-06-09T16:28:47-07:00","pickedUpDate":null,"submittedDate":null,"processedDate":"2015-06-09T16:28:47-07:00","completedDate":null,"expectedDate":"2015-06-09T00:00:00-07:00","deliveredDate":null,"cancelledDate":null,"returnedDate":null,"lastManualUpdateDate":null}}}}'
+    http_version: 
+  recorded_at: Tue, 09 Jun 2015 23:28:53 GMT
+recorded_with: VCR 2.9.3

@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/returns?status=canceled
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 09 Jun 2015 23:33:59 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.052561'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '539'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns?offset=0&limit=20&status=canceled","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91302947","resource":{"externalId":null,"id":91302947,"transactionId":"1433890406","expectedDate":"2015-06-09T15:53:26-07:00","commerceName":null,"lastUpdatedDate":"2015-06-09T16:01:36-07:00","status":"cancelled","items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91302947\/items?offset=0&limit=20&status=canceled"},"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91302947\/holds?offset=0&limit=20&status=canceled"},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91302947\/trackings?offset=0&limit=20&status=canceled"},"labels":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91302947\/labels?offset=0&limit=20&status=canceled"},"routing":{"resourceLocation":null,"resource":{"warehouseId":8391,"warehouseExternalId":null,"warehouseName":"Death Star","originLongitude":38.5798,"originLatitude":-121.489,"warehouseRegion":"DEATH1"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-06-09T15:53:26-07:00","pickedUpDate":null,"submittedDate":"2015-06-09T16:01:36-07:00","processedDate":"2015-06-09T16:01:36-07:00","completedDate":"2015-06-09T16:01:36-07:00","expectedDate":"2015-06-09T15:53:26-07:00","deliveredDate":null,"cancelledDate":"2015-06-09T16:01:36-07:00","returnedDate":null,"lastManualUpdateDate":null}},"originalOrder":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91302943"}}}]}}
+    http_version: 
+  recorded_at: Tue, 09 Jun 2015 23:33:59 GMT
+recorded_with: VCR 2.9.3

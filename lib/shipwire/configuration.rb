@@ -1,9 +1,19 @@
 module Shipwire
   class Configuration
-    attr_accessor :endpoint, :username, :password, :server
+    attr_accessor :username,
+                  :password,
+                  :open_timeout,
+                  :timeout,
+                  :endpoint,
+                  :logger
 
-    def initialize(&block)
-      block.call(self)
+    def initialize
+      @username     = nil
+      @password     = nil
+      @open_timeout = 2
+      @timeout      = 5
+      @endpoint     = "https://api.shipwire.com"
+      @logger       = false
     end
   end
 end
