@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/receivings?status=canceled
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 09 Jun 2015 23:28:46 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.052973'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '715'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings?offset=0&limit=20&status=canceled","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190","resource":{"externalId":"D42","id":91301190,"transactionId":"1433798304","expectedDate":"2015-06-08T00:00:00-07:00","commerceName":"Shipwire","lastUpdatedDate":"2015-06-08T14:59:29-07:00","status":"cancelled","items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190\/items?offset=0&limit=20&status=canceled"},"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190\/holds?offset=0&limit=20&status=canceled"},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190\/trackings?offset=0&limit=20&status=canceled"},"shipments":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190\/shipments?offset=0&limit=20&status=canceled"},"labels":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190\/labels?offset=0&limit=20&status=canceled"},"instructionsRecipients":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/receivings\/91301190\/instructionsRecipients?offset=0&limit=20&status=canceled"},"options":{"resourceLocation":null,"resource":{"warehouseId":11,"warehouseExternalId":null,"warehouseRegion":"LAX"}},"arrangement":{"resourceLocation":null,"resource":{"type":"none","contact":"","phone":""}},"shipFrom":{"resourceLocation":null,"resource":{"email":"bobbie@price.com","name":"Zachery
+        Schumm","address1":"540 West Boylston St.","address2":null,"address3":null,"city":"Worcester","state":"MA","postalCode":"01606","country":"US","phone":"602-876-9658"}},"routing":{"resourceLocation":null,"resource":{"warehouseId":11,"warehouseExternalId":null,"warehouseName":"LA","originLongitude":34.075,"originLatitude":-117.378,"warehouseRegion":"LAX"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-06-08T14:18:24-07:00","pickedUpDate":null,"submittedDate":"2015-06-08T14:59:29-07:00","processedDate":"2015-06-08T14:59:29-07:00","completedDate":"2015-06-08T14:59:29-07:00","expectedDate":"2015-06-08T00:00:00-07:00","deliveredDate":null,"cancelledDate":"2015-06-08T14:59:29-07:00","returnedDate":null,"lastManualUpdateDate":null}}}}]}}'
+    http_version: 
+  recorded_at: Tue, 09 Jun 2015 23:28:46 GMT
+recorded_with: VCR 2.9.3

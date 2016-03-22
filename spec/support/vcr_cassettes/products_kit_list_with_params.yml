@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/products?classification=kit&sku=TEST-PRODUCT
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 22 Jun 2015 16:30:27 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.027935'
+      X-Request-Id:
+      - 272295a6e696384b17a4c43c5391041a
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '197'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products?offset=0&limit=20&classification=kit&sku=TEST-PRODUCT","resource":{"offset":0,"total":0,"previous":null,"next":null,"items":[]}}'
+    http_version: 
+  recorded_at: Mon, 22 Jun 2015 16:30:27 GMT
+recorded_with: VCR 2.9.3

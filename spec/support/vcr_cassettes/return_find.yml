@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/returns/91303043
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 10 Jun 2015 00:09:26 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.044864'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '484'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91303043","resource":{"externalId":null,"id":91303043,"transactionId":"1433894948","expectedDate":"2015-06-09T17:09:08-07:00","commerceName":null,"lastUpdatedDate":"2015-06-09T17:09:08-07:00","status":"processed","items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91303043\/items?offset=0&limit=20"},"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91303043\/holds?offset=0&limit=20"},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91303043\/trackings?offset=0&limit=20"},"labels":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91303043\/labels?offset=0&limit=20"},"routing":{"resourceLocation":null,"resource":{"warehouseId":8391,"warehouseExternalId":null,"warehouseName":"Death Star","originLongitude":38.5798,"originLatitude":-121.489,"warehouseRegion":"DEATH1"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-06-09T17:09:08-07:00","pickedUpDate":null,"submittedDate":null,"processedDate":"2015-06-09T17:09:08-07:00","completedDate":null,"expectedDate":"2015-06-09T17:09:08-07:00","deliveredDate":null,"cancelledDate":null,"returnedDate":null,"lastManualUpdateDate":null}},"originalOrder":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91303039"}}}
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 00:09:26 GMT
+recorded_with: VCR 2.9.3

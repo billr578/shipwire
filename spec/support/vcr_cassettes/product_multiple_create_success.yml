@@ -1,0 +1,100 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/products
+    body:
+      encoding: UTF-8
+      string: '[{"sku":"K-136","externalId":"C69","description":"Brione Performance
+        System","classification":"baseProduct","category":"OTHER","batteryConfiguration":"NOBATTERY","values":{"costValue":1,"retailValue":4},"dimensions":{"length":1,"width":1,"height":1,"weight":1},"flags":{"isPackagedReadyToShip":1,"isFragile":0,"isDangerous":0,"isPerishable":0,"isLiquid":0,"isMedia":0,"isAdult":0,"hasInnerPack":0,"hasMasterCase":0,"hasPallet":0}},{"sku":"X56","externalId":"W87","description":"Techbalt
+        Electric Audible Kit","classification":"marketingInsert","category":"OTHER","batteryConfiguration":"NOBATTERY","values":{"costValue":1,"retailValue":4},"dimensions":{"length":1,"width":1,"height":0.1,"weight":0.1},"flags":{"isPackagedReadyToShip":1,"isFragile":0,"isDangerous":0,"isPerishable":0,"isLiquid":0,"isMedia":0,"isAdult":0,"hasInnerPack":0,"hasMasterCase":0,"hasPallet":0},"masterCase":{"individualItemsPerCase":1,"sku":"A28","description":"Bruckwood
+        Tag Power Controller","dimensions":{"length":1,"width":1,"height":1,"weight":1}},"inclusionRules":{"insertWhenWorthCurrency":"USD"}},{"sku":"O29","externalId":"U-1712","description":"Triffe
+        Air Filter","classification":"kit","category":"OTHER","batteryConfiguration":"NOBATTERY","values":{"costValue":1,"retailValue":4},"dimensions":{"length":1,"width":1,"height":1,"weight":1},"flags":{"isPackagedReadyToShip":1,"isFragile":0,"isDangerous":0,"isPerishable":0,"isLiquid":0,"isMedia":0,"isAdult":0,"hasInnerPack":0,"hasMasterCase":0,"hasPallet":0},"kitContent":[{"externalId":"TEST-PRODUCT","quantity":1},{"externalId":"TEST-PRODUCT2","quantity":1}]},{"sku":"C-1181","externalId":"Y47","description":"Brineforge
+        Direct Mount","classification":"virtualKit","category":"OTHER","batteryConfiguration":"NOBATTERY","values":{"costValue":1,"retailValue":4},"dimensions":{"length":1,"width":1,"height":1,"weight":1},"flags":{"isPackagedReadyToShip":1,"isFragile":0,"isDangerous":0,"isPerishable":0,"isLiquid":0,"isMedia":0,"isAdult":0,"hasInnerPack":0,"hasMasterCase":0,"hasPallet":0},"virtualKitContent":[{"externalId":"TEST-PRODUCT","quantity":1},{"externalId":"TEST-PRODUCT2","quantity":1}]}]'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 22 Jun 2015 20:36:37 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.308291'
+      X-Request-Id:
+      - e4bde6ca549a869b4a8c8be5519af3db
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '797'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products?offset=0&limit=4","resource":{"offset":0,"total":4,"previous":null,"next":null,"items":[{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/baseProducts\/203497","resource":{"id":203497,"externalId":"C69","sku":"K-136","description":"Brione
+        Performance System","hsCode":null,"countryOfOrigin":null,"creationDate":"2015-06-22T13:36:37-07:00","archivedDate":null,"status":"notinuse","storageConfiguration":"INDIVIDUAL_ITEM","batteryConfiguration":"NOBATTERY","classification":"baseProduct","category":"OTHER","itemCount":1,"vendorId":null,"vendorExternalId":null,"dimensions":{"resourceLocation":null},"values":{"resourceLocation":null},"alternateNames":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/baseProducts\/203497\/alternateNames?offset=0&limit=20"},"technicalData":{"resourceLocation":null},"flags":{"resourceLocation":null},"enqueuedDimensions":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/baseProducts\/203497\/enqueuedDimensions?offset=0&limit=20"},"innerPack":{"resourceLocation":null},"masterCase":{"resourceLocation":null},"pallet":{"resourceLocation":null}}},{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/kits\/203498","resource":{"id":203498,"externalId":"U-1712","sku":"O29","description":"Triffe
+        Air Filter","hsCode":null,"countryOfOrigin":null,"creationDate":"2015-06-22T13:36:38-07:00","archivedDate":null,"status":"notinuse","storageConfiguration":"KIT","batteryConfiguration":"NOBATTERY","classification":"kit","category":"OTHER","itemCount":1,"vendorId":null,"vendorExternalId":null,"dimensions":{"resourceLocation":null},"values":{"resourceLocation":null},"alternateNames":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/kits\/203498\/alternateNames?offset=0&limit=20"},"kitContent":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/kits\/203498\/content?offset=0&limit=20"},"technicalData":{"resourceLocation":null},"flags":{"resourceLocation":null},"enqueuedDimensions":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/kits\/203498\/enqueuedDimensions?offset=0&limit=20"},"innerPack":{"resourceLocation":null},"masterCase":{"resourceLocation":null},"pallet":{"resourceLocation":null}}},{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/marketingInserts\/203499","resource":{"id":203499,"externalId":"W87","sku":"X56","description":"Techbalt
+        Electric Audible Kit","inclusionRuleType":"CUSTOM","creationDate":"2015-06-22T13:36:38-07:00","archivedDate":null,"status":"notinuse","storageConfiguration":"INDIVIDUAL_ITEM","classification":"marketingInsert","itemCount":1,"vendorId":null,"vendorExternalId":null,"dimensions":{"resourceLocation":null},"alternateNames":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/marketingInserts\/203499\/alternateNames?offset=0&limit=20"},"flags":{"resourceLocation":null},"inclusionRules":{"resourceLocation":null},"masterCase":{"resourceLocation":null}}},{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/virtualKits\/510000028","resource":{"id":510000028,"externalId":"Y47","sku":"C-1181","creationDate":"2015-06-22T13:36:38-07:00","description":"Brineforge
+        Direct Mount","status":"instock","classification":"virtualKit","virtualKitContent":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/products\/virtualKits\/510000028\/content?offset=0&limit=20"},"flags":{"resourceLocation":null}}}]}}'
+    http_version: 
+  recorded_at: Mon, 22 Jun 2015 20:36:38 GMT
+- request:
+    method: post
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/products/retire
+    body:
+      encoding: UTF-8
+      string: '{"ids":[203497,203498,203499,510000028]}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 22 Jun 2015 20:36:38 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.125093'
+      X-Request-Id:
+      - bcb3ce4e1aed47c19336fcff390f1d2f
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '274'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"status":200,"message":"Successful","moreInfo":[[{"id":203497,"externalId":"C69","status":"deprecated","sku":"K-136","configuration":"INDIVIDUAL_ITEM","success":true}],[{"id":203498,"externalId":"U-1712","status":"deprecated","sku":"O29","configuration":"KIT","success":true}],[{"id":203499,"externalId":"W87","status":"deprecated","sku":"X56","configuration":"INDIVIDUAL_ITEM","success":true},{"id":203500,"externalId":null,"status":"deprecated","sku":"A28","configuration":"MASTER_CASE","success":true}],[{"id":510000028,"externalId":"Y47","status":"deleted","sku":"C-1181","configuration":"virtualKit","success":true}]],"resourceLocation":null}'
+    http_version: 
+  recorded_at: Mon, 22 Jun 2015 20:36:38 GMT
+recorded_with: VCR 2.9.3

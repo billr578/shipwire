@@ -1,61 +1,83 @@
-Shipwire
-========
+# Shipwire
 
-Ruby gem to integrate with Shipwire's fulfillment API.  The current implementation works with their deprecated (but still supported) XML API.  Version 2 of this gem will integrate with their current, RESTful API.
+Ruby gem to integrate with Shipwire's API.
 
 ## Installation
 
+Install locally with
+
+```
+gem install shipwire
+```
+
 Add this line to your application's Gemfile:
 
-  `gem 'shipwire'`
+```
+gem 'shipwire'
+```
 
-And then execute:
+> Note: The master branch is not guaranteed to be in a fully functioning state. It is unwise to use this branch in a production environment.
 
-  `$ bundle`
+Run the bundle command:
 
-You can install it locally as:
+```
+bundle install
+```
 
-  `$ gem install shipwire`
+If you are using Rails, run the generator:
 
-## Getting Started
+```
+rails g shipwire:install
+```
 
-Get a Shipwire sandbox account for development & testing:
+## Configuration
 
-  `http://beta.shipwire.com/`
+Basic configuration
 
-Your credentials, endpoint, and sever environment variables need to be set:
+```
+Shipwire.configure do |config|
+  config.username = "<%= ENV['SHIPWIRE_USERNAME'] %>"
+  config.password = "<%= ENV['SHIPWIRE_PASSWORD'] %>"
+end
+```
 
-  SHIPWIRE_USERNAME
-  
-  SHIPWIRE_PASSWORD
-  
-  SHIPWIRE_SERVER
-  
-  SHIPWIRE_ENDPOINT
+`username` - (required) Shipwire username (email address) used for basic auth login to Shipwire
 
-SHIPWIRE_SERVER is either `Test` or `Production`.  SHIPWIRE_ENDPOINT is one of their API hosts:
+`password` - (required) Shipwire password used for basic auth login to Shipwire.
 
-  `https://api.shipwire.com/exec/`
+`open_timeout` - Read timeout in seconds. Default is `2`.
 
-Or
+`timeout` - Open/read timeout in seconds. Default is `5`.
 
-  `https://api.beta.shipwire.com/exec/`
+`endpoint` - Endpoint base URL to use for requests. Default is `https://api.shipwire.com`.
 
-Use `api.beta` for any development or testing.
+`logger` - Log requests to STDOUT. Default is `false`.
 
-## Running Tests
+> Note: There is a difference between an account registered from [https://www.shipwire.com/](https://www.shipwire.com/) and one registered from [https://beta.shipwire.com/](https://beta.shipwire.com/). If you create an account from [https://www.shipwire.com/](https://www.shipwire.com/) and then request data from the beta URL, the API will throw errors about an invalid account. Accounts are only valid from that registration point.
 
-If making contributions to this gem, make sure you write tests for any new functionality.  Contributions will be rejected if there are no tests or tests do not pass.
+## Testing
 
-Quick note on running tests - you'll need an active sandbox account with Shipwire to make the tests pass.  New test will be written in the future with mock HTTP requests so API credentials are not required.
+Tests are using a throwaway Shipwire Beta account that is only meant for testing. A personal Shipwire Beta account of your own is not required.
 
-#### Shipping Quotes
+Tests require a product named `TEST-PRODUCT` and `TEST-PRODUCT2` to function properly.
 
-Shipwire relies on product SKUs being present to return a shipping quote.  In your Sandbox environment, create a test product with SKU `123456` to get quote tests to pass.
+```
+bundle exec rake spec
+```
+
+or
+
+```
+bundle exec rspec spec
+```
+
+## Contributions
+
+If making contributions to this gem, make sure you write tests for any new functionality. Contributions will be rejected if there are no tests or tests do not pass.
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/shipwire/fork )
+1. Fork it ( https://github.com/billr578/shipwire/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

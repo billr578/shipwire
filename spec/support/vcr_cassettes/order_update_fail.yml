@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders/0
+    body:
+      encoding: UTF-8
+      string: '{"orderNo":"CKMIMBWA","externalId":"CKMIMBWA","items":[{"sku":"FAKE-PRODUCT","quantity":1}],"options":{"currency":"MXN"},"shipTo":{"email":"cicero_bartell@dietrich.com","name":"Miss
+        Leopoldo Conn","address1":"540 West Boylston St.","city":"Worcester","state":"MA","postalCode":"01606","country":"US","phone":"778-532-4955"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Tue, 09 Jun 2015 23:29:52 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.024734'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '130'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"status":400,"message":"Order ID not detected. Please make a POST if you wish to create an order.","resourceLocation":null}
+    http_version: 
+  recorded_at: Tue, 09 Jun 2015 23:29:52 GMT
+recorded_with: VCR 2.9.3

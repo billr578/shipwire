@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders/91302995
+    body:
+      encoding: UTF-8
+      string: '{"orderNo":"FQCRRMWV","externalId":"FQCRRMWV","items":[{"sku":"FAKE-PRODUCT","quantity":1}],"options":{"currency":"MXN"},"shipTo":{"email":"domenick@leannon.info","name":"Jarvis
+        O''Reilly I","address1":"540 West Boylston St.","city":"Worcester","state":"MA","postalCode":"01606","country":"US","phone":"689-227-4676"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 09 Jun 2015 23:29:52 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '2.872434'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '955'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"status":200,"message":"Successful","resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91302995","resource":{"externalId":"PZYUUKJA","orderNo":"FQCRRMWV","commerceName":"Shipwire","processAfterDate":"2000-01-01T00:00:00-08:00","lastUpdatedDate":"2015-06-09T16:29:48-07:00","status":"held","id":91302995,"transactionId":"1433892588-496044-1","needsReview":0,"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91302995\/holds?offset=0&limit=20"},"items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91302995\/items?offset=0&limit=20"},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91302995\/trackings?offset=0&limit=20"},"returns":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns?offset=0&limit=20"},"options":{"resourceLocation":null,"resource":{"warehouseId":"","warehouseExternalId":null,"warehouseRegion":null,"warehouseArea":null,"serviceLevelCode":null,"carrierCode":null,"carrierAccountNumber":null,"sameDay":"NOT REQUESTED","forceDuplicate":0,"forceAddress":0,"testOrder":0,"channelName":null,"referrer":""}},"shipFrom":{"resourceLocation":null,"resource":{"company":"WU Test"}},"shipTo":{"resourceLocation":null,"resource":{"email":"domenick@leannon.info","name":"Jarvis O'Reilly I","company":null,"address1":"540 W BOYLSTON ST","address2":"","address3":"","city":"WORCESTER","state":"MA","postalCode":"01606","country":"US","phone":"689-227-4676","isCommercial":1,"isPoBox":0}},"commercialInvoice":{"resourceLocation":null,"resource":{"shippingValue":null,"insuranceValue":null,"additionalValue":null}},"packingList":{"resourceLocation":null,"resource":{"message1":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message2":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message3":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"other":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}}}},"routing":{"resourceLocation":null,"resource":{"warehouseId":null,"warehouseExternalId":null,"warehouseName":null,"originLongitude":null,"originLatitude":null,"destinationLongitude":"-71.7958","destinationLatitude":"42.3110"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-06-09T16:29:48-07:00","pickedUpDate":null,"submittedDate":null,"processedDate":null,"completedDate":null,"expectedDate":null,"cancelledDate":null,"returnedDate":null,"lastManualUpdateDate":null}},"pricing":{"resourceLocation":null,"resource":{"shipping":null,"packaging":null,"insurance":null,"handling":null,"total":null}},"shipwireAnywhere":{"resourceLocation":null,"resource":{"status":null}},"pricingEstimate":{"resourceLocation":null,"resource":{"total":null,"insurance":null,"shipping":null,"packaging":null,"handling":null}}}}
+    http_version: 
+  recorded_at: Tue, 09 Jun 2015 23:29:55 GMT
+recorded_with: VCR 2.9.3

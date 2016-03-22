@@ -1,0 +1,98 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/orders
+    body:
+      encoding: UTF-8
+      string: '{"orderNo":"Z-1002","items":[{"sku":"TEST-PRODUCT","quantity":1}],"options":{"currency":"USD"},"shipTo":{"email":"lucy_hirthe@jakubowski.info","name":"Romaine
+        Casper","address1":"540 West Boylston St.","city":"Worcester","state":"MA","postalCode":"01606","country":"US","phone":"340-201-6882"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 10 Jun 2015 00:05:39 GMT
+      Server:
+      - Apache
+      X-Process-Time-Seconds:
+      - '0.888063'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '1051'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"status":200,"message":"Successful","warnings":[{"type":"warning","code":"orderSubmitWarnings","message":"Order was marked residential; now marked commercial","orderNo":"Z-1002","externalId":null,"id":91303039}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders?offset=0&limit=1","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"warnings":[{"type":"warning","code":"orderSubmitWarnings","message":"Order was marked residential; now marked commercial","orderNo":"Z-1002","externalId":null,"id":91303039}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91303039","resource":{"externalId":null,"orderNo":"Z-1002","commerceName":"Shipwire","processAfterDate":"2000-01-01T00:00:00-08:00","lastUpdatedDate":"2015-06-09T17:05:39-07:00","status":"held","id":91303039,"transactionId":"1433894739-271394-1","needsReview":0,"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91303039\/holds?offset=0&limit=20"},"items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91303039\/items?offset=0&limit=20"},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91303039\/trackings?offset=0&limit=20"},"returns":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns?offset=0&limit=20"},"options":{"resourceLocation":null,"resource":{"warehouseId":"","warehouseExternalId":null,"warehouseRegion":null,"warehouseArea":null,"serviceLevelCode":null,"carrierCode":null,"carrierAccountNumber":null,"sameDay":"NOT REQUESTED","forceDuplicate":0,"forceAddress":0,"testOrder":0,"channelName":null,"referrer":""}},"shipFrom":{"resourceLocation":null,"resource":{"company":"WU Test"}},"shipTo":{"resourceLocation":null,"resource":{"email":"lucy_hirthe@jakubowski.info","name":"Romaine Casper","company":"","address1":"540 W BOYLSTON ST","address2":"","address3":"","city":"WORCESTER","state":"MA","postalCode":"01606","country":"US","phone":"340-201-6882","isCommercial":1,"isPoBox":0}},"commercialInvoice":{"resourceLocation":null,"resource":{"shippingValue":null,"insuranceValue":null,"additionalValue":null}},"packingList":{"resourceLocation":null,"resource":{"message1":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message2":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"message3":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}},"other":{"resourceLocation":null,"resource":{"document":null,"header":null,"location":null,"body":null}}}},"routing":{"resourceLocation":null,"resource":{"warehouseId":null,"warehouseExternalId":null,"warehouseName":null,"originLongitude":null,"originLatitude":null,"destinationLongitude":"-71.7958","destinationLatitude":"42.3110"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-06-09T17:05:39-07:00","pickedUpDate":null,"submittedDate":null,"processedDate":null,"completedDate":null,"expectedDate":null,"cancelledDate":null,"returnedDate":null,"lastManualUpdateDate":null}},"pricing":{"resourceLocation":null,"resource":{"shipping":null,"packaging":null,"insurance":null,"handling":null,"total":null}},"shipwireAnywhere":{"resourceLocation":null,"resource":{"status":null}},"pricingEstimate":{"resourceLocation":null,"resource":{"total":null,"insurance":null,"shipping":null,"packaging":null,"handling":null}}}}]}}
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 00:05:40 GMT
+- request:
+    method: post
+    uri: https://david.freerksen%40groundctrl.com:gOg6maBr6E@api.beta.shipwire.com/api/v3/returns
+    body:
+      encoding: UTF-8
+      string: '{"originalOrder":{"id":91303039},"items":[{"sku":"TEST-PRODUCT","quantity":1}],"options":{"emailCustomer":0}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 10 Jun 2015 00:09:07 GMT
+      Server:
+      - Apache
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      X-Process-Time-Seconds:
+      - '2.994179'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      P3p:
+      - policyref="/w3c/p3p.xml", CP="COM CNT INT NAV PUR STA UNI CAO DSP CUR o i
+        OUR IND"
+      Content-Length:
+      - '614'
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: |2-
+
+        {"status":200,"message":"Successful","warnings":[{"code":"returnSubmitFailed","id":91303039,"message":"This return will be shipped to a different warehouse than the one specified.","type":"warning"}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns?offset=0&limit=1","resource":{"offset":0,"total":1,"previous":null,"next":null,"items":[{"warnings":[{"code":"returnSubmitFailed","id":91303039,"message":"This return will be shipped to a different warehouse than the one specified.","type":"warning"}],"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91303043","resource":{"externalId":null,"id":91303043,"transactionId":"1433894948","expectedDate":"2015-06-09T17:09:08-07:00","commerceName":null,"lastUpdatedDate":"2015-06-09T17:09:08-07:00","status":"processed","items":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91303043\/items?offset=0&limit=20"},"holds":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91303043\/holds?offset=0&limit=20"},"trackings":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91303043\/trackings?offset=0&limit=20"},"labels":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/returns\/91303043\/labels?offset=0&limit=20"},"routing":{"resourceLocation":null,"resource":{"warehouseId":8391,"warehouseExternalId":null,"warehouseName":"Death Star","originLongitude":38.5798,"originLatitude":-121.489,"warehouseRegion":"DEATH1"}},"events":{"resourceLocation":null,"resource":{"createdDate":"2015-06-09T17:09:08-07:00","pickedUpDate":null,"submittedDate":null,"processedDate":"2015-06-09T17:09:08-07:00","completedDate":null,"expectedDate":"2015-06-09T17:09:08-07:00","deliveredDate":null,"cancelledDate":null,"returnedDate":null,"lastManualUpdateDate":null}},"originalOrder":{"resourceLocation":"https:\/\/api.beta.shipwire.com\/api\/v3\/orders\/91303039"}}}]}}
+    http_version: 
+  recorded_at: Wed, 10 Jun 2015 00:09:11 GMT
+recorded_with: VCR 2.9.3
