@@ -12,6 +12,7 @@ require 'shipwire/response'
 require 'shipwire/utility'
 
 require 'shipwire/orders'
+require 'shipwire/purchase_orders'
 require 'shipwire/products'
 require 'shipwire/rate'
 require 'shipwire/receivings'
