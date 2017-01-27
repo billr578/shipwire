@@ -9,7 +9,7 @@ module Shipwire
     end
 
     def find(id, params = {})
-      request(:get, "orders/#{id}/trackings", params: params)
+      request(:get, "orders/#{id}", params: params)
     end
 
     def update(id, body, params = {})
