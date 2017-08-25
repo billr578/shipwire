@@ -24,6 +24,10 @@ module Shipwire
       request(:get, "orders/#{id}/holds", params: params)
     end
 
+    def release(id)
+      request(:post, "orders/#{id}/holds/clear")
+    end
+
     def items(id)
       request(:get, "orders/#{id}/items")
     end
