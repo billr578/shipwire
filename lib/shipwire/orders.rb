@@ -32,6 +32,10 @@ module Shipwire
       request(:get, "orders/#{id}/items")
     end
 
+    def pieces(id)
+      request(:get, "orders/#{id}/pieces")
+    end
+
     def returns(id)
       request(:get, "orders/#{id}/returns")
     end
