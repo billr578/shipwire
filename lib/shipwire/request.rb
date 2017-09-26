@@ -4,8 +4,6 @@ module Shipwire
       new(**args).send
     end
 
-    API_VERSION = 3
-
     attr_reader :method, :path, :params, :body
 
     def initialize(method: :get, path: '', params: {}, body: {})
@@ -55,7 +53,7 @@ module Shipwire
     end
 
     def full_path
-      "/api/v#{API_VERSION}/#{@path}"
+      "/api/#{@path}"
     end
 
     def params

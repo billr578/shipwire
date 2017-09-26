@@ -5,6 +5,7 @@ require 'recursive_open_struct'
 
 require 'shipwire/version'
 require 'shipwire/api'
+require 'shipwire/api_v31'
 require 'shipwire/configuration'
 require 'shipwire/param_converter'
 require 'shipwire/request'
