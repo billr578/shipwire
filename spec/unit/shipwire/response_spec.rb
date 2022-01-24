@@ -1,5 +1,11 @@
 require 'spec_helper'
 
+class Env
+  def response_headers
+    {}
+  end
+end
+
 RSpec.describe Shipwire::Response do
   describe '#error_report' do
     context 'when the response has an error summary' do
@@ -8,7 +14,7 @@ RSpec.describe Shipwire::Response do
           'status' => 500,
           'message' => 'Something really bad happened'
         )
-        underlying_response = double(:response, body: body)
+        underlying_response = double(:response, body: body, env: Env.new)
         response = described_class.new(
           underlying_response: underlying_response
         )
@@ -29,12 +35,7 @@ REPORT
             'SKU-2' => { 'another' => 'error' }
           }
         )
-        env = Struct.new(:response_headers) do
-          def response_headers
-            {}
-          end
-        end
-        underlying_response = double(:response, body: body, env: env)
+        underlying_response = double(:response, body: body, env: Env.new)
         response = described_class.new(
           underlying_response: underlying_response
         )
