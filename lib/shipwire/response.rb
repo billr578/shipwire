@@ -2,7 +2,7 @@ require 'json'
 
 module Shipwire
   class Response
-    attr_reader :error_summary, :validation_errors, :warnings, :body
+    attr_reader :error_summary, :validation_errors, :warnings, :body, :headers
 
     def initialize(underlying_response: nil, error_summary: nil)
       @error_summary = error_summary
@@ -12,6 +12,7 @@ module Shipwire
 
       if underlying_response
         load_response(underlying_response)
+        @headers = underlying_response.env.response_headers
       end
     end
 

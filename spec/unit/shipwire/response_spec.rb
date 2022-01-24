@@ -29,7 +29,12 @@ REPORT
             'SKU-2' => { 'another' => 'error' }
           }
         )
-        underlying_response = double(:response, body: body)
+        env = Struct.new(:response_headers) do
+          def response_headers
+            {}
+          end
+        end
+        underlying_response = double(:response, body: body, env: env)
         response = described_class.new(
           underlying_response: underlying_response
         )

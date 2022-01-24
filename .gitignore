@@ -24,3 +24,6 @@ rspec.log
 .rvmrc
 
 *.gem
+
+.env
+.idea
